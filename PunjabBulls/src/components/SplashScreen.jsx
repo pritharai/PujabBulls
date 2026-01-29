@@ -1,23 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/splashscreen.css";
 
 export default function SplashScreen({ onFinish }) {
   const text = "PunjabBulls";
-  const [displayedText, setDisplayedText] = useState("");
+  const indexRef = useRef(0);
+  const startedRef = useRef(false);
+
+  const [letters, setLetters] = useState([]);
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    let index = 0;
+    if (startedRef.current) return;
+    startedRef.current = true;
 
     const interval = setInterval(() => {
-      setDisplayedText((prev) => prev + text[index]);
-      index++;
-
-      if (index === text.length) {
+      if (indexRef.current >= text.length) {
         clearInterval(interval);
         setTimeout(() => setDone(true), 800);
         setTimeout(() => onFinish?.(), 1800);
+        return;
       }
+
+      setLetters((prev) => [...prev, text.charAt(indexRef.current)]);
+      indexRef.current += 1;
     }, 120);
 
     return () => clearInterval(interval);
@@ -26,8 +31,12 @@ export default function SplashScreen({ onFinish }) {
   return (
     <div className={`splash ${done ? "fade-out" : ""}`}>
       <h1 className="brand">
-        {displayedText}
-        <span className="cursor" />
+        {letters.map((char, i) => (
+          <span key={i} className="letter">
+            {char}
+          </span>
+        ))}
+        {!done && <span className="cursor" />}
       </h1>
     </div>
   );

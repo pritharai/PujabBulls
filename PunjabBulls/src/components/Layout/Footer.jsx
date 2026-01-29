@@ -9,19 +9,7 @@ const Footer = () => {
             {/* Brand */}
             <div className="col-span-1 md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
-                <div className="size-6 text-primary">
-                  <svg
-                    fill="none"
-                    viewBox="0 0 48 48"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z"
-                      fill="currentColor"
-                    ></path>
-                  </svg>
-                </div>
-                <span className="font-bold text-lg">Punjabbulls Tech</span>
+                <span className="font-bold text-lg">PunjabBulls</span>
               </div>
 
               <p className="text-sm text-gray-400 leading-relaxed">
@@ -35,8 +23,13 @@ const Footer = () => {
               <h4 className="font-bold mb-4 text-gray-200">Company</h4>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li>
-                  <a className="hover:text-primary transition-colors" href="#">
+                  <a className="hover:text-primary transition-colors" href="/about">
                     About Us
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="/privacy-policy">
+                    Privacy Policy
                   </a>
                 </li>
               </ul>
@@ -47,8 +40,8 @@ const Footer = () => {
               <h4 className="font-bold mb-4 text-gray-200">Services</h4>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li>
-                  <a className="hover:text-primary transition-colors" href="#">
-                    ERP Solutions
+                  <a className="hover:text-primary transition-colors" href="/products">
+                    Products
                   </a>
                 </li>
                 <li>
@@ -57,13 +50,13 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a className="hover:text-primary transition-colors" href="#">
+                  <a className="hover:text-primary transition-colors" href="/products#dynamics">
                     Microsoft Dynamics
                   </a>
                 </li>
                 <li>
                   <a className="hover:text-primary transition-colors" href="#">
-                    Cloud Migration
+                    
                   </a>
                 </li>
               </ul>
