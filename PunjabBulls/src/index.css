@@ -1,1 +1,24 @@
+/* Import Google Fonts and Icons */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 @import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-primary: #1f7f3c;
+  --color-secondary: #3c4a3e;
+  --color-background-light: #f6f8f6;
+  --color-background-dark: #131f17;
+  --color-accent-gray: #dadada;
+
+  /* Typography */
+  --font-family-display: "Inter", sans-serif;
+  --font-family-sans: "Inter", sans-serif;
+
+  /* Border Radius */
+  --radius: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+}
+
