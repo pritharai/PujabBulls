@@ -75,6 +75,7 @@ import Services from "./Pages/Services";
 import Solutions from "./Pages/Solutions";
 import Process from "./Pages/Process";
 import Partners from "./Pages/Partners";
+import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 
 function App() {
@@ -87,6 +88,7 @@ function App() {
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/process" element={<Process />} />
         <Route path="/partners" element={<Partners />} />
+        <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Route>
     </Routes>

@@ -9,6 +9,7 @@ const Navbar = () => {
     ["Solutions", "/solutions"],
     ["Process", "/process"],
     ["Partners", "/partners"],
+    ["About", "/about"],
     ["Contact", "/contact"],
   ];
 
