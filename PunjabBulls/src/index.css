@@ -23,3 +23,7 @@
   --radius-full: 9999px;
 }
 
+.grid-bg {
+  background-image: radial-gradient(#1f7f3c22 1px, transparent 1px);
+  background-size: 32px 32px;
+}

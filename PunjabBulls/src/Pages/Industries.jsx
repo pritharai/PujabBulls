@@ -1,9 +1,22 @@
-import React from 'react'
+import DistributionSection from "../components/Industries/DistributionSection";
+import IndustryCTA from "../components/Industries/IndustryCTA";
+import IndustryHero from "../components/Industries/IndustryHero";
+import IndustrySubnav from "../components/Industries/IndustrySubnav";
+import ManufacturingSection from "../components/Industries/ManufacturingSection";
+import RetailSection from "../components/Industries/RetailSection";
+
 
 const Industries = () => {
   return (
-    <div>Industries</div>
-  )
-}
+    <>
+      <IndustryHero />
+      <IndustrySubnav />
+      <RetailSection />
+      <DistributionSection />
+      <ManufacturingSection />
+      <IndustryCTA />
+    </>
+  );
+};
 
-export default Industries
+export default Industries;
