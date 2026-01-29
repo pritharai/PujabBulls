@@ -6,20 +6,22 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
+import "../Styles/about.css";
 
 export default function AboutUs() {
   return (
     <main className="bg-[var(--color-background-light)] text-[var(--color-secondary)]">
-
       {/* HERO */}
-      <section className="max-w-7xl mx-auto px-6 py-28 text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-[var(--color-primary)] animate-fade-up">
-          Innovation Meets Execution
-        </h1>
-        <p className="mt-6 max-w-2xl mx-auto text-gray-600 text-lg animate-fade-up animate-delay-1">
-          We design intelligent digital systems that help businesses adapt,
-          scale, and lead with confidence.
-        </p>
+      <section className="about-header py-32 text-center">
+        <div className="max-w-7xl mx-auto px-6">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white animate-fade-up">
+            Innovation Meets Execution
+          </h1>
+          <p className="mt-6 max-w-2xl mx-auto text-gray-200 text-lg animate-fade-up animate-delay-1">
+            We design intelligent digital systems that help businesses adapt,
+            scale, and lead with confidence.
+          </p>
+        </div>
       </section>
 
       {/* WHO WE ARE */}
@@ -106,8 +108,8 @@ export default function AboutUs() {
           <h2 className="text-3xl font-bold mb-4">How We Help You</h2>
           <p className="text-gray-600">
             We study your business, identify what sets you apart, and design
-            practical, affordable, and proven technology solutions that move
-            you forward.
+            practical, affordable, and proven technology solutions that move you
+            forward.
           </p>
         </div>
       </section>
@@ -118,7 +120,6 @@ export default function AboutUs() {
           Intelligent technology. Thoughtful execution.
         </p>
       </section>
-
     </main>
   );
 }
