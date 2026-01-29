@@ -8,7 +8,7 @@ const Navbar = () => {
     ["Services", "/services"],
     ["Solutions", "/solutions"],
     ["Process", "/process"],
-    ["Partners", "/partners"],
+    ["Products", "/products"],
     ["Contact", "/contact"],
   ];
 
