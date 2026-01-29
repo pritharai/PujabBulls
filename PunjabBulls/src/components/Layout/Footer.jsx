@@ -39,21 +39,6 @@ const Footer = () => {
                     About Us
                   </a>
                 </li>
-                <li>
-                  <a className="hover:text-primary transition-colors" href="#">
-                    Careers
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-primary transition-colors" href="#">
-                    Partners
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-primary transition-colors" href="#">
-                    Blog
-                  </a>
-                </li>
               </ul>
             </div>
 
@@ -98,13 +83,14 @@ const Footer = () => {
                   <span className="material-symbols-outlined text-xs">
                     call
                   </span>
-                  +1 (555) 123-4567
+                  +91 9711270115
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-xs">
-                    location_on
+                  <span className="text-xs">
+                    PUNJABBULLS TECHNOLOGY PVT. LTD. FE-30, Lower Ground Floor,
+                    Shivaji Enclave, New Delhi- 110027, India
                   </span>
-                  Punjab, India
+                  
                 </li>
               </ul>
             </div>
