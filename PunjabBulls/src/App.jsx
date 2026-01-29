@@ -5,8 +5,8 @@ import Layout from "./components/Layout/Layout";
 import SplashScreen from "./components/SplashScreen";
 
 import Home from "./Pages/Home";
-import Services from "./Pages/Services";
-import Solutions from "./Pages/Solutions";
+import Industries from "./Pages/Industries";
+import Privacy from "./Pages/Privacy";
 import Products from "./Pages/Products";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
@@ -36,8 +36,8 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/solutions" element={<Solutions />} />
+        <Route path="/industries" element={<Industries />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="/products" element={<Products />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

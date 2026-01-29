@@ -5,8 +5,8 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   const navItems = [
-    ["Services", "/services"],
-    ["Solutions", "/solutions"],
+    ["Home", "/"],
+    ["Industries", "/industries"],
     ["Products", "/products"],
     ["About", "/about"],
     ["Contact", "/contact"],
