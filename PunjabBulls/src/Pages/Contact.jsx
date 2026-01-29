@@ -1,9 +1,95 @@
-import React from 'react'
+import React from "react";
 
-const Contact = () => {
+const ContactUs = () => {
   return (
-    <div>Contact</div>
-  )
-}
+    <section className="min-h-screen bg-[var(--color-background-light)] flex items-center justify-center px-6 py-20 font-[var(--font-family-sans)]">
+      <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-16">
+        {/* LEFT CONTENT */}
+        <div className="flex flex-col justify-center">
+          <span className="text-xs tracking-widest text-[var(--color-primary)] font-medium">
+            CONTACT
+          </span>
 
-export default Contact
+          <h1 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--color-secondary)] leading-tight">
+            Let’s talk.
+          </h1>
+
+          <p className="mt-6 text-gray-600 max-w-md">
+            Whether you have a question, feedback, or a quiet idea waiting to be
+            heard, we’d love to listen.
+          </p>
+
+          <div className="mt-10 space-y-4 text-sm text-gray-700">
+            <div className="flex items-center gap-3">
+              <span className="material-symbols-outlined text-[var(--color-primary)]">
+                mail
+              </span>
+              info@punjabbulls.com
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="material-symbols-outlined text-[var(--color-primary)]">
+                call
+              </span>
+              +91 9711270115
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className=" text-[var(--color-primary)]">
+                PUNJABBULLS TECHNOLOGY PVT. LTD. FE-30, Lower Ground Floor, <br />
+                Shivaji Enclave, New Delhi- 110027, India
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT FORM */}
+        <div className="bg-white rounded-[var(--radius-xl)] border border-[var(--color-accent-gray)] p-10">
+          <form className="space-y-6">
+            <div>
+              <label className="block text-xs font-medium text-gray-500 mb-2">
+                Name
+              </label>
+              <input
+                type="text"
+                placeholder="Your name"
+                className="w-full rounded-[var(--radius)] border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-gray-500 mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                placeholder="you@example.com"
+                className="w-full rounded-[var(--radius)] border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-gray-500 mb-2">
+                Message
+              </label>
+              <textarea
+                rows="4"
+                placeholder="Write your message..."
+                className="w-full rounded-[var(--radius)] border border-gray-200 px-4 py-3 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full rounded-[var(--radius-full)] bg-[var(--color-primary)] text-white py-3 text-sm font-medium tracking-wide hover:opacity-90 transition"
+            >
+              Send message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ContactUs;
