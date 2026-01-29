@@ -8,6 +8,7 @@ import Solutions from "./Pages/Solutions";
 import Products from "./Pages/Products";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
+import PrivacyPolicy from "./Pages/Privacy";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Route>
     </Routes>
   );

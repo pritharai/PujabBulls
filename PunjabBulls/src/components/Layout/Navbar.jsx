@@ -10,6 +10,7 @@ const Navbar = () => {
     ["Products", "/products"],
     ["About", "/about"],
     ["Contact", "/contact"],
+    ["Privacy Policy", "/privacy-policy"],
   ];
 
   return (
