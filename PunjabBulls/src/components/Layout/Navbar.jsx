@@ -7,7 +7,6 @@ const Navbar = () => {
   const navItems = [
     ["Services", "/services"],
     ["Solutions", "/solutions"],
-    ["Process", "/process"],
     ["Products", "/products"],
     ["About", "/about"],
     ["Contact", "/contact"],

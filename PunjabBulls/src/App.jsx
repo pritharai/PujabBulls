@@ -5,8 +5,8 @@ import Layout from "./components/Layout/Layout";
 import Home from "./Pages/Home";
 import Services from "./Pages/Services";
 import Solutions from "./Pages/Solutions";
-import Process from "./Pages/Process";
 import Products from "./Pages/Products";
+import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 
 function App() {
@@ -17,7 +17,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/solutions" element={<Solutions />} />
-        <Route path="/process" element={<Process />} />
         <Route path="/products" element={<Products />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
