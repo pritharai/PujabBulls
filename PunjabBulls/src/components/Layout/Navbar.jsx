@@ -5,10 +5,10 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   const navItems = [
-    ["Services", "/services"],
-    ["Solutions", "/solutions"],
-    ["Process", "/process"],
+    ["Home", "/"],
+    ["Industries", "/industries"],
     ["Products", "/products"],
+    ["Privacy", "/privacy"],
     ["Contact", "/contact"],
   ];
 
