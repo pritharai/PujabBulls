@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import logo from "../assets/logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +11,7 @@ const Navigation = () => {
         
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Punjab Bulls Logo" className="h-10 w-auto" />
+          <img src="/logo.png" alt="Punjab Bulls Logo" className="h-14 w-auto" />
         </Link>
 
         {/* Desktop Menu */}

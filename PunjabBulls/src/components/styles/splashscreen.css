@@ -1,0 +1,39 @@
+.splash {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #111827, #000000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.brand {
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  font-family: "Inter", "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+.cursor {
+  width: 2px;
+  height: 1.2em;
+  background: rgba(255, 255, 255, 0.6);
+  margin-left: 6px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
