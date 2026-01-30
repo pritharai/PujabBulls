@@ -51,16 +51,16 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="min-h-screen bg-[var(--color-background-light)] flex items-center justify-center px-6 py-20 font-[var(--font-family-sans)]">
+    <section className="min-h-screen bg-light flex items-center justify-center px-6 py-20 font-(--font-family-sans)">
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-16">
 
         {/* LEFT CONTENT */}
         <div className="flex flex-col justify-center">
-          <span className="text-xs tracking-widest text-[var(--color-primary)] font-medium">
+          <span className="text-xs tracking-widest text-primary font-medium">
             CONTACT
           </span>
 
-          <h1 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--color-secondary)] leading-tight">
+          <h1 className="mt-4 text-4xl md:text-5xl font-bold text-secondary leading-tight">
             Let’s talk.
           </h1>
 
@@ -71,21 +71,21 @@ const ContactUs = () => {
 
           <div className="mt-10 space-y-4 text-sm text-gray-700">
             <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-[var(--color-primary)]">
+              <span className="material-symbols-outlined text-primary">
                 mail
               </span>
               info@punjabbulls.com
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-[var(--color-primary)]">
+              <span className="material-symbols-outlined text-primary">
                 call
               </span>
               +91 9711270115
             </div>
 
             <div className="flex items-center gap-3">
-              <span className=" text-[var(--color-primary)]">
+              <span className=" text-primary">
                 PUNJABBULLS TECHNOLOGY PVT. LTD. FE-30, Lower Ground Floor, <br />
                 Shivaji Enclave, New Delhi- 110027, India
               </span>
@@ -94,7 +94,7 @@ const ContactUs = () => {
         </div>
 
         {/* RIGHT FORM */}
-        <div className="bg-white rounded-[var(--radius-xl)] border border-[var(--color-accent-gray)] p-10">
+        <div className="bg-white rounded-xl border border-accent-gray p-10">
 
           <form className="space-y-6" onSubmit={handleSubmit}>
 
@@ -108,7 +108,7 @@ const ContactUs = () => {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="Your name"
-                className="w-full rounded-[var(--radius)] border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                className="w-full rounded-(--radius) border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
               />
             </div>
 
@@ -122,7 +122,7 @@ const ContactUs = () => {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="you@example.com"
-                className="w-full rounded-[var(--radius)] border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                className="w-full rounded-(--radius) border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-color-primary"
               />
             </div>
 
@@ -136,14 +136,14 @@ const ContactUs = () => {
                 value={form.message}
                 onChange={handleChange}
                 placeholder="Write your message..."
-                className="w-full rounded-[var(--radius)] border border-gray-200 px-4 py-3 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                className="w-full rounded-(--radius) border border-gray-200 px-4 py-3 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-primary"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-[var(--radius-full)] bg-[var(--color-primary)] text-white py-3 text-sm font-medium tracking-wide hover:opacity-90 transition disabled:opacity-50"
+              className="w-full rounded-full bg-primary text-white py-3 text-sm font-medium tracking-wide hover:opacity-90 transition disabled:opacity-50"
             >
               {loading ? "Sending..." : "Send message"}
             </button>
