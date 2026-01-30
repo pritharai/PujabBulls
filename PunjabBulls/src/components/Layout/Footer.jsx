@@ -91,7 +91,7 @@ const Footer = () => {
 
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-gray-500">
-              © 2024 Punjabbulls Technology. All rights reserved.
+              © 2026 • PunjabBulls. All rights reserved.
             </p>
 
             <div className="flex gap-4">
