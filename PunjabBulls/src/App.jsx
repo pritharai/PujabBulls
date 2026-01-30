@@ -11,6 +11,7 @@ import Products from "./Pages/Products";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import PrivacyPolicy from "./Pages/Privacy";
+import ScrollToTop from "./components/Layout/ScrollToTop";
 
 function App() {
   const [showSplash, setShowSplash] = useState(() => {
@@ -33,6 +34,8 @@ function App() {
   }
 
   return (
+    <>
+    < ScrollToTop />
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
@@ -44,6 +47,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Route>
     </Routes>
+    </>
   );
 }
 
