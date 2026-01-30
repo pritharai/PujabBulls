@@ -93,23 +93,23 @@ const Hero = () => {
               </motion.div>
             </motion.div>
 
-            {/* RIGHT IMAGE */}
-            <motion.div
-              className="w-full flex-1"
-              variants={imageReveal}
-              whileHover={{ y: -10 }}
-              transition={{ type: "spring", stiffness: 120 }}
-            >
-              <div
-                className="aspect-4/3 w-full rounded-2xl bg-cover bg-center shadow-2xl overflow-hidden relative"
-                style={{
-                  backgroundImage: "url('/images/hero_img.png')",
-                }}
-                aria-label="Modern office representing enterprise growth"
-              >
-                <div className="absolute inset-0 bg-linear-to-tr from-primary/20 to-transparent mix-blend-multiply"></div>
-              </div>
-            </motion.div>
+<motion.div
+  className="w-full flex-1"
+  variants={imageReveal}
+  whileHover={{ y: -10 }}
+  transition={{ type: "spring", stiffness: 120 }}
+>
+  <div
+    className="w-full h-full min-h-[300px] bg-no-repeat bg-center bg-contain shadow-2xl relative"
+    style={{
+      backgroundImage: "url('/images/microsoft-business-central.png')",
+    }}
+    aria-label="Modern office representing enterprise growth"
+  >
+    <div className="absolute inset-0 bg-linear-to-tr from-primary/20 to-transparent mix-blend-multiply pointer-events-none"></div>
+  </div>
+</motion.div>
+
           </div>
         </motion.div>
       </div>
