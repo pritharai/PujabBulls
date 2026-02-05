@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const ContactUs = () => {
-
+const apiUrl = import.meta.env.VITE_API_URL;
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -28,7 +28,7 @@ const ContactUs = () => {
     try {
 
       const res = await axios.post(
-        "http://localhost:5000/api/contact",
+        `${apiUrl}/api/contact`,
         form
       );
       console.log(form)
