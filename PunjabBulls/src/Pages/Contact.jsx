@@ -143,7 +143,7 @@ const ContactUs = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-full bg-primary text-white py-3 text-sm font-medium tracking-wide hover:opacity-90 transition disabled:opacity-50"
+              className="w-full hover:cursor-pointer rounded-full bg-primary text-white py-3 text-sm font-medium tracking-wide hover:opacity-90 transition disabled:opacity-50"
             >
               {loading ? "Sending..." : "Send message"}
             </button>

@@ -27,7 +27,7 @@
 // app.post("/api/contact", async (req, res) => {
 //   try {
 //     const { name, email, message } = req.body;
-
+//     // Test console statement
 //     console.log("CONTACT FORM SUBMISSION:", { name, email, message });
 
 //     if (!name || !email || !message) {
@@ -139,7 +139,6 @@ app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, message } = req.body;
 
-    console.log("CONTACT FORM SUBMISSION:", { name, email, message });
 
     if (!name || !email || !message) {
       return res.status(400).json({
@@ -151,7 +150,6 @@ app.post("/api/contact", async (req, res) => {
     const mailOptions = {
       from: `"Website Contact" <${process.env.FROM_EMAIL}>`,
       to: process.env.MY_EMAIL,
-      replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Request</h2>
