@@ -36,11 +36,11 @@ const IndustryCTA = () => {
             {/* Buttons */}
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
 
-              <button className="bg-primary text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-primary/90 transition-all shadow-2xl shadow-black/20 hover:-translate-y-0.5">
+              <button className="bg-primary hover:cursor-pointer text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-primary/90 transition-all shadow-2xl shadow-black/20 hover:-translate-y-0.5">
                 Schedule a Demo
               </button>
 
-              <button className="bg-white/10 border border-white/20 backdrop-blur-md text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all hover:-translate-y-0.5">
+              <button className="bg-white/10 border hover:cursor-pointer border-white/20 backdrop-blur-md text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all hover:-translate-y-0.5">
                 Talk to Sales
               </button>
 
