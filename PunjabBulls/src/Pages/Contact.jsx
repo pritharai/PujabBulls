@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-/* =======================
-   OFFICE LOCATIONS
-======================= */
 const LOCATIONS = [
   {
     city: "Ludhiana",
@@ -53,6 +50,14 @@ const LOCATIONS = [
 export default function ContactUs() {
   const [activeCity, setActiveCity] = useState(LOCATIONS[1]);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+const ContactUs = () => {
+const apiUrl = import.meta.env.VITE_API_URL;
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null);
 
@@ -61,7 +66,15 @@ export default function ContactUs() {
     setLoading(true);
     setStatus(null);
     try {
-      await axios.post("http://localhost:5000/api/contact", form);
+
+      const res = await axios.post(
+        `${apiUrl}/api/contact`,
+        form
+      );
+      console.log(form)
+
+      if (res.status !== 200) throw new Error();
+
       setStatus("success");
       setForm({ name: "", email: "", message: "" });
     } catch {
