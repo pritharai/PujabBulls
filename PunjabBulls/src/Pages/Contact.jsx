@@ -1,76 +1,96 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+/* =======================
+   OFFICE LOCATIONS
+======================= */
 const LOCATIONS = [
   {
     city: "Ludhiana",
     address:
       "Sco-5, Sua Road Opposite Canara Bank, Tharike, Jhande, Ludhiana, Punjab 141008",
-    map: "https://www.google.com/maps?q=Ludhiana%20Punjab&output=embed",
   },
   {
     city: "Delhi",
     address: "FE-30, Lower Ground Floor, Shivaji Enclave, New Delhi - 110027",
-    map: "https://www.google.com/maps?q=Shivaji%20Enclave%20New%20Delhi&output=embed",
   },
   {
     city: "Delhi (Nehru Place)",
     address:
       "508, Eros Apartment, 5th Floor, Building No. 56, Nehru Place, New Delhi",
-    map: "https://www.google.com/maps?q=Nehru%20Place%20New%20Delhi&output=embed",
   },
-
   {
     city: "Chandigarh",
     address:
       "#841, Tricity Trade Tower, Patiala-Zirakpur Highway, Punjab 140603",
-    map: "https://www.google.com/maps?q=Zirakpur%20Punjab&output=embed",
   },
   {
     city: "Mumbai",
     address: "Dreamax Height, Jijabai Road, Andheri East, Mumbai - 400093",
-    map: "https://www.google.com/maps?q=Andheri%20East%20Mumbai&output=embed",
   },
   {
     city: "Noida",
     address:
       "Office No-2218, 22nd Floor, Ithum 73, Sector 73, Noida, Uttar Pradesh",
-    map: "https://www.google.com/maps?q=Noida%20Sector%2073&output=embed",
   },
 ];
 
 export default function ContactUs() {
-  const [activeCity, setActiveCity] = useState(LOCATIONS[1]);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-const ContactUs = () => {
-const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const [form, setForm] = useState({
     name: "",
     email: "",
     message: "",
+    company: "", // honeypot
   });
 
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState(null);
+  const [toast, setToast] = useState(null);
 
+  /* =======================
+     TOAST AUTO DISMISS
+  ======================= */
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(null), 4000);
+    return () => clearTimeout(timer);
+  }, [toast]);
+
+  /* =======================
+     SUBMIT HANDLER
+  ======================= */
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Honeypot check (bots fill this)
+    if (form.company) {
+      return;
+    }
+
     setLoading(true);
-    setStatus(null);
+
     try {
-
-      const res = await axios.post(
+      await axios.post(
         `${apiUrl}/api/contact`,
-        form
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
       );
-      console.log(form)
 
-      if (res.status !== 200) throw new Error();
-
-      setStatus("success");
-      setForm({ name: "", email: "", message: "" });
-    } catch {
-      setStatus("error");
+      setToast({ type: "success", text: "Message sent successfully!" });
+      setForm({ name: "", email: "", message: "", company: "" });
+    } catch (err) {
+      console.error(err);
+      setToast({
+        type: "error",
+        text: "Something went wrong. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
@@ -79,7 +99,24 @@ const apiUrl = import.meta.env.VITE_API_URL;
   return (
     <>
       {/* =======================
-         CONTACT + FORM (UNCHANGED)
+         TOAST
+      ======================= */}
+      {toast && (
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+          <div
+            className={`px-6 py-3 rounded-full text-sm shadow-lg ${
+              toast.type === "success"
+                ? "bg-primary text-white"
+                : "bg-red-600 text-white"
+            }`}
+          >
+            {toast.text}
+          </div>
+        </div>
+      )}
+
+      {/* =======================
+         CONTACT + FORM
       ======================= */}
       <section className="min-h-screen bg-background-light flex items-center justify-center px-6 py-20">
         <div className="w-full max-w-6xl grid md:grid-cols-2 gap-16">
@@ -97,20 +134,19 @@ const apiUrl = import.meta.env.VITE_API_URL;
               be heard, we’d love to listen.
             </p>
 
-            {/* CONTACT DETAILS */}
             <div className="mt-10 space-y-5 text-sm text-secondary">
               <div className="flex items-center gap-3">
                 <span className="material-symbols-outlined text-primary">
                   mail
                 </span>
-                <span>info@punjabbulls.com</span>
+                info@punjabbulls.com
               </div>
 
               <div className="flex items-center gap-3">
                 <span className="material-symbols-outlined text-primary">
                   call
                 </span>
-                <span>+91 9711270115</span>
+                +91 9711270115
               </div>
 
               <div className="flex items-start gap-3 text-primary leading-relaxed">
@@ -130,6 +166,19 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
           <div className="bg-white rounded-xl border border-accent-gray p-10">
             <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Honeypot field (hidden) */}
+              <input
+                type="text"
+                name="company"
+                value={form.company}
+                onChange={(e) =>
+                  setForm({ ...form, company: e.target.value })
+                }
+                className="hidden"
+                tabIndex="-1"
+                autoComplete="off"
+              />
+
               {["name", "email"].map((field) => (
                 <input
                   key={field}
@@ -139,43 +188,37 @@ const apiUrl = import.meta.env.VITE_API_URL;
                     setForm({ ...form, [field]: e.target.value })
                   }
                   placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                  required
                   className="w-full border border-gray-200 px-4 py-3 rounded-(--radius) focus:outline-none focus:border-primary"
                 />
               ))}
+
               <textarea
                 rows="4"
                 name="message"
                 value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                onChange={(e) =>
+                  setForm({ ...form, message: e.target.value })
+                }
                 placeholder="Message"
+                required
                 className="w-full border border-gray-200 px-4 py-3 rounded-(--radius) focus:outline-none focus:border-primary"
               />
 
               <button
+                type="submit"
                 disabled={loading}
-                className="w-full rounded-full bg-primary text-white py-3"
+                className="w-full rounded-full bg-primary text-white py-3 disabled:opacity-50"
               >
                 {loading ? "Sending..." : "Send message"}
               </button>
-
-              {status && (
-                <p
-                  className={`text-sm ${
-                    status === "success" ? "text-green-600" : "text-red-600"
-                  }`}
-                >
-                  {status === "success"
-                    ? "Message sent successfully"
-                    : "Something went wrong"}
-                </p>
-              )}
             </form>
           </div>
         </div>
       </section>
 
       {/* =======================
-         OUR OFFICES (SAME LOOK, BETTER)
+         OUR OFFICES
       ======================= */}
       <section className="relative py-24 px-6 bg-background-light grid-bg">
         <div className="max-w-6xl mx-auto">
@@ -187,11 +230,8 @@ const apiUrl = import.meta.env.VITE_API_URL;
             {LOCATIONS.map((loc, i) => (
               <div
                 key={loc.city}
-                onClick={() => setActiveCity(loc)}
-                className={`cursor-pointer bg-white rounded-xl border p-6 animate-fade-up animate-delay-${i % 3} hover:shadow-md transition ${
-                  activeCity.city === loc.city
-                    ? "border-primary"
-                    : "border-accent-gray"
+                className={`bg-white rounded-xl border p-6 animate-fade-up animate-delay-${
+                  i % 3
                 }`}
               >
                 <h3 className="font-semibold text-secondary">{loc.city}</h3>
@@ -203,37 +243,18 @@ const apiUrl = import.meta.env.VITE_API_URL;
       </section>
 
       {/* =======================
-         MAP + CITY FILTER
+         MAP (DELHI ONLY)
       ======================= */}
       <section className="px-6 py-20">
         <div className="max-w-6xl mx-auto">
-          {/* CITY FILTER TABS */}
-          <div className="flex flex-wrap justify-center gap-6 mb-10 text-sm">
-            {LOCATIONS.map((loc) => (
-              <button
-                key={loc.city}
-                onClick={() => setActiveCity(loc)}
-                className={`tracking-wide ${
-                  activeCity.city === loc.city
-                    ? "text-primary font-medium underline underline-offset-8"
-                    : "text-gray-500 hover:text-secondary"
-                }`}
-              >
-                {loc.city}
-              </button>
-            ))}
-          </div>
-
-          {/* MAP */}
           <div className="rounded-xl overflow-hidden border border-accent-gray">
             <iframe
-              key={activeCity.city}
-              src={activeCity.map}
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.094716989596!2d77.1166894!3d28.6568825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03760f4ce391%3A0xbbae2dc9948975e1!2sPunjabbulls%20Technology%20Pvt.%20Ltd!5e0!3m2!1sen!2sin!4v1770361350810"
               width="100%"
               height="420"
               loading="lazy"
               style={{ border: 0 }}
-              title="Office Location"
+              title="Punjabbulls Delhi Office"
             />
           </div>
         </div>
