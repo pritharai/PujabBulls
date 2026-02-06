@@ -12,17 +12,33 @@ export default function AboutUs() {
   return (
     <main className="bg-[var(--color-background-light)] text-[var(--color-secondary)]">
       {/* HERO */}
-      <section className="about-header py-32 text-center">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white animate-fade-up">
-            Innovation Meets Execution
-          </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-gray-200 text-lg animate-fade-up animate-delay-1">
-            We design intelligent digital systems that help businesses adapt,
-            scale, and lead with confidence.
-          </p>
-        </div>
-      </section>
+     {/* HERO */}
+<section
+  className="py-32 text-center"
+  style={{
+    backgroundImage: `
+      linear-gradient(
+        rgba(19, 31, 23, 0.65),
+        rgba(19, 31, 23, 0.65)
+      ),
+      url("/images/background/about-header.avif")
+    `,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
+  <div className="max-w-7xl mx-auto px-6">
+    <h1 className="text-4xl md:text-5xl font-extrabold text-white animate-fade-up">
+      Innovation Meets Execution
+    </h1>
+    <p className="mt-6 max-w-2xl mx-auto text-gray-200 text-lg animate-fade-up animate-delay-1">
+      We design intelligent digital systems that help businesses adapt,
+      scale, and lead with confidence.
+    </p>
+  </div>
+</section>
+
 
       {/* WHO WE ARE */}
       <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center">
