@@ -21,6 +21,12 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "https://punjabbulls.com",
+        "https://www.punjabbulls.com",
+      ];
+
       if (!origin) return callback(null, true);
 
       if (allowedOrigins.includes(origin)) {
@@ -29,12 +35,16 @@ app.use(
 
       return callback(new Error("Not allowed by CORS"));
     },
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
   })
 );
 
+// ✅ THIS LINE FIXES 405
+app.options("*", cors());
+
 app.use(express.json());
+
 
 // Resend client
 const resend = new Resend(process.env.RESEND_API_KEY);
