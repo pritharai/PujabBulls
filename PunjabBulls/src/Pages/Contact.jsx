@@ -9,44 +9,36 @@ const LOCATIONS = [
     city: "Ludhiana",
     address:
       "Sco-5, Sua Road Opposite Canara Bank, Tharike, Jhande, Ludhiana, Punjab 141008",
-    map:
-      "https://www.google.com/maps?q=Ludhiana%20Punjab&output=embed",
+    map: "https://www.google.com/maps?q=Ludhiana%20Punjab&output=embed",
   },
   {
     city: "Delhi",
-    address:
-      "FE-30, Lower Ground Floor, Shivaji Enclave, New Delhi - 110027",
-    map:
-      "https://www.google.com/maps?q=Shivaji%20Enclave%20New%20Delhi&output=embed",
+    address: "FE-30, Lower Ground Floor, Shivaji Enclave, New Delhi - 110027",
+    map: "https://www.google.com/maps?q=Shivaji%20Enclave%20New%20Delhi&output=embed",
   },
   {
-  city: "Delhi (Nehru Place)",
-  address:
-    "508, Eros Apartment, 5th Floor, Building No. 56, Nehru Place, New Delhi",
-  map:
-    "https://www.google.com/maps?q=Nehru%20Place%20New%20Delhi&output=embed",
-},
+    city: "Delhi (Nehru Place)",
+    address:
+      "508, Eros Apartment, 5th Floor, Building No. 56, Nehru Place, New Delhi",
+    map: "https://www.google.com/maps?q=Nehru%20Place%20New%20Delhi&output=embed",
+  },
 
   {
     city: "Chandigarh",
     address:
       "#841, Tricity Trade Tower, Patiala-Zirakpur Highway, Punjab 140603",
-    map:
-      "https://www.google.com/maps?q=Zirakpur%20Punjab&output=embed",
+    map: "https://www.google.com/maps?q=Zirakpur%20Punjab&output=embed",
   },
   {
     city: "Mumbai",
-    address:
-      "Dreamax Height, Jijabai Road, Andheri East, Mumbai - 400093",
-    map:
-      "https://www.google.com/maps?q=Andheri%20East%20Mumbai&output=embed",
+    address: "Dreamax Height, Jijabai Road, Andheri East, Mumbai - 400093",
+    map: "https://www.google.com/maps?q=Andheri%20East%20Mumbai&output=embed",
   },
   {
     city: "Noida",
     address:
       "Office No-2218, 22nd Floor, Ithum 73, Sector 73, Noida, Uttar Pradesh",
-    map:
-      "https://www.google.com/maps?q=Noida%20Sector%2073&output=embed",
+    map: "https://www.google.com/maps?q=Noida%20Sector%2073&output=embed",
   },
 ];
 
@@ -79,48 +71,49 @@ export default function ContactUs() {
       <section className="min-h-screen bg-background-light flex items-center justify-center px-6 py-20">
         <div className="w-full max-w-6xl grid md:grid-cols-2 gap-16">
           <div>
-  <span className="text-xs tracking-widest text-primary">
-    CONTACT
-  </span>
+            <span className="text-xs tracking-widest text-primary">
+              CONTACT
+            </span>
 
-  <h1 className="mt-4 text-5xl font-bold text-secondary">
-    Let’s talk.
-  </h1>
+            <h1 className="mt-4 text-5xl font-bold text-secondary">
+              Let’s talk.
+            </h1>
 
-  <p className="mt-6 text-gray-600 max-w-md">
-    Whether you have a question, feedback, or a quiet idea waiting to be heard,
-    we’d love to listen.
-  </p>
+            <p className="mt-6 text-gray-600 max-w-md">
+              Whether you have a question, feedback, or a quiet idea waiting to
+              be heard, we’d love to listen.
+            </p>
 
-  {/* CONTACT DETAILS */}
-  <div className="mt-10 space-y-5 text-sm text-secondary">
-    <div className="flex items-center gap-3">
-      <span className="material-symbols-outlined text-primary">
-        mail
-      </span>
-      <span>info@punjabbulls.com</span>
-    </div>
+            {/* CONTACT DETAILS */}
+            <div className="mt-10 space-y-5 text-sm text-secondary">
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-primary">
+                  mail
+                </span>
+                <span>info@punjabbulls.com</span>
+              </div>
 
-    <div className="flex items-center gap-3">
-      <span className="material-symbols-outlined text-primary">
-        call
-      </span>
-      <span>+91 9711270115</span>
-    </div>
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-primary">
+                  call
+                </span>
+                <span>+91 9711270115</span>
+              </div>
 
-    <div className="flex items-start gap-3 text-primary leading-relaxed">
-      <span className="material-symbols-outlined mt-0.5">
-        location_on
-      </span>
-      <span>
-        PUNJABBULLS TECHNOLOGY PVT. LTD.<br />
-        FE-30, Lower Ground Floor,<br />
-        Shivaji Enclave, New Delhi – 110027, India
-      </span>
-    </div>
-  </div>
-</div>
-
+              <div className="flex items-start gap-3 text-primary leading-relaxed">
+                <span className="material-symbols-outlined mt-0.5">
+                  location_on
+                </span>
+                <span>
+                  PUNJABBULLS TECHNOLOGY PVT. LTD.
+                  <br />
+                  FE-30, Lower Ground Floor,
+                  <br />
+                  Shivaji Enclave, New Delhi – 110027, India
+                </span>
+              </div>
+            </div>
+          </div>
 
           <div className="bg-white rounded-xl border border-accent-gray p-10">
             <form className="space-y-6" onSubmit={handleSubmit}>
@@ -134,19 +127,15 @@ export default function ContactUs() {
                   }
                   placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
                   className="w-full border border-gray-200 px-4 py-3 rounded-(--radius) focus:outline-none focus:border-primary"
-
                 />
               ))}
               <textarea
                 rows="4"
                 name="message"
                 value={form.message}
-                onChange={(e) =>
-                  setForm({ ...form, message: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
                 placeholder="Message"
-               className="w-full border border-gray-200 px-4 py-3 rounded-(--radius) focus:outline-none focus:border-primary"
-
+                className="w-full border border-gray-200 px-4 py-3 rounded-(--radius) focus:outline-none focus:border-primary"
               />
 
               <button
@@ -159,9 +148,7 @@ export default function ContactUs() {
               {status && (
                 <p
                   className={`text-sm ${
-                    status === "success"
-                      ? "text-green-600"
-                      : "text-red-600"
+                    status === "success" ? "text-green-600" : "text-red-600"
                   }`}
                 >
                   {status === "success"
@@ -194,12 +181,8 @@ export default function ContactUs() {
                     : "border-accent-gray"
                 }`}
               >
-                <h3 className="font-semibold text-secondary">
-                  {loc.city}
-                </h3>
-                <p className="mt-2 text-sm text-gray-600">
-                  {loc.address}
-                </p>
+                <h3 className="font-semibold text-secondary">{loc.city}</h3>
+                <p className="mt-2 text-sm text-gray-600">{loc.address}</p>
               </div>
             ))}
           </div>
