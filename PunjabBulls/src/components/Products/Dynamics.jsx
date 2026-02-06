@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Dynamics = () => {
   return (
@@ -10,42 +10,20 @@ const Dynamics = () => {
         {/* LEFT MOCKUP */}
         <div className="w-full lg:w-1/2">
           <div className="bg-white rounded-xl shadow-xl p-4">
-            <div className="aspect-video bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden border border-slate-200">
-              <div className="w-full h-full bg-linear-to-br from-slate-200 to-slate-300 relative">
-                {/* Top Bar */}
-                <div className="absolute top-4 left-4 right-4 h-8 bg-white rounded shadow-sm flex items-center px-4 gap-4">
-                  <div className="w-4 h-4 rounded-full bg-red-400"></div>
-                  <div className="w-4 h-4 rounded-full bg-yellow-400"></div>
-                  <div className="w-4 h-4 rounded-full bg-green-400"></div>
-                </div>
-
-                {/* Sidebar */}
-                <div className="absolute top-16 left-4 w-1/4 bottom-4 bg-white/50 rounded p-4 flex flex-col gap-4">
-                  <div className="h-4 bg-primary/20 rounded w-full"></div>
-                  <div className="h-4 bg-primary/10 rounded w-2/3"></div>
-                  <div className="h-4 bg-primary/10 rounded w-3/4"></div>
-                </div>
-
-                {/* Charts */}
-                <div className="absolute top-16 left-[30%] right-4 bottom-4 grid grid-cols-2 gap-4">
-                  <div className="bg-primary/5 rounded border border-primary/10 flex flex-col justify-end p-4">
-                    <div className="h-20 bg-primary/20 rounded-t-lg"></div>
-                  </div>
-
-                  <div className="bg-primary/5 rounded border border-primary/10 flex flex-col justify-end p-4">
-                    <div className="h-12 bg-primary/20 rounded-t-lg"></div>
-                  </div>
-                </div>
-              </div>
+            <div className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.02] aspect-video rounded-lg overflow-hidden border border-slate-200 bg-white/80 backdrop-blur shadow-lg p-4">
+              <img
+                src="/images/microsoft-dynamics-365.png"
+                alt="Microsoft Dynamics 365 Dashboard"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
 
         {/* RIGHT CONTENT */}
         <div className="w-full lg:w-1/2">
-          <h2 className="text-3xl font-bold mb-6">
-            Microsoft Dynamics 365
-          </h2>
+          <h2 className="text-3xl font-bold mb-6">Microsoft Dynamics 365</h2>
 
           <p className="text-slate-600 mb-8 max-w-[65ch]">
             Elevate your business operations with our certified implementation
@@ -77,7 +55,7 @@ const Dynamics = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Dynamics
+export default Dynamics;

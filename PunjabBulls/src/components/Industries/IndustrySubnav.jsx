@@ -21,7 +21,6 @@ const sections = [
 const IndustrySubnav = () => {
   const [active, setActive] = useState("retail");
 
-  // Detect section in viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -45,12 +44,9 @@ const IndustrySubnav = () => {
   }, []);
 
   return (
-    <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-y border-[#e9f1eb]">
-
+    <div className="sticky top-16 z-50 bg-white/80 backdrop-blur-md border-y border-[#e9f1eb]">
       <div className="max-w-7xl mx-auto px-6 lg:px-20">
-
         <div className="flex justify-center md:justify-start gap-8 md:gap-12 overflow-x-auto scrollbar-hide">
-
           {sections.map((item) => {
             const isActive = active === item.id;
 
@@ -76,10 +72,10 @@ const IndustrySubnav = () => {
             );
           })}
         </div>
-
       </div>
     </div>
   );
 };
+
 
 export default IndustrySubnav;

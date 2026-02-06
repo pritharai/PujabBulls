@@ -7,29 +7,51 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const cors_origin = process.env.ORIGIN || "http://localhost:5173";
 
-// middleware
+/* =======================
+   CORS (DEV + PROD SAFE)
+======================= */
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://punjabbulls.com",
+  "https://www.punjabbulls.com",
+];
+
 app.use(
   cors({
-    origin: cors_origin,
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     methods: ["GET", "POST"],
-  }),
+    allowedHeaders: ["Content-Type"],
+  })
 );
 
 app.use(express.json());
 
-// Initialize Resend client
+// Resend client
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.get("/", (req, res) => {
-  return res.status(200).json({ success: true });
+  res.status(200).json({ success: true });
 });
 
 app.post("/api/contact", async (req, res) => {
   try {
-    const { name, email, message } = req.body;
-    // Test console statement
+    const { name, email, message, company } = req.body;
+
+    // 🛡️ Honeypot spam protection
+    if (company) {
+      return res.status(200).json({ success: true });
+    }
+
     if (!name || !email || !message) {
       return res.status(400).json({
         success: false,
@@ -37,13 +59,10 @@ app.post("/api/contact", async (req, res) => {
       });
     }
 
-    console.log(req.body);
-    // Send email using Resend
-    const { data, error } = await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
-      to: [process.env.MY_EMAIL],
-      // from: "onboarding@resend.dev",
-      // to: "delivered@resend.dev",
+      to: process.env.MY_EMAIL,
+      reply_to: email,
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Request</h2>
@@ -54,18 +73,16 @@ app.post("/api/contact", async (req, res) => {
     });
 
     if (error) {
-      console.error("Resend email error:", error);
+      console.error("Resend error:", error);
       return res.status(500).json({
         success: false,
-        message: "Failed to send notification email",
-        error,
+        message: "Failed to send email",
       });
     }
 
-    return res.status(200).json({
+    res.status(200).json({
       success: true,
       message: "Message received and email sent!",
-      resendData: data,
     });
   } catch (err) {
     console.error("Contact route error:", err);
@@ -76,7 +93,6 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-// Server Start
 app.listen(PORT, () => {
-  console.log(`Backend running at http://localhost:${PORT}`);
+  console.log(`Backend running on port ${PORT}`);
 });

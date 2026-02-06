@@ -44,28 +44,19 @@ const IndustryHero = () => {
 
           {/* RIGHT VISUAL */}
           <div className="flex-1 w-full relative">
+  <div className="w-full h-full object-contain md:object-cover transition-transform duration-500 hover:scale-[1.02]
+aspect-video rounded-2xl shadow-2xl overflow-hidden border border-primary/20 bg-white/60 backdrop-blur">
 
-            <div className="w-full aspect-video bg-linear-to-br from-primary/20 to-primary/40 rounded-2xl shadow-2xl flex items-center justify-center p-8 border border-primary/20">
+    <img
+      src="/images/erpsolutions.png"
+      alt="ERP Solutions Overview"
+      className="w-full h-full object-contain md:object-cover"
+      loading="lazy"
+    />
 
-              {/* Abstract Visual */}
-              <div className="w-full h-full border-2 border-dashed border-white/30 rounded-lg flex flex-col justify-center items-center text-primary">
+  </div>
+</div>
 
-                {/* BIGGER HUB ICON */}
-                <span className="material-symbols-outlined text-[120px] md:text-[140px] mb-6" tyle={{ fontSize: '140px' }}>
-                  hub
-                </span>
-
-                <div className="grid grid-cols-4 gap-4 w-3/4">
-                  <div className="h-2 bg-white/40 rounded-full" />
-                  <div className="h-2 bg-white/40 rounded-full" />
-                  <div className="h-2 bg-white/40 rounded-full" />
-                  <div className="h-2 bg-white/40 rounded-full" />
-                </div>
-
-              </div>
-            </div>
-
-          </div>
 
         </div>
       </div>
