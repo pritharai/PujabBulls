@@ -100,7 +100,7 @@ const Hero = () => {
               transition={{ type: "spring", stiffness: 120 }}
             >
               <div
-                className="w-full h-full bg-no-repeat bg-center bg-contain shadow-2xl relative"
+                className="w-full h-full bg-no-repeat bg-center min-h-75 bg-contain shadow-2xl relative"
                 style={{
                   backgroundImage: "url('/images/microsoft-business-central.png')",
                 }}
