@@ -10,17 +10,19 @@ const PORT = process.env.PORT || 5000;
 const cors_origin = process.env.ORIGIN || "http://localhost:5173";
 
 // middleware
-app.use(cors({
-  origin: cors_origin,
-  methods: ["GET", "POST"],
-}));
+app.use(
+  cors({
+    origin: cors_origin,
+    methods: ["GET", "POST"],
+  }),
+);
 
 app.use(express.json());
 
 // Initialize Resend client
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   return res.status(200).json({ success: true });
 });
 
@@ -28,8 +30,6 @@ app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, message } = req.body;
     // Test console statement
-    console.log("CONTACT FORM SUBMISSION:", { name, email, message });
-
     if (!name || !email || !message) {
       return res.status(400).json({
         success: false,
@@ -37,14 +37,13 @@ app.post("/api/contact", async (req, res) => {
       });
     }
 
-    console.log(req.body)
+    console.log(req.body);
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      // from: process.env.RESEND_FROM_EMAIL,
-      // to: [process.env.MY_EMAIL],
-       from: process.env.RESEND_FROM_EMAIL,
-to: process.env.MY_EMAIL,
-  reply_to: email,
+      from: process.env.RESEND_FROM_EMAIL,
+      to: [process.env.MY_EMAIL],
+      // from: "onboarding@resend.dev",
+      // to: "delivered@resend.dev",
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Request</h2>
