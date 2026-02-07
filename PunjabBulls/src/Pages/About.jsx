@@ -21,7 +21,7 @@ export default function AboutUs() {
         rgba(19, 31, 23, 0.65),
         rgba(19, 31, 23, 0.65)
       ),
-      url("/images/background/about-header.avif")
+      url("https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395678/about-header_ule0hd.avif")
     `,
     backgroundSize: "cover",
     backgroundPosition: "center",
