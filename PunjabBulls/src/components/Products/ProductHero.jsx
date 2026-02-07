@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const ProductHero = () => {
   return (
@@ -20,13 +21,13 @@ const ProductHero = () => {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="flex hover:cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold shadow-lg hover:bg-primary/90 transition-all hover:-translate-y-0.5">
+          <Link to="/contact" className="flex hover:cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold shadow-lg hover:bg-primary/90 transition-all hover:-translate-y-0.5">
             Book demo
-          </button>
+          </Link>
 
-          <button className="flex hover:cursor-pointer items-center justify-center rounded-lg h-12 px-6 border border-[#d3e4d8]  text-[#101912] text-base font-bold hover:bg-black/5 transition-all">
+          <Link to="/contact" className="flex hover:cursor-pointer items-center justify-center rounded-lg h-12 px-6 border border-[#d3e4d8]  text-[#101912] text-base font-bold hover:bg-black/5 transition-all">
             Talk to Consultant
-          </button>
+          </Link>
         </div>
       </div>
     </section>

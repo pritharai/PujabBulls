@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const IndustryHero = () => {
   return (
@@ -30,14 +31,14 @@ const IndustryHero = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
 
               {/* Primary CTA */}
-              <button className="flex items-center justify-center h-12 px-6 rounded-lg bg-primary text-white text-base font-bold shadow-lg hover:bg-primary/90 transition-all hover:-translate-y-0.5 hover:cursor-pointer">
+              <Link to="/contact" className="flex items-center justify-center h-12 px-6 rounded-lg bg-primary text-white text-base font-bold shadow-lg hover:bg-primary/90 transition-all hover:-translate-y-0.5 hover:cursor-pointer">
                 Start Free Trial
-              </button>
+              </Link>
 
               {/* Secondary CTA */}
-              <button className="flex items-center justify-center h-12 px-6 rounded-lg border border-[#d3e4d8] text-[#101912] text-base font-bold hover:bg-black/5 transition-all hover:cursor-pointer">
+              <Link to="/contact" className="flex items-center justify-center h-12 px-6 rounded-lg border border-[#d3e4d8] text-[#101912] text-base font-bold hover:bg-black/5 transition-all hover:cursor-pointer">
                 View Case Studies
-              </button>
+              </Link>
 
             </div>
           </div>
