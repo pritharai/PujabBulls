@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const ProductCTA = () => {
   return (
@@ -14,13 +15,13 @@ const ProductCTA = () => {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="bg-primary text-white px-8 py-4 rounded-lg font-bold text-base cursor-pointer transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0">
+          <Link to="/contact" className="bg-primary text-white px-8 py-4 rounded-lg font-bold text-base cursor-pointer transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0">
             Schedule a Live Demo
-          </button>
+          </Link>
 
-          <button className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-lg font-bold text-base cursor-pointer transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0">
+          <Link to="/contact" className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-lg font-bold text-base cursor-pointer transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0">
             Contact Sales
-          </button>
+          </Link>
         </div>
       </div>
     </section>

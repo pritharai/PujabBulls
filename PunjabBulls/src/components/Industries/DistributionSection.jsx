@@ -161,10 +161,7 @@ const DistributionSection = () => {
 
             </div>
 
-            {/* CTA */}
-            <button className="bg-primary text-white px-6 py-3 rounded-lg font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all hover:-translate-y-0.5">
-              Explore Distribution Modules
-            </button>
+            
 
           </div>
         </div>
