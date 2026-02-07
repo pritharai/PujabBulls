@@ -66,7 +66,7 @@ const Spotlight = () => {
                   aria-label="Data dashboard displaying charts and graphs representing Microsoft Dynamics 365 interface"
                   style={{
                     backgroundImage:
-                      "url('/images/Dashboard1.png')",
+                      "url('https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395683/microsoft-dynamics-365_qafzkb.png')",
                   }}
                 ></div>
               </div>

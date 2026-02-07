@@ -102,7 +102,7 @@ const Hero = () => {
               <div
                 className="w-full h-full bg-no-repeat bg-center min-h-75 bg-contain shadow-2xl relative"
                 style={{
-                  backgroundImage: "url('/images/microsoft-business-central.png')",
+                  backgroundImage: "url('https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395682/microsoft-business-central_dj22er.png')",
                 }}
                 aria-label="Modern office representing enterprise growth"
               >

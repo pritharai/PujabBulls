@@ -28,14 +28,14 @@ export default function TrustedByCarousel() {
   });
 
   const logos = [
-    "/images/brands/dextra.png",
-    "/images/brands/durian.png",
-    "/images/brands/f&f.png",
-    "/images/brands/igus.png",
-    "/images/brands/kitty.jpeg",
-    "/images/brands/kuber.jpeg",
-    "/images/brands/stylam.jpeg",
-    "/images/brands/veetee.png",
+    "https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395682/veetee_ulxbj0.png",
+    "https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395681/stylam_rb1aq5.jpg",
+    "https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395680/f_f_fn6ccw.png",
+    "https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395680/kitty_jxwvlz.jpg",
+    "https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395680/kuber_nt4rpm.jpg",
+    "https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395679/igus_c7dp2s.png",
+    "https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395679/dextra_ytmu3a.png",
+    "https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395679/durian_qqiwa2.png"
   ];
 
   return (

@@ -48,7 +48,7 @@ const IndustryHero = () => {
 aspect-video rounded-2xl shadow-2xl overflow-hidden border border-primary/20 bg-white/60 backdrop-blur">
 
     <img
-      src="/images/erpsolutions.png"
+      src="https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395682/erpsolutions_vgv8x7.png"
       alt="ERP Solutions Overview"
       className="w-full h-full object-contain md:object-cover"
       loading="lazy"
