@@ -12,7 +12,7 @@ const Dynamics = () => {
           <div className="bg-white rounded-xl shadow-xl p-4">
             <div className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.02] aspect-video rounded-lg overflow-hidden border border-slate-200 bg-white/80 backdrop-blur shadow-lg p-4">
               <img
-                src="/images/microsoft-dynamics-365.png"
+                src="https://res.cloudinary.com/ducv9j3hj/image/upload/v1770395681/Dashboard1_txddti.png"
                 alt="Microsoft Dynamics 365 Dashboard"
                 className="w-full h-full object-cover"
                 loading="lazy"
