@@ -85,11 +85,13 @@ const ManufacturingSection = () => {
               <div className="flex flex-wrap gap-2">
 
                 {[
+                  "Rice Manufacturing",
                   "Iron & Steel",
                   "FMCG",
                   "Robotics",
                   "Textiles",
                   "Automotive",
+                  "Furniture"
                 ].map((industry) => (
                   <span
                     key={industry}
