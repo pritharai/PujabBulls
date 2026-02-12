@@ -13,7 +13,7 @@ const Home = () => {
     <Service/>
     <Spotlight/>
     <Timeline/>
-    <Testimonial/>
+    {/* <Testimonial/> */}
     <CTA/>
     </>
   )
