@@ -23,7 +23,7 @@ const Dynamics = () => {
 
         {/* RIGHT CONTENT */}
         <div className="w-full lg:w-1/2">
-          <h2 className="text-3xl font-bold mb-6">Microsoft Dynamics 365</h2>
+          <h2 className="text-3xl font-bold mb-6">Microsoft Dynamics 365 Business Central</h2>
 
           <p className="text-slate-600 mb-8 max-w-[65ch]">
             Elevate your business operations with our certified implementation
