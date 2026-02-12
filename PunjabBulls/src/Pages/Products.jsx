@@ -15,9 +15,9 @@ const Products = () => {
       <ProductNav />
       <Dynamics />
       <StockSales />
-      <GST />
-      <TCS />
       <RiceERP />
+      <GST />
+      {/* <TCS /> */}
       <ProductCTA />
     </>
   )

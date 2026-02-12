@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 
 const sections = [
   {
+    id: "manufacturing",
+    label: "Manufacturing",
+    icon: "factory",
+  },
+  {
     id: "retail",
     label: "Retail",
     icon: "shopping_basket",
@@ -11,11 +16,7 @@ const sections = [
     label: "Distribution",
     icon: "local_shipping",
   },
-  {
-    id: "manufacturing",
-    label: "Manufacturing",
-    icon: "factory",
-  },
+  
 ];
 
 const IndustrySubnav = () => {

@@ -6,11 +6,11 @@ const ProductNav = () => {
       <div className="max-w-300 mx-auto px-4 overflow-x-auto">
         <div className="flex items-center gap-8 whitespace-nowrap">
           {[
-            ["Dynamics 365", "#dynamics"],
+            ["Dynamics 365 Business Central", "#dynamics"],
             ["Stock & Sales", "#stock"],
-            ["GST Automation", "#gst"],
-            ["TCS Compliance", "#tcs"],
             ["Rice Industry ERP", "#rice"],
+            ["GST Automation", "#gst"],
+            // ["TCS Compliance", "#tcs"],
           ].map(([label, link]) => (
             <a
               key={link}

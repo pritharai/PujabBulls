@@ -13,7 +13,7 @@ const Spotlight = () => {
               </div>
 
               <h2 className="text-3xl md:text-4xl font-black text-[#101912] leading-tight">
-                Mastering Microsoft Dynamics 365
+                Mastering Microsoft Dynamics 365 Business Central
               </h2>
 
               <p className="text-lg text-gray-600 leading-relaxed">
