@@ -9,12 +9,12 @@ const Footer = () => {
             {/* Brand */}
             <div className="col-span-1 md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
-                <span className="font-bold text-lg">PunjabBulls</span>
+                <span className="font-bold text-lg">PunjabBulls Technology Pvt. Ltd.</span>
               </div>
 
               <p className="text-sm text-gray-400 leading-relaxed">
-                Empowering businesses with cutting-edge ERP, CRM, and cloud
-                solutions. Your partner in digital transformation.
+                Empowering businesses with cutting-edge ERP, CRM, cloud
+                solutions, and Business Central. Your partner in digital transformation.
               </p>
             </div>
 
@@ -44,14 +44,10 @@ const Footer = () => {
                     Products
                   </a>
                 </li>
-                <li>
-                  <a className="hover:text-primary transition-colors" href="#">
-                    CRM Strategy
-                  </a>
-                </li>
+                
                 <li>
                   <a className="hover:text-primary transition-colors" href="/products#dynamics">
-                    Microsoft Dynamics
+                    Microsoft Dynamics Business Central
                   </a>
                 </li>
                 <li>
