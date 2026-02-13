@@ -166,6 +166,54 @@ export default function AboutUs() {
 </div>
 
       </section>
+            {/* FAQ SECTION */}
+<section className="bg-white py-20">
+  <div className="max-w-4xl mx-auto px-6">
+    <h2 className="text-3xl font-bold text-center mb-12">
+      Frequently Asked Questions
+    </h2>
+
+    <div className="space-y-4">
+      {[
+        {
+          q: "What industries do you specialize in?",
+          a: "We serve manufacturing, distribution, retail, and service-based enterprises, delivering tailored ERP and CRM solutions built on Microsoft Dynamics 365 Business Central."
+        },
+        {
+          q: "How long does an ERP implementation take?",
+          a: "Project timelines vary based on scope and complexity, but most ERP implementations range between 8 to 16 weeks including planning, customization, data migration, and training."
+        },
+        {
+          q: "Do you provide post-implementation support?",
+          a: "Yes. We offer continuous system monitoring, optimization, upgrades, and 24/7 technical support to ensure long-term operational stability."
+        },
+        {
+          q: "Can you migrate our existing legacy systems?",
+          a: "Absolutely. We conduct detailed system audits and structured migration planning to securely transition your data and processes to modern cloud-based platforms."
+        },
+        {
+          q: "Why choose Punjab Bulls as your technology partner?",
+          a: "With 15+ years of experience and 200+ successful deployments, we combine strategic consulting, technical expertise, and reliable delivery to drive measurable business growth."
+        }
+      ].map((item, i) => (
+        <details
+          key={i}
+          className="group border border-gray-200 rounded-xl p-6 transition-all duration-300 hover:shadow-md"
+        >
+          <summary className="cursor-pointer font-semibold text-lg flex justify-between items-center">
+            {item.q}
+            <span className="ml-4 transition-transform group-open:rotate-180">
+              ▼
+            </span>
+          </summary>
+          <p className="mt-4 text-gray-600 text-sm leading-relaxed">
+            {item.a}
+          </p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* FOOTER LINE */}
       <section className="text-center py-16 border-t border-[var(--color-accent-gray)]">
