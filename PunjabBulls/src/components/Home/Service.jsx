@@ -10,8 +10,7 @@ const Service = () => {
               Core Services
             </h2>
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-              Comprehensive technology solutions designed to streamline your
-              operations and drive efficiency.
+              Comprehensive enterprise technology solutions designed to streamline operations, modernize infrastructure, and accelerate digital transformation across industries.
             </p>
           </div>
 
@@ -28,9 +27,9 @@ const Service = () => {
                   ERP Implementation
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Streamline operations across finance, HR, and supply chain
-                  with tailored ERP solutions.
-                </p>
+  Streamline operations across Finance, Manufacturing, Inventory, Accounts Receivable, Accounts Payable, HR and Supply Chain with industry best practices built into Microsoft Dynamics 365 Business Central. We deliver end-to-end ERP implementation, customization, data migration, integration, and user training to ensure seamless digital transformation.
+</p>
+
               </div>
             </div>
 
@@ -46,9 +45,9 @@ const Service = () => {
                   CRM Strategy
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Enhance customer relationships and drive sales with
-                  data-driven CRM strategies.
-                </p>
+  Enhance customer engagement and accelerate revenue growth with intelligent CRM strategy. From customer journey mapping to sales automation and performance tracking, we design data-driven CRM ecosystems that improve lead conversion, retention, and customer lifetime value.
+</p>
+
               </div>
             </div>
 
@@ -64,9 +63,9 @@ const Service = () => {
                   Cloud Migration
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Seamlessly move your legacy infrastructure to secure and
-                  scalable cloud environments.
-                </p>
+  Seamlessly migrate legacy systems to secure, scalable cloud environments. We assess infrastructure readiness, execute structured migration strategies, and optimize workloads across modern cloud platforms to enhance performance, security, and operational agility.
+</p>
+
               </div>
             </div>
 
@@ -82,9 +81,9 @@ const Service = () => {
                   Data Analytics
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Turn raw data into actionable business insights with advanced
-                  visualization tools.
-                </p>
+  Transform raw business data into actionable intelligence through advanced analytics, real-time dashboards, and business intelligence solutions. We empower decision-makers with predictive insights and performance monitoring tools for strategic growth.
+</p>
+
               </div>
             </div>
 
@@ -100,9 +99,9 @@ const Service = () => {
                   Custom Development
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Bespoke software solutions engineered to solve unique complex
-                  business challenges.
-                </p>
+  Build scalable, secure, and high-performance applications tailored to your unique operational needs. From enterprise software development to API integrations and workflow automation, we engineer solutions that align technology with business objectives.
+</p>
+
               </div>
             </div>
 
@@ -118,9 +117,9 @@ const Service = () => {
                   IT Support
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Reliable 24/7 support ensuring your critical infrastructure
-                  never misses a beat.
-                </p>
+  Ensure business continuity with proactive monitoring, system maintenance, and 24/7 technical support. Our managed IT services minimize downtime, enhance system reliability, and protect mission-critical infrastructure.
+</p>
+
               </div>
             </div>
           </div>
