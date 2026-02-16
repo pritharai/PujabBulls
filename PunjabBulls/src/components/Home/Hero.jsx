@@ -49,20 +49,70 @@ const Hero = () => {
   <div className="flex flex-col gap-4">
     
     {/* TOP TAG WITH LOGO */}
-    <motion.div
-      className="flex items-center justify-center lg:justify-start gap-3"
-      variants={fadeUp}
-    >
-      <img
-        src="https://res.cloudinary.com/ducv9j3hj/image/upload/v1770914582/unnamed_d76jew.png"  // <-- Add your logo path here
-        alt="Microsoft Dynamics 365 Business Central"
-        className="h-6 w-auto object-contain"
-      />
-      
-      <span className="text-primary font-bold tracking-wider text-sm uppercase">
-        IT Consulting & Solutions
-      </span>
-    </motion.div>
+ {/* TOP AUTHORITY ROW */}
+<motion.div
+  className="flex flex-col items-center lg:items-start gap-3 mb-6"
+  variants={fadeUp}
+>
+  <div className="flex items-center gap-4">
+    
+    {/* Circular Badge */}
+    <div className="relative w-20 h-20 flex items-center justify-center">
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
+        className="absolute inset-0"
+      >
+        <svg viewBox="0 0 200 200" className="w-full h-full">
+          <defs>
+            <path
+              id="circlePath"
+              d="
+                M 100,100
+                m -65,0
+                a 65,65 0 1,1 130,0
+                a 65,65 0 1,1 -130,0
+              "
+            />
+          </defs>
+          <text
+            fill="#0f172a"
+            fontSize="10"
+            fontWeight="600"
+            letterSpacing="2"
+          >
+            <textPath href="#circlePath">
+              MICROSOFT DYNAMICS 365 • BUSINESS CENTRAL •
+            </textPath>
+          </text>
+        </svg>
+      </motion.div>
+
+      <div className="relative w-24 h-24 rounded-full bg-white shadow-md flex items-center justify-center border border-[#e6f0eb]">
+        <img
+          src="https://res.cloudinary.com/ducv9j3hj/image/upload/v1770914582/unnamed_d76jew.png"
+          alt="Microsoft Dynamics 365 Business Central"
+          className="h-16 w-auto object-contain"
+        />
+      </div>
+    </div>
+
+    {/* Micro Trust Line */}
+    <div className="text-left">
+      <p className="text-sm font-semibold text-primary">
+        Certified Microsoft Solutions Partner
+      </p>
+      <p className="text-xs text-gray-500">
+        ERP • CRM • Business Central Experts
+      </p>
+    </div>
+
+  </div>
+</motion.div>
+
+
+
+
 
     <motion.h1
       className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight text-[#101912]"
