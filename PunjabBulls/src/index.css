@@ -50,3 +50,83 @@
   background-image: radial-gradient(#1f7f3c22 1px, transparent 1px);
   background-size: 32px 32px;
 }
+
+/* ============================= */
+/* PunjabBulls Premium Chat Button */
+/* ============================= */
+
+.pb-chat-trigger {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    #17632f
+  );
+
+  color: white;
+  padding: 12px 18px;
+  border-radius: var(--radius-full);
+
+  font-family: var(--font-family-display);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+
+  box-shadow:
+    0 8px 25px rgba(31, 127, 60, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.3s ease;
+}
+
+/* Hover Effect */
+.pb-chat-trigger:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 35px rgba(31, 127, 60, 0.35);
+}
+
+/* Active Click Effect */
+.pb-chat-trigger:active {
+  transform: scale(0.96);
+}
+
+/* Icon Styling */
+.pb-chat-icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+/* Text */
+.pb-chat-text {
+  transition: opacity 0.3s ease;
+}
+
+/* When Open */
+.pb-chat-trigger.active {
+  background: var(--color-secondary);
+}
+
+.pb-chat-trigger.active .pb-chat-icon {
+  transform: rotate(180deg);
+}
+
+/* Entrance Animation */
+.pb-chat-trigger {
+  animation: fadeUp 0.8s ease forwards;
+}
