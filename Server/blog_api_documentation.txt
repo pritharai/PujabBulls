@@ -1,0 +1,74 @@
+Blog Module API Documentation
+
+Base URL: http://localhost:5000
+
+  ----------------
+  AUTHENTICATION
+  ----------------
+
+1)  Admin Login POST /api/auth/login
+
+Request Body: { “email”: “admin@example.com”, “password”: “yourpassword”
+}
+
+Response: { “success”: true, “token”: “JWT_TOKEN_HERE” }
+
+Use this token in protected routes: Authorization: Bearer JWT_TOKEN_HERE
+
+  -------------
+  BLOG ROUTES
+  -------------
+
+1)  Create Blog (Admin Only) POST /api/blogs
+
+Headers: Authorization: Bearer JWT_TOKEN_HERE
+
+Request Body: { “title”: “My First Blog”, “excerpt”: “Short description
+here”, “content”: { “blocks”: [ { “type”: “paragraph”, “data”: { “text”:
+“Hello world” } } ] }, “status”: “draft” }
+
+Response: { “success”: true, “blog”: { … } }
+
+2)  Get All Blogs (Public) GET
+    /api/blogs?page=1&limit=10&search=react&status=published
+
+Query Parameters: page (default 1) limit (default 10) search (optional)
+status (draft/published)
+
+Response: { “success”: true, “currentPage”: 1, “totalPages”: 3,
+“totalBlogs”: 25, “blogs”: [ … ] }
+
+3)  Get Single Blog by Slug (Public) GET /api/blogs/:slug
+
+Example: GET /api/blogs/my-first-blog
+
+Response: { “success”: true, “blog”: { … } }
+
+4)  Update Blog (Admin Only) PUT /api/blogs/:id
+
+Headers: Authorization: Bearer JWT_TOKEN_HERE
+
+Request Body: { “title”: “Updated Title”, “excerpt”: “Updated excerpt”,
+“status”: “published” }
+
+Response: { “success”: true, “blog”: { … } }
+
+5)  Delete Blog (Admin Only) DELETE /api/blogs/:id
+
+Headers: Authorization: Bearer JWT_TOKEN_HERE
+
+Response: { “success”: true, “message”: “Blog deleted” }
+
+  -------
+  NOTES
+  -------
+
+-   Admin routes require JWT token.
+-   Public routes do not require authentication.
+-   Pagination supported using page & limit.
+-   Search supported using search query parameter.
+-   Status filter supported using status query parameter.
+
+
+
+Pending stuff Image integration (Cloudinary integration)
