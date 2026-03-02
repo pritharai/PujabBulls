@@ -41,6 +41,7 @@ export default function ContactUs() {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
     company: "", // honeypot
   });
@@ -75,6 +76,7 @@ export default function ContactUs() {
         `${apiUrl}/api/contact`,
         {
           name: form.name,
+          phone: form.phone,
           email: form.email,
           message: form.message,
         },
@@ -84,7 +86,7 @@ export default function ContactUs() {
       );
 
       setToast({ type: "success", text: "Message sent successfully!" });
-      setForm({ name: "", email: "", message: "", company: "" });
+      setForm({ name: "", email: "", phone: "", message: "", company: "" });
     } catch (err) {
       console.error(err);
       setToast({
@@ -179,18 +181,23 @@ export default function ContactUs() {
                 autoComplete="off"
               />
 
-              {["name", "email"].map((field) => (
+              {["name", "email", "phone"].map((field) => (
                 <input
-                  key={field}
-                  name={field}
-                  value={form[field]}
-                  onChange={(e) =>
-                    setForm({ ...form, [field]: e.target.value })
-                  }
-                  placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                  required
-                  className="w-full border border-gray-200 px-4 py-3 rounded-(--radius) focus:outline-none focus:border-primary"
-                />
+  key={field}
+  type={field === "email" ? "email" : field === "phone" ? "tel" : "text"}
+  name={field}
+  value={form[field]}
+  onChange={(e) =>
+    setForm({ ...form, [field]: e.target.value })
+  }
+  placeholder={
+    field === "phone"
+      ? "Contact Number"
+      : field.charAt(0).toUpperCase() + field.slice(1)
+  }
+  required
+  className="w-full border border-gray-200 px-4 py-3 rounded-(--radius) focus:outline-none focus:border-primary"
+/>
               ))}
 
               <textarea

@@ -28,26 +28,37 @@ app.get("/", (req, res) => {
 
 app.post("/api/contact", async (req, res) => {
   try {
-    const { name, email, message } = req.body;
+    const { name, email, phone, message } = req.body;
 
-    console.log("CONTACT FORM SUBMISSION:", { name, email, message });
+    console.log("CONTACT FORM SUBMISSION:", { name, email, phone, message });
 
-    if (!name || !email || !message) {
-      return res.status(400).json({
-        success: false,
-        message: "All fields are required",
-      });
-    }
+    if (!name || !email || !phone || !message) {
+  return res.status(400).json({
+    success: false,
+    message: "All fields are required",
+  });
+}
+
+const phoneRegex = /^[6-9]\d{9}$/;
+
+if (!phoneRegex.test(phone)) {
+  return res.status(400).json({
+    success: false,
+    message: "Invalid contact number",
+  });
+}
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
       to: [process.env.MY_EMAIL],
+      cc: [process.env.CC_EMAIL],
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Request</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Contact Number:</strong> ${phone}</p>
         <p><strong>Message:</strong><br/>${message}</p>
       `,
     });
