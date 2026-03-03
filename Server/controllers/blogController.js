@@ -120,7 +120,7 @@ export const getBlogBySlug = async (req, res) => {
   }
 };
 
-// update a blog
+// Update a blog
 export const updateBlog = async (req, res) => {
   try {
     const { id } = req.params;
@@ -136,19 +136,23 @@ export const updateBlog = async (req, res) => {
       });
     }
 
-    // 🔹 Handle Cover Image Replacement
-    if (coverImage && blog.coverImage?.public_id) {
-      await cloudinary.uploader.destroy(blog.coverImage.public_id);
+    // 🔹 Cover Image Replacement
+    if (coverImage) {
+      if (blog.coverImage?.public_id) {
+        await cloudinary.uploader.destroy(blog.coverImage.public_id);
+      }
       blog.coverImage = coverImage;
     }
 
-    // 🔹 Handle Thumbnail Replacement
-    if (thumbnailImage && blog.thumbnailImage?.public_id) {
-      await cloudinary.uploader.destroy(blog.thumbnailImage.public_id);
+    // 🔹 Thumbnail Replacement
+    if (thumbnailImage) {
+      if (blog.thumbnailImage?.public_id) {
+        await cloudinary.uploader.destroy(blog.thumbnailImage.public_id);
+      }
       blog.thumbnailImage = thumbnailImage;
     }
 
-    // 🔹 Handle Slug Update if Title Changes
+    // 🔹 Slug Update
     if (title && title !== blog.title) {
       let baseSlug = slugify(title, { lower: true, strict: true });
       let slug = baseSlug;
@@ -163,13 +167,13 @@ export const updateBlog = async (req, res) => {
       blog.title = title;
     }
 
-    // 🔹 Handle Inline Image Cleanup (IMPORTANT)
-    if (content) {
+    // 🔹 Inline Image Cleanup
+    if (content && content.blocks) {
       const oldPublicIds = extractPublicIdsFromContent(blog.content);
       const newPublicIds = extractPublicIdsFromContent(content);
 
       const removedImages = oldPublicIds.filter(
-        (id) => !newPublicIds.includes(id),
+        (id) => !newPublicIds.includes(id)
       );
 
       for (const publicId of removedImages) {
@@ -193,6 +197,8 @@ export const updateBlog = async (req, res) => {
     res.status(500).json({ success: false });
   }
 };
+
+
 // delete a blog
 
 export const deleteBlog = async (req, res) => {
