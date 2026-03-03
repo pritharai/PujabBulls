@@ -11,8 +11,8 @@ import BlogHero     from "./BlogHero";
 import BlogToolbar  from "./BlogToolbar";
 import FeaturedPost from "./FeaturedPost";
 import PostCard     from "./PostCard";
-import SkeletonCard from "../UI/SkeletonCard";
-import Pagination   from "../UI/Pagination";
+import SkeletonCard from "./SkeletonCard";
+import Pagination   from "./Pagination";
 import { apiRequest }    from "../../config/api";
 import { POSTS_PER_PAGE } from "../../config/constants";
 

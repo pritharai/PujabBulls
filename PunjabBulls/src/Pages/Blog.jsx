@@ -1,10 +1,10 @@
 import Layout from '../components/Layout/Layout'
-import BlogListingPage from '../components/Blog/BlogListingPage'
+import BlogListing from '../components/Blog/BlogListing'
 
 export default function Blog() {
   return (
     <Layout>
-      <BlogListingPage />
+      <BlogListing />
     </Layout>
   )
 }

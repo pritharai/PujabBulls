@@ -9,8 +9,8 @@
 import { useState, useEffect } from "react";
 
 import ArticleContent from "./ArticleContent";
-import AuthorChip     from "../UI/AuthorChip";
-import StatusBadge    from "../UI/StatusBadge";
+import AuthorChip     from "./AuthorChip";
+import StatusBadge    from "./StatusBadge";
 import { apiRequest }   from "../../config/api";
 import { BLOG_CATEGORY } from "../../config/constants";
 import { formatDate }   from "../../config/utils";

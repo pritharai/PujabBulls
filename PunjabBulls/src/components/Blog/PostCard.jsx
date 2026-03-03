@@ -9,8 +9,8 @@
 //   onEdit(post)   — admin only
 //   onDelete(post) — admin only
 
-import AuthorChip  from "../UI/AuthorChip";
-import StatusBadge from "../UI/StatusBadge";
+import AuthorChip  from "./AuthorChip";
+import StatusBadge from "./StatusBadge";
 import { BLOG_CATEGORY } from "../../config/constants";
 import { formatDateShort } from "../../config/utils";
 
