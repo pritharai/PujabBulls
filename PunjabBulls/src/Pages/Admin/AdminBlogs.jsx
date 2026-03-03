@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getBlogs, deleteBlog } from "../../services/blogService";
-
+import { Link } from "react-router-dom";
 export default function AdminBlogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,7 +35,16 @@ export default function AdminBlogs() {
 
   return (
     <div className="p-6">
-      <h1 className="text-xl font-semibold mb-4">All Blogs</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-xl font-semibold">All Blogs</h1>
+
+        <Link
+          to="/admin/blogs/create"
+          className="bg-black text-white px-4 py-2"
+        >
+          Create Blog
+        </Link>
+      </div>
 
       {blogs.length === 0 && <p>No blogs found.</p>}
 
@@ -52,12 +61,21 @@ export default function AdminBlogs() {
               </p>
             </div>
 
-            <button
-              onClick={() => handleDelete(blog._id)}
-              className="bg-red-600 text-white px-3 py-1"
-            >
-              Delete
-            </button>
+            <div className="flex gap-2">
+              <Link
+                to={`/admin/blogs/edit/${blog._id}`}
+                className="bg-blue-600 text-white px-3 py-1"
+              >
+                Edit
+              </Link>
+
+              <button
+                onClick={() => handleDelete(blog._id)}
+                className="bg-red-600 text-white px-3 py-1"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </div>

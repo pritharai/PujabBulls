@@ -8,6 +8,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLogin from "./Pages/Admin/Login";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import AdminBlogs from "./Pages/Admin/AdminBlogs";
+import CreateBlog from "./Pages/Admin/CreateBlog";
+import EditBlog from "./Pages/Admin/EditBlog";
 
 import Home from "./Pages/Home";
 import Industries from "./Pages/Industries";
@@ -58,6 +60,22 @@ function App() {
             element={
               <ProtectedRoute>
                 < AdminBlogs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/blogs/create"
+            element={
+              <ProtectedRoute>
+                < CreateBlog />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/blogs/edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditBlog />
               </ProtectedRoute>
             }
           />

@@ -243,3 +243,22 @@ export const deleteBlog = async (req, res) => {
     res.status(500).json({ success: false });
   }
 };
+
+// Get Blog by ID
+export const getBlogById = async (req, res) => {
+  const { id } = req.params;
+
+  const blog = await Blog.findById(id);
+
+  if (!blog) {
+    return res.status(404).json({
+      success: false,
+      message: "Blog not found",
+    });
+  }
+
+  res.status(200).json({
+    success: true,
+    blog,
+  });
+};
