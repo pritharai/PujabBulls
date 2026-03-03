@@ -20,6 +20,9 @@ import Contact from "./Pages/Contact";
 import PrivacyPolicy from "./Pages/Privacy";
 // import Chatbot from "./components/Chatbot/Chatbot";
 import ScrollToTop from "./components/Layout/ScrollToTop";
+import Blogs from "./Pages/Blogs";
+import BlogDetail from "./Pages/BlogDetail";
+
 
 function App() {
   const [showSplash, setShowSplash] = useState(() => {
@@ -86,6 +89,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<BlogDetail />} />
         </Route>
       </Routes>
       {/* <Chatbot /> */}
