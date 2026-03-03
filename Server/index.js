@@ -5,8 +5,10 @@ import { Resend } from "resend";
 import mongoose from "mongoose";
 import blogRoutes from "./routes/blogRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-
-
+import uploadRoutes from "./routes/uploadRoutes.js";
+import helmet from "helmet";
+import morgan from 'morgan'
+import rateLimit from "express-rate-limit";
 
 
 dotenv.config();
@@ -20,12 +22,23 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // middleware
+app.use(morgan('dev'));
+
 app.use(
   cors({
     origin: cors_origin,
     methods: ["GET", "POST"],
   }),
 );
+
+app.use(helmet());
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100
+});
+
+app.use(limiter);
 
 app.use(express.json());
 
@@ -98,6 +111,9 @@ if (!phoneRegex.test(phone)) {
 
 app.use("/api/blogs", blogRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/upload", uploadRoutes);
+
+
 // Server Start
 app.listen(PORT, () => {
   console.log(`Backend running at http://localhost:${PORT}`);
