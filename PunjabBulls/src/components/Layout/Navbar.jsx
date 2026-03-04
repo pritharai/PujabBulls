@@ -1,8 +1,36 @@
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("adminToken");
+  //   setIsAdmin(!!token);
+  // }, []);
+
+  useEffect(() => {
+  const checkToken = () => {
+    const token = localStorage.getItem("adminToken");
+    setIsAdmin(!!token);
+  };
+
+  // Check on mount
+  checkToken();
+
+  // Listen for custom "authChange" event
+  window.addEventListener("authChange", checkToken);
+
+  return () => window.removeEventListener("authChange", checkToken);
+}, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("adminToken");
+    setIsAdmin(false);
+    navigate("/");
+  };
 
   const navItems = [
     ["Home", "/"],
@@ -11,12 +39,13 @@ const Navbar = () => {
     ["About", "/about"],
     ["Contact", "/contact"],
     ["Privacy Policy", "/privacy-policy"],
-    ["Blog", "/blog"],
+    ["Blogs","/blogs"]
   ];
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#f9fbf9]/90 backdrop-blur-md border-b border-[#e9f1eb]">
       <div className="px-4 md:px-10 py-3 flex items-center justify-between max-w-7xl mx-auto">
+
         {/* Logo */}
         <Link
           to="/"
@@ -45,6 +74,32 @@ const Navbar = () => {
               {label}
             </NavLink>
           ))}
+
+          {/* ADMIN LINKS */}
+          {!isAdmin ? (
+            <Link
+              to="/admin/login"
+              className="text-sm font-medium text-primary"
+            >
+              Admin Login
+            </Link>
+          ) : (
+            <>
+              <Link
+                to="/admin/blogs"
+                className="text-sm font-medium text-primary"
+              >
+                Manage Blogs
+              </Link>
+
+              <button
+                onClick={handleLogout}
+                className="text-sm font-medium text-red-600 hover:cursor-pointer"
+              >
+                Logout
+              </button>
+            </>
+          )}
         </nav>
 
         {/* Desktop CTA */}
@@ -85,6 +140,36 @@ const Navbar = () => {
                 {label}
               </NavLink>
             ))}
+
+            {!isAdmin ? (
+              <Link
+                to="/admin/login"
+                onClick={() => setOpen(false)}
+                className="text-base font-medium text-primary"
+              >
+                Admin Login
+              </Link>
+            ) : (
+              <>
+                <Link
+                  to="/admin/blogs"
+                  onClick={() => setOpen(false)}
+                  className="text-base font-medium text-primary"
+                >
+                  Manage Blogs
+                </Link>
+
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setOpen(false);
+                  }}
+                  className="text-base font-medium text-red-600 text-left"
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </nav>
 
           <Link

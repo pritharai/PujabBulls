@@ -1,5 +1,5 @@
 import express from "express";
-import { createBlog,getBlogs,getBlogBySlug,updateBlog,deleteBlog } from "../controllers/blogController.js";
+import { createBlog,getBlogs,getBlogBySlug,updateBlog,deleteBlog,getBlogById } from "../controllers/blogController.js";
 import { protectAdmin } from "../middleware/authMiddleware.js";
 const router = express.Router();
     
@@ -17,5 +17,8 @@ const router = express.Router();
 
     // Delete a blog
     router.delete("/:id",  protectAdmin ,deleteBlog);
+    
+    // get blog by id 
+    router.get("/id/:id", protectAdmin, getBlogById);
 
 export default router;

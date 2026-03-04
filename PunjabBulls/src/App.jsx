@@ -6,8 +6,9 @@ import SplashScreen from "./components/SplashScreen";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLogin from "./Pages/Admin/Login";
-import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import AdminBlogs from "./Pages/Admin/AdminBlogs";
+import CreateBlog from "./Pages/Admin/CreateBlog";
+import EditBlog from "./Pages/Admin/EditBlog";
 
 import Home from "./Pages/Home";
 import Industries from "./Pages/Industries";
@@ -18,10 +19,9 @@ import Contact from "./Pages/Contact";
 import PrivacyPolicy from "./Pages/Privacy";
 // import Chatbot from "./components/Chatbot/Chatbot";
 import ScrollToTop from "./components/Layout/ScrollToTop";
-import Blog        from './Pages/Blog'
-import Post        from './Pages/Post'
-import Admin       from './Pages/Admin'
-// import AdminLogin  from './Pages/AdminLogin'
+import Blogs from "./Pages/Blogs";
+import BlogDetail from "./Pages/BlogDetail";
+
 
 function App() {
   const [showSplash, setShowSplash] = useState(() => {
@@ -50,18 +50,26 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route
-            path="/admin/dashboard"
-            element={
-              <ProtectedRoute>
-                < AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
             path="/admin/blogs"
             element={
               <ProtectedRoute>
                 < AdminBlogs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/blogs/create"
+            element={
+              <ProtectedRoute>
+                < CreateBlog />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/blogs/edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditBlog />
               </ProtectedRoute>
             }
           />
@@ -72,6 +80,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<BlogDetail />} />
         </Route>
       </Routes>
       {/* <Chatbot /> */}
