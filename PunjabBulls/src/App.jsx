@@ -21,7 +21,7 @@ import ScrollToTop from "./components/Layout/ScrollToTop";
 import Blog        from './Pages/Blog'
 import Post        from './Pages/Post'
 import Admin       from './Pages/Admin'
-import AdminLogin  from './Pages/AdminLogin'
+// import AdminLogin  from './Pages/AdminLogin'
 
 function App() {
   const [showSplash, setShowSplash] = useState(() => {

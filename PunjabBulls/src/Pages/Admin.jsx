@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import AdminDashboard from '../components/Admin/AdminDashboard'
+import AdminDashboard from './Admin/AdminDashboard'
 
 // No Layout wrapper — admin has its own sidebar
 export default function Admin() {

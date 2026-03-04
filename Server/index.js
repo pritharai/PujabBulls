@@ -15,7 +15,25 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const cors_origin = process.env.ORIGIN || "http://localhost:5173";
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://www.punjabbulls.com",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
@@ -24,12 +42,6 @@ mongoose.connect(process.env.MONGO_URI)
 // middleware
 app.use(morgan('dev'));
 
-app.use(
-  cors({
-    origin: cors_origin,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  }),
-);
 
 app.use(helmet());
 

@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import Layout from '../components/Layout/Layout'
-import SinglePostPage from '../components/Blog/SinglePostPage'
+// import SinglePostPage from '../components/Blog/SinglePostPage'
 
 export default function Post() {
   const { slug } = useParams()
