@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://www.punjabbulls.com",
-  "https://punjabbulls.com",
+  baseURL: meta.env.VITE_BASE_URL
 });
 
 // Attach token automatically
