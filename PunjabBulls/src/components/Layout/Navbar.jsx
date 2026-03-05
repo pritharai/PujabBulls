@@ -76,14 +76,8 @@ const Navbar = () => {
           ))}
 
           {/* ADMIN LINKS */}
-          {!isAdmin ? (
-            <Link
-              to="/admin/login"
-              className="text-sm font-medium text-primary"
-            >
-              Admin Login
-            </Link>
-          ) : (
+          {isAdmin && (
+           
             <>
               <Link
                 to="/admin/blogs"
