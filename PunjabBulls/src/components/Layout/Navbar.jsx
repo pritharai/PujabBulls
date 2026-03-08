@@ -128,7 +128,7 @@ const Navbar = () => {
       </Link>
 
       <Link
-        to="/admin/videos"
+        to="/admin/manage-videos"
         className="block px-4 py-2 text-sm hover:bg-[#f6f8f6]"
       >
         Manage Videos
