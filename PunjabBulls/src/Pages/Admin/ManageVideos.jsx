@@ -38,7 +38,18 @@ const ManageVideos = () => {
 
   return (
     <div className="manage-videos-page">
-      <h2>Manage Videos</h2>
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10 gap-4">
+        <h1 className="text-3xl font-bold">
+          Manage Videos
+        </h1>
+
+        <Link
+          to="/admin/upload-video"
+          className="inline-flex items-center justify-center rounded-lg px-5 py-2 bg-[#1f803c] text-white font-semibold shadow-sm hover:bg-[#16632e] transition"
+        >
+          + Upload Videos
+        </Link>
+      </div>
 
       <div className="videos-grid">
         {videos.map((video) => {
