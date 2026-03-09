@@ -9,15 +9,19 @@ export default function AdminBlogs() {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
 
+  const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+
   const limit = 9;
 
-  const fetchBlogs = async (page = 1) => {
+  const fetchBlogs = async (page = 1, searchQuery = "") => {
     try {
       setLoading(true);
 
       const data = await getBlogs({
         page,
         limit,
+        search: searchQuery,
       });
 
       setBlogs(data.blogs);
@@ -37,14 +41,28 @@ export default function AdminBlogs() {
 
     await deleteBlog(id);
 
-    // If deleting last item on page, move back a page
     if (blogs.length === 1 && currentPage > 1) {
-      fetchBlogs(currentPage - 1);
+      fetchBlogs(currentPage - 1, debouncedSearch);
     } else {
-      fetchBlogs(currentPage);
+      fetchBlogs(currentPage, debouncedSearch);
     }
   };
 
+  /* debounce search */
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  /* load blogs when search changes */
+  useEffect(() => {
+    fetchBlogs(1, debouncedSearch);
+  }, [debouncedSearch]);
+
+  /* initial load */
   useEffect(() => {
     fetchBlogs(1);
   }, []);
@@ -52,9 +70,7 @@ export default function AdminBlogs() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10 gap-4">
-        <h1 className="text-3xl font-bold">
-          Manage Blogs
-        </h1>
+        <h1 className="text-3xl font-bold">Manage Blogs</h1>
 
         <Link
           to="/admin/blogs/create"
@@ -62,6 +78,17 @@ export default function AdminBlogs() {
         >
           + Create Blog
         </Link>
+      </div>
+
+      {/* Search */}
+      <div className="mb-8">
+        <input
+          type="text"
+          placeholder="Search blogs..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full max-w-md px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1f803c]"
+        />
       </div>
 
       {loading ? (
@@ -101,26 +128,28 @@ export default function AdminBlogs() {
               {/* Prev */}
               <button
                 disabled={currentPage === 1}
-                onClick={() => fetchBlogs(currentPage - 1)}
-                className={`w-10 h-10 rounded-lg border ${currentPage === 1
+                onClick={() => fetchBlogs(currentPage - 1, debouncedSearch)}
+                className={`w-10 h-10 rounded-lg border ${
+                  currentPage === 1
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:bg-gray-100"
-                  }`}
+                }`}
               >
                 ‹
               </button>
 
-              {/* Page Numbers */}
+              {/* Pages */}
               {[...Array(totalPages)].map((_, i) => {
                 const page = i + 1;
                 return (
                   <button
                     key={page}
-                    onClick={() => fetchBlogs(page)}
-                    className={`w-10 h-10 rounded-lg ${currentPage === page
+                    onClick={() => fetchBlogs(page, debouncedSearch)}
+                    className={`w-10 h-10 rounded-lg ${
+                      currentPage === page
                         ? "bg-[#1f803c] text-white"
                         : "border hover:bg-gray-100"
-                      }`}
+                    }`}
                   >
                     {page}
                   </button>
@@ -130,11 +159,12 @@ export default function AdminBlogs() {
               {/* Next */}
               <button
                 disabled={currentPage === totalPages}
-                onClick={() => fetchBlogs(currentPage + 1)}
-                className={`w-10 h-10 rounded-lg border ${currentPage === totalPages
+                onClick={() => fetchBlogs(currentPage + 1, debouncedSearch)}
+                className={`w-10 h-10 rounded-lg border ${
+                  currentPage === totalPages
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:bg-gray-100"
-                  }`}
+                }`}
               >
                 ›
               </button>
