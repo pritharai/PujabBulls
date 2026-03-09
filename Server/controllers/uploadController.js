@@ -33,12 +33,14 @@ export const uploadEditorImage = async (req, res) => {
     res.status(200).json({
       success: 1,
       file: {
-        url: req.file.path
+        url: req.file.path,
+        public_id: req.file.filename
       }
     });
 
   } catch (err) {
     console.error(err);
+
     res.status(500).json({
       success: 0
     });

@@ -137,10 +137,11 @@ export const updateBlog = async (req, res) => {
     }
 
     // 🔹 Cover Image Replacement
-    if (coverImage) {
+    if (coverImage && coverImage.public_id !== blog.coverImage?.public_id) {
       if (blog.coverImage?.public_id) {
         await cloudinary.uploader.destroy(blog.coverImage.public_id);
       }
+
       blog.coverImage = coverImage;
     }
 
@@ -173,7 +174,7 @@ export const updateBlog = async (req, res) => {
       const newPublicIds = extractPublicIdsFromContent(content);
 
       const removedImages = oldPublicIds.filter(
-        (id) => !newPublicIds.includes(id)
+        (id) => !newPublicIds.includes(id),
       );
 
       for (const publicId of removedImages) {
@@ -197,7 +198,6 @@ export const updateBlog = async (req, res) => {
     res.status(500).json({ success: false });
   }
 };
-
 
 // delete a blog
 
@@ -262,3 +262,4 @@ export const getBlogById = async (req, res) => {
     blog,
   });
 };
+

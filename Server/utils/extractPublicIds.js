@@ -4,20 +4,29 @@ export const extractPublicIdsFromContent = (content) => {
   if (!content?.blocks) return publicIds;
 
   content.blocks.forEach((block) => {
-    if (block.type === "image" && block.data?.file?.url) {
-      const url = block.data.file.url;
+    if (block.type === "image") {
 
-      // Extract public_id from Cloudinary URL
-      const parts = url.split("/");
-      const fileWithExtension = parts.slice(-2).join("/"); 
-      // blog_images/abc123.jpg
+      const publicId = block.data?.file?.public_id;
 
-      const publicId = fileWithExtension.replace(/\.[^/.]+$/, ""); 
-      // blog_images/abc123
+      if (publicId) {
+        publicIds.push(publicId);
+      }
 
-      publicIds.push(publicId);
+      // fallback if public_id missing (old blogs)
+      else if (block.data?.file?.url) {
+
+        const url = block.data.file.url;
+
+        const parts = url.split("/");
+        const fileWithExtension = parts.slice(-2).join("/");
+
+        const extracted = fileWithExtension.replace(/\.[^/.]+$/, "");
+
+        publicIds.push(extracted);
+      }
     }
   });
 
   return publicIds;
 };
+

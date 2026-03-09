@@ -8,40 +8,86 @@ export default function CreateBlog() {
     const [excerpt, setExcerpt] = useState("");
     const [content, setContent] = useState(null);
     const [coverImage, setCoverImage] = useState(null);
+    const [uploading, setUploading] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
 
+
     const handleCoverUpload = async (e) => {
-        const file = e.target.files[0];
-        const formData = new FormData();
-        formData.append("image", file);
+
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const allowedTypes = ["image/jpeg","image/png","image/webp"];
+
+    if (!allowedTypes.includes(file.type)) {
+        alert("Only JPG, PNG, and WEBP images are allowed");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+
+        setUploading(true);
 
         const { data } = await api.post("/api/upload", formData);
+
         setCoverImage({
-            url: data.url,
-            public_id: data.public_id,
+        url: data.url,
+        public_id: data.public_id,
         });
+
+    } catch (err) {
+
+        alert("Image upload failed");
+
+    } finally {
+
+        setUploading(false);
+
+    }
+
     };
 
+
     const handleSubmit = async () => {
-        if (!title || !content) {
-            alert("Title and content required");
-            return;
-        }
 
-        if (!coverImage) {
-            alert("Main image is required before publishing");
-            return;
-        }
+    if (!title || !content) {
+        alert("Title and content required");
+        return;
+    }
 
-        const data = await api.post("/api/blogs", {
-            title,
-            excerpt,
-            content,
-            status: "published",
-            coverImage,
+    if (!coverImage) {
+        alert("Main image is required before publishing");
+        return;
+    }
+
+    try {
+
+        setSubmitting(true);
+
+        await api.post("/api/blogs", {
+        title,
+        excerpt,
+        content,
+        status: "published",
+        coverImage,
         });
-        console.log(data.data)
+
         navigate("/admin/blogs");
+
+    } catch (err) {
+
+        alert("Blog creation failed");
+
+    } finally {
+
+        setSubmitting(false);
+
+    }
+
     };
 
     return (
@@ -63,23 +109,35 @@ export default function CreateBlog() {
                 onChange={(e) => setExcerpt(e.target.value)}
             />
 
+            {coverImage && (
+                <img
+                    src={coverImage.url}
+                    alt="Cover Preview"
+                    className="w-40 rounded"
+                />
+                )}
             {/* Wrap it in a div for spacing and add a label */}
             <div className="flex flex-col gap-2">
                 <label className="font-medium text-gray-700">Cover Image</label>
                 <input
                     type="file"
+                     accept="image/png, image/jpeg, image/jpg, image/webp"
                     onChange={handleCoverUpload}
-                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200"
-                />
+                    disabled={uploading} />
+
+                {uploading && (
+                <p className="text-sm text-blue-500">Uploading image...</p>
+                )}
             </div>
 
             <Editor onChange={setContent} />
 
             <button
                 onClick={handleSubmit}
+                disabled={submitting}
                 className="bg-black text-white px-6 py-2"
-            >
-                Publish
+                >
+                {submitting ? "Publishing..." : "Publish"}
             </button>
         </div>
     );

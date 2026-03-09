@@ -10,7 +10,9 @@ export default function EditBlog() {
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [excerpt, setExcerpt] = useState("");
-  const [content, setContent] = useState(null);
+  const [content, setContent] = useState({});
+  const [uploading, setUploading] = useState(false);
+  const [updating, setUpdating] = useState(false);
   const [initialContent, setInitialContent] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
 
@@ -23,6 +25,7 @@ export default function EditBlog() {
       console.log("Cover image:", blog.coverImage);
 
       setTitle(blog.title);
+      setContent(blog.content);
       setExcerpt(blog.excerpt);
       setInitialContent(blog.content);
       setCoverImage(blog.coverImage);
@@ -33,35 +36,76 @@ export default function EditBlog() {
   }, [id]);
 
   const handleCoverUpload = async (e) => {
+
+    if (uploading) return;
+
     const file = e.target.files[0];
     if (!file) return;
+
+    const allowedTypes = ["image/jpeg","image/png","image/webp"];
+
+    if (!allowedTypes.includes(file.type)) {
+      alert("Only JPG, PNG, and WEBP images are allowed");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("image", file);
 
-    const { data } = await api.post("/api/upload", formData);
+    try {
 
-    setCoverImage({
-      url: data.url,
-      public_id: data.public_id,
-    });
-  };
+      setUploading(true);
 
-  const handleUpdate = async () => {
-    if (!title || !excerpt || !content || !coverImage) {
-      alert("All fields including main image required");
-      return;
+      const { data } = await api.post("/api/upload", formData);
+
+      setCoverImage({
+        url: data.url,
+        public_id: data.public_id,
+      });
+
+    } catch (err) {
+
+      alert("Image upload failed");
+
+    } finally {
+
+      setUploading(false);
+
     }
 
-    await api.put(`/api/blogs/${id}`, {
-      title,
-      excerpt,
-      content,
-      coverImage,
-    });
-
-    navigate("/admin/blogs");
   };
+
+    const handleUpdate = async () => {
+
+      if (!title || !excerpt || !content || !coverImage) {
+        alert("All fields including main image required");
+        return;
+      }
+
+      try {
+
+        setUpdating(true);
+
+        await api.put(`/api/blogs/${id}`, {
+          title,
+          excerpt,
+          content,
+          coverImage,
+        });
+
+        navigate("/admin/blogs");
+
+      } catch (err) {
+
+        alert("Blog update failed");
+
+      } finally {
+
+        setUpdating(false);
+
+      }
+
+    };
 
   if (loading) return <div className="p-6">Loading...</div>;
 
@@ -86,15 +130,35 @@ export default function EditBlog() {
         <label>Main Image</label>
 
         {coverImage && (
-          <img
-            src={coverImage.url}
-            alt="Current Cover"
-            className="w-40 rounded"
-          />
+          <div className="flex flex-col gap-2">
+
+            <img
+              src={coverImage.url}
+              alt="Current Cover"
+              className="w-40 rounded"
+            />
+
+            <button
+              onClick={() => setCoverImage(null)}
+              className="text-red-500 text-sm"
+            >
+              Remove Image
+            </button>
+
+          </div>
         )}
 
-        <input type="file" onChange={handleCoverUpload} />
+        <input
+            type="file"
+            accept="image/png, image/jpeg, image/webp"
+            onChange={handleCoverUpload}
+            disabled={uploading}
+          />
       </div>
+
+      {uploading && (
+  <p className="text-sm text-gray-500">Uploading image...</p>
+)}
 
       <Editor
         initialData={initialContent}
@@ -103,9 +167,10 @@ export default function EditBlog() {
 
       <button
         onClick={handleUpdate}
+        disabled={updating}
         className="bg-black text-white px-6 py-2"
       >
-        Update Blog
+        {updating ? "Updating..." : "Update Blog"}
       </button>
     </div>
   );
