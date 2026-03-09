@@ -9,7 +9,9 @@
     { "source": "/Stock&SaleVisibility.html", "destination": "/products", "permanent": true },
     { "source": "/RiceIndustry.html", "destination": "/industries", "permanent": true }
   ],
-  "rewrites": [
+   "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
     { "source": "/((?!assets/|sitemap.xml|robots.txt).*)", "destination": "/index.html" }
   ]
 }
