@@ -1,10 +1,20 @@
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App";
-import './index.css'
+import { hydrateRoot, createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
+const rootElement = document.getElementById('root')
+
+if (rootElement.hasChildNodes()) {
+  hydrateRoot(
+    rootElement,
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  )
+} else {
+  createRoot(rootElement).render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  )
+}
