@@ -24,6 +24,7 @@ import BlogDetail from "./Pages/BlogDetail";
 import WhatIsBusinessCentral from "./Pages/WhatIsBusinessCentral";
 import UploadVideo from "./Pages/Admin/VideoUpload";
 import ManageVideos from "./Pages/Admin/ManageVideos";
+import NotFound from "./Pages/NotFound";
 import { HelmetProvider } from "react-helmet-async";
 
 function App() {
@@ -107,6 +108,7 @@ function App() {
             path="/about/what-is-business-central"
             element={<WhatIsBusinessCentral />}
           />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
       {/* <Chatbot /> */}
