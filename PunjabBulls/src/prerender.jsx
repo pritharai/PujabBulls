@@ -44,14 +44,7 @@ function buildHead(route) {
 
 export async function prerender({ url }) {
   const route = staticRouteMeta[url] || staticRouteMeta["/404"];
-  const html = `
-    <main data-prerender-shell="true">
-      <section>
-        <h1>${route.title}</h1>
-        <p>${route.description}</p>
-      </section>
-    </main>
-  `;
+  const html = '<div data-prerender-shell="true" aria-hidden="true"></div>';
 
   return {
     html,
