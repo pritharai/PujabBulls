@@ -8,15 +8,21 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import VideoSection from "../components/VideoSection";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import "../Styles/about.css";
+import { staticRouteMeta } from "../seo/routes";
 
 export default function AboutUs() {
+  const meta = staticRouteMeta["/about"];
+
   return (
     <main className="bg-[var(--color-background-light)] text-[var(--color-secondary)]">
-      <Helmet>
-  <link rel="canonical" href="https://www.punjabbulls.com/about" />
-</Helmet>
+      <SEO
+        title={meta.title}
+        description={meta.description}
+        canonical={meta.canonical}
+        prerenderHint={meta.prerender}
+      />
       {/* HERO */}
      {/* HERO */}
 <section

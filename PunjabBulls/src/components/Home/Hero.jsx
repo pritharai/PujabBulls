@@ -135,21 +135,23 @@ const Hero = () => {
     className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2"
     variants={fadeUp}
   >
-    <motion.button
+    <motion.a
+      href="/contact"
       whileHover={{ scale: 1.05, y: -2 }}
       whileTap={{ scale: 0.96 }}
       className="flex items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold shadow-lg hover:bg-primary/90 transition-all"
     >
       Get Started
-    </motion.button>
+    </motion.a>
 
-    <motion.button
+    <motion.a
+      href="/products"
       whileHover={{ scale: 1.04, y: -1 }}
       whileTap={{ scale: 0.97 }}
       className="flex items-center justify-center rounded-lg h-12 px-6 border border-[#d3e4d8] text-[#101912] text-base font-bold hover:bg-black/5 transition-all"
     >
       View Solutions
-    </motion.button>
+    </motion.a>
   </motion.div>
 </motion.div>
 

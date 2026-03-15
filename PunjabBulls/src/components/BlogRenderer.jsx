@@ -96,6 +96,7 @@ export default function BlogRenderer({ content }) {
                 <img
                   src={block.data.file?.url}
                   alt={block.data.caption || "Blog image"}
+                  loading="lazy"
                   className="w-full rounded-lg"
                 />
                 {block.data.caption && (

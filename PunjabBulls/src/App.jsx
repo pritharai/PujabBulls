@@ -25,10 +25,22 @@ import WhatIsBusinessCentral from "./Pages/WhatIsBusinessCentral";
 import UploadVideo from "./Pages/Admin/VideoUpload";
 import ManageVideos from "./Pages/Admin/ManageVideos";
 import NotFound from "./Pages/NotFound";
-import { HelmetProvider } from "react-helmet-async";
 
 function App() {
   const [showSplash, setShowSplash] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    const isPrerenderedRoute = Boolean(
+      document.querySelector('meta[name="prerendered-route"]')
+    );
+
+    if (isPrerenderedRoute) {
+      sessionStorage.setItem("punjabbulls_splash_seen", "true");
+      return false;
+    }
+
     return !sessionStorage.getItem("punjabbulls_splash_seen");
   });
 
@@ -49,7 +61,6 @@ function App() {
 
   return (
     <>
-    <HelmetProvider>
       <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
@@ -108,11 +119,11 @@ function App() {
             path="/about/what-is-business-central"
             element={<WhatIsBusinessCentral />}
           />
+          <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
       {/* <Chatbot /> */}
-    </HelmetProvider>
     </>
   );
 }

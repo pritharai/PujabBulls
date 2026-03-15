@@ -7,14 +7,20 @@ import GST from '../components/Products/GST'
 import TCS from '../components/Products/TCS'
 import RiceERP from '../components/Products/RiceERP'
 import ProductCTA from '../components/Products/ProductCTA'
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
+import { staticRouteMeta } from "../seo/routes";
 
 const Products = () => {
+  const meta = staticRouteMeta["/products"];
+
   return (
     <>
-    <Helmet>
-  <link rel="canonical" href="https://www.punjabbulls.com/products" />
-</Helmet>
+      <SEO
+        title={meta.title}
+        description={meta.description}
+        canonical={meta.canonical}
+        prerenderHint={meta.prerender}
+      />
       <ProductHero />
       <ProductNav />
       <Dynamics />

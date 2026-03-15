@@ -4,15 +4,21 @@ import IndustryHero from "../components/Industries/IndustryHero";
 import IndustrySubnav from "../components/Industries/IndustrySubnav";
 import ManufacturingSection from "../components/Industries/ManufacturingSection";
 import RetailSection from "../components/Industries/RetailSection";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
+import { staticRouteMeta } from "../seo/routes";
 
 
 const Industries = () => {
+  const meta = staticRouteMeta["/industries"];
+
   return (
     <>
-    <Helmet>
-  <link rel="canonical" href="https://www.punjabbulls.com/industries" />
-</Helmet>
+      <SEO
+        title={meta.title}
+        description={meta.description}
+        canonical={meta.canonical}
+        prerenderHint={meta.prerender}
+      />
       <IndustryHero />
       <IndustrySubnav />
       <RetailSection />

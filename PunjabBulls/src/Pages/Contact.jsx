@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
+import { staticRouteMeta } from "../seo/routes";
 /* =======================
    OFFICE LOCATIONS
 ======================= */
@@ -37,6 +38,7 @@ const LOCATIONS = [
 
 export default function ContactUs() {
   const apiUrl = import.meta.env.VITE_API_URL;
+  const meta = staticRouteMeta["/contact"];
 
   const [form, setForm] = useState({
     name: "",
@@ -100,9 +102,12 @@ export default function ContactUs() {
 
   return (
     <>
-    <Helmet>
-  <link rel="canonical" href="https://www.punjabbulls.com/contact" />
-</Helmet>
+      <SEO
+        title={meta.title}
+        description={meta.description}
+        canonical={meta.canonical}
+        prerenderHint={meta.prerender}
+      />
       {/* =======================
          TOAST
       ======================= */}

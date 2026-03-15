@@ -1,17 +1,20 @@
 import { ArrowRight, Home, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
+import { staticRouteMeta } from "../seo/routes";
 
 export default function NotFound() {
+  const meta = staticRouteMeta["/404"];
+
   return (
     <>
-      <Helmet>
-        <title>Page Not Found | PunjabBulls</title>
-        <meta
-          name="robots"
-          content="noindex, nofollow"
-        />
-      </Helmet>
+      <SEO
+        title={meta.title}
+        description={meta.description}
+        canonical={meta.canonical}
+        noindex
+        prerenderHint={meta.prerender}
+      />
 
       <section className="relative overflow-hidden bg-[var(--color-background-light)]">
         <div className="absolute inset-0 grid-bg opacity-70" aria-hidden="true" />

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchPublishedBlogs } from "../services/publicBlogService";
 import BlogCard from "../components/BlogCard";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
+import { staticRouteMeta } from "../seo/routes";
 
 export default function Blogs() {
+    const meta = staticRouteMeta["/blogs"];
     const [blogs, setBlogs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -51,9 +53,19 @@ export default function Blogs() {
 
     return (
         <>
-        <Helmet>
-  <link rel="canonical" href="https://www.punjabbulls.com/blogs" />
-</Helmet>
+            <SEO
+                title={meta.title}
+                description={meta.description}
+                canonical={meta.canonical}
+                prerenderHint={meta.prerender}
+                schema={{
+                    "@context": "https://schema.org",
+                    "@type": "Blog",
+                    name: "PunjabBulls Blog",
+                    description: meta.description,
+                    url: "https://www.punjabbulls.com/blogs",
+                }}
+            />
             {/* Hero Section */}
             <section className="py-20 bg-gray-50 text-center">
                 

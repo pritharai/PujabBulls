@@ -1,12 +1,18 @@
 import VideoSection from "../components/VideoSection";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
+import { staticRouteMeta } from "../seo/routes";
 
 const WhatIsBusinessCentral = () => {
+  const meta = staticRouteMeta["/about/what-is-business-central"];
+
   return (
     <div className="bg-[var(--color-background-light)] min-h-screen font-[var(--font-family-sans)]">
-      <Helmet>
-  <link rel="canonical" href="https://www.punjabbulls.com/about/what-is-business-central" />
-</Helmet>
+      <SEO
+        title={meta.title}
+        description={meta.description}
+        canonical={meta.canonical}
+        prerenderHint={meta.prerender}
+      />
 
       {/* HERO */}
       <section className="grid-bg py-20 px-6 text-center">

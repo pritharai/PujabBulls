@@ -20,6 +20,7 @@ export default function BlogCard({
           <img
             src={blog.coverImage?.url}
             alt={blog.title}
+            loading="lazy"
             className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-green-900/20"></div>

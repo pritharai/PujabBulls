@@ -1,12 +1,22 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
+import { useLocation } from "react-router-dom";
+import SEO from "../components/SEO";
+import { staticRouteMeta } from "../seo/routes";
 
 const PrivacyPolicy = () => {
+  const { pathname } = useLocation();
+  const meta = staticRouteMeta["/privacy-policy"];
+  const isCanonicalPath = pathname === "/privacy-policy";
+
   return (
     <main className="bg-[var(--color-background-light)] text-[var(--color-secondary)] font-[var(--font-family-sans)] min-h-screen">
-      <Helmet>
-  <link rel="canonical" href="https://www.punjabbulls.com/privacy-policy" />
-</Helmet>
+      <SEO
+        title={meta.title}
+        description={meta.description}
+        canonical={meta.canonical}
+        noindex={!isCanonicalPath}
+        prerenderHint={isCanonicalPath && meta.prerender}
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <section className="animate-fade-up">
