@@ -8,8 +8,8 @@
     "prebuild": "node ./scripts/generate-sitemap.mjs",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "postbuild": "react-snap"
+    "preview": "vite preview"
+
   },
   "dependencies": {
     "@editorjs/checklist": "^1.6.0",
