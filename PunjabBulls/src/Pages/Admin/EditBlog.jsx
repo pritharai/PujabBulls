@@ -64,8 +64,7 @@ export default function EditBlog() {
       });
 
     } catch (err) {
-
-      alert("Image upload failed");
+      alert(err.response?.data?.message || "Image upload failed");
 
     } finally {
 
@@ -96,8 +95,7 @@ export default function EditBlog() {
         navigate("/admin/blogs");
 
       } catch (err) {
-
-        alert("Blog update failed");
+        alert(err.response?.data?.message || "Blog update failed");
 
       } finally {
 

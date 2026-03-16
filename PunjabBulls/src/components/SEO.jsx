@@ -9,6 +9,7 @@ import {
 export default function SEO({
   title,
   description,
+  keywords,
   canonical,
   ogImage = DEFAULT_OG_IMAGE,
   schema,
@@ -22,6 +23,7 @@ export default function SEO({
     <Helmet prioritizeSeoTags>
       <title>{title}</title>
       <meta name="description" content={description} />
+      {keywords ? <meta name="keywords" content={keywords.join(", ")} /> : null}
       <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
       <link rel="canonical" href={canonicalUrl} />
       <link rel="alternate" hrefLang="en-IN" href={canonicalUrl} />

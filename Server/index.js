@@ -115,6 +115,36 @@ app.use("/api/auth", authRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/videos", videoRoutes);
 
+app.use((err, req, res, next) => {
+  console.error(err);
+
+  if (err.name === "MulterError") {
+    if (err.code === "LIMIT_FILE_SIZE") {
+      return res.status(400).json({
+        success: false,
+        message: "Image must be 15MB or smaller",
+      });
+    }
+
+    return res.status(400).json({
+      success: false,
+      message: err.message || "Upload failed",
+    });
+  }
+
+  if (err.message === "Only JPG, PNG, and WEBP images are allowed") {
+    return res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+
+  return res.status(500).json({
+    success: false,
+    message: "Server error",
+  });
+});
+
 
 // Server Start
 app.listen(PORT, () => {

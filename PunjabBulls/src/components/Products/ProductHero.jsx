@@ -12,7 +12,7 @@ const ProductHero = () => {
       <div className="relative z-10 flex flex-col items-center text-center">
         <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 max-w-4xl">
           Enterprise ERP &amp; Compliance Solutions Built for{" "}
-          <span className="text-primary">Indian Businesses</span>
+          <span className="text-primary">Every Business</span>
         </h1>
 
         <p className="text-lg text-slate-600 mb-10 max-w-[65ch]">

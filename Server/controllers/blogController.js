@@ -1,14 +1,32 @@
 import Blog from "../models/Blog.js";
 import slugify from "slugify";
 import cloudinary from "../config/cloudinary.js";
-import { extractPublicIdsFromContent } from "../utils/extractPublicIds.js";
+import {
+  buildImageUpdatePlan,
+  collectReferencedImagePublicIds,
+} from "../utils/blogImageLifecycle.js";
+
+async function destroyCloudinaryAssets(publicIds = []) {
+  for (const publicId of publicIds) {
+    try {
+      await cloudinary.uploader.destroy(publicId);
+    } catch (error) {
+      console.error(`Failed to delete Cloudinary asset: ${publicId}`, error);
+    }
+  }
+}
 
 // Create a blog
 export const createBlog = async (req, res) => {
-  try {
-    const { title, excerpt, content, status, coverImage, thumbnailImage } =
-      req.body;
+  const { title, excerpt, content, status, coverImage, thumbnailImage } =
+    req.body;
+  const uploadedImageIds = collectReferencedImagePublicIds({
+    coverImage,
+    thumbnailImage,
+    content,
+  });
 
+  try {
     if (!title || !content) {
       return res.status(400).json({
         success: false,
@@ -16,7 +34,7 @@ export const createBlog = async (req, res) => {
       });
     }
 
-    let baseSlug = slugify(title, { lower: true, strict: true });
+    const baseSlug = slugify(title, { lower: true, strict: true });
     let slug = baseSlug;
     let counter = 1;
 
@@ -41,9 +59,11 @@ export const createBlog = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
+    await destroyCloudinaryAssets(uploadedImageIds);
     res.status(500).json({ success: false });
   }
 };
+
 // Get All Blogs
 export const getBlogs = async (req, res) => {
   try {
@@ -54,23 +74,16 @@ export const getBlogs = async (req, res) => {
 
     const filter = {};
 
-    // Status filter
     if (status) {
       filter.status = status;
     }
 
-    // Search filter
     if (search) {
       filter.$or = [
         { title: { $regex: search, $options: "i" } },
         { excerpt: { $regex: search, $options: "i" } },
       ];
     }
-
-    // Extact strong search
-    //     if (search) {
-    //   filter.$text = { $search: search };
-    // }
 
     const totalBlogs = await Blog.countDocuments(filter);
 
@@ -98,7 +111,7 @@ export const getBlogBySlug = async (req, res) => {
     const { slug } = req.params;
 
     const blog = await Blog.findOneAndUpdate(
-      { slug, status: "published" }, // Only allow published blogs publicly
+      { slug, status: "published" },
       { $inc: { views: 1 } },
       { new: true },
     );
@@ -122,6 +135,8 @@ export const getBlogBySlug = async (req, res) => {
 
 // Update a blog
 export const updateBlog = async (req, res) => {
+  let cleanupOnFailure = [];
+
   try {
     const { id } = req.params;
     const { title, excerpt, content, status, coverImage, thumbnailImage } =
@@ -136,26 +151,26 @@ export const updateBlog = async (req, res) => {
       });
     }
 
-    // 🔹 Cover Image Replacement
-    if (coverImage && coverImage.public_id !== blog.coverImage?.public_id) {
-      if (blog.coverImage?.public_id) {
-        await cloudinary.uploader.destroy(blog.coverImage.public_id);
-      }
+    const { updates, deleteAfterSave, cleanupOnFailure: pendingCleanup } =
+      buildImageUpdatePlan({
+        currentBlog: blog,
+        nextCoverImage: coverImage,
+        nextThumbnailImage: thumbnailImage,
+        nextContent: content,
+      });
 
-      blog.coverImage = coverImage;
+    cleanupOnFailure = pendingCleanup;
+
+    if (updates.coverImage) {
+      blog.coverImage = updates.coverImage;
     }
 
-    // 🔹 Thumbnail Replacement
-    if (thumbnailImage) {
-      if (blog.thumbnailImage?.public_id) {
-        await cloudinary.uploader.destroy(blog.thumbnailImage.public_id);
-      }
-      blog.thumbnailImage = thumbnailImage;
+    if (updates.thumbnailImage) {
+      blog.thumbnailImage = updates.thumbnailImage;
     }
 
-    // 🔹 Slug Update
     if (title && title !== blog.title) {
-      let baseSlug = slugify(title, { lower: true, strict: true });
+      const baseSlug = slugify(title, { lower: true, strict: true });
       let slug = baseSlug;
       let counter = 1;
 
@@ -168,20 +183,8 @@ export const updateBlog = async (req, res) => {
       blog.title = title;
     }
 
-    // 🔹 Inline Image Cleanup
-    if (content && content.blocks) {
-      const oldPublicIds = extractPublicIdsFromContent(blog.content);
-      const newPublicIds = extractPublicIdsFromContent(content);
-
-      const removedImages = oldPublicIds.filter(
-        (id) => !newPublicIds.includes(id),
-      );
-
-      for (const publicId of removedImages) {
-        await cloudinary.uploader.destroy(publicId);
-      }
-
-      blog.content = content;
+    if (updates.content) {
+      blog.content = updates.content;
     }
 
     if (excerpt !== undefined) blog.excerpt = excerpt;
@@ -193,14 +196,16 @@ export const updateBlog = async (req, res) => {
       success: true,
       blog,
     });
+
+    await destroyCloudinaryAssets(deleteAfterSave);
   } catch (err) {
     console.error(err);
+    await destroyCloudinaryAssets(cleanupOnFailure);
     res.status(500).json({ success: false });
   }
 };
 
 // delete a blog
-
 export const deleteBlog = async (req, res) => {
   try {
     const { id } = req.params;
@@ -214,25 +219,14 @@ export const deleteBlog = async (req, res) => {
       });
     }
 
-    // Delete cover image
-    if (blog.coverImage?.public_id) {
-      await cloudinary.uploader.destroy(blog.coverImage.public_id);
-    }
-
-    // Delete thumbnail image
-    if (blog.thumbnailImage?.public_id) {
-      await cloudinary.uploader.destroy(blog.thumbnailImage.public_id);
-    }
-
-    // Extract inline images
-    const inlinePublicIds = extractPublicIdsFromContent(blog.content);
-
-    // Delete inline images
-    for (const publicId of inlinePublicIds) {
-      await cloudinary.uploader.destroy(publicId);
-    }
+    const assetIds = collectReferencedImagePublicIds({
+      coverImage: blog.coverImage,
+      thumbnailImage: blog.thumbnailImage,
+      content: blog.content,
+    });
 
     await blog.deleteOne();
+    await destroyCloudinaryAssets(assetIds);
 
     res.status(200).json({
       success: true,
@@ -262,4 +256,3 @@ export const getBlogById = async (req, res) => {
     blog,
   });
 };
-

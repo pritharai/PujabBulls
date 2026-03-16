@@ -4,6 +4,13 @@ export const staticRouteMeta = {
       "PunjabBulls Technology Pvt. Ltd. | ERP & Digital Transformation Company in India",
     description:
       "PunjabBulls helps Indian businesses modernize operations with Microsoft Dynamics 365 Business Central, ERP implementation, CRM strategy, cloud migration, and consulting services.",
+    keywords: [
+      "ERP company India",
+      "digital transformation company India",
+      "Microsoft Dynamics 365 Business Central partner India",
+      "ERP implementation services",
+      "business automation consulting",
+    ],
     canonical: "/",
     prerender: true,
     sitemap: true,
@@ -21,9 +28,25 @@ export const staticRouteMeta = {
     priority: "0.8",
   },
   "/products": {
-    title: "ERP Products | Microsoft Dynamics 365 Business Central Solutions",
+    title:
+      "Rice ERP, Rice Mill ERP Software & Business Central Solutions | PunjabBulls",
     description:
-      "Explore PunjabBulls ERP and compliance solutions for Indian businesses, including Microsoft Dynamics 365 Business Central, GST workflows, and industry-specific automation.",
+      "Explore PunjabBulls rice ERP and rice mill ERP software for Indian businesses, including Microsoft Dynamics 365 Business Central, stock and sales management, GST automation, compliance workflows, and industry-focused ERP solutions.",
+    keywords: [
+      "rice erp",
+      "rice mill ERP software",
+      "rice mill erp",
+      "rice mill management software",
+      "rice ERP",
+      "ERP for rice mills",
+      "erp for rice mill",
+      "erp software for rice mill",
+      "rice processing ERP software",
+      "Microsoft Dynamics 365 Business Central India",
+      "ERP software for manufacturers",
+      "stock and sales management software",
+      "GST automation software India",
+    ],
     canonical: "/products",
     prerender: true,
     sitemap: true,
@@ -34,6 +57,13 @@ export const staticRouteMeta = {
     title: "Industry ERP Solutions | Retail, Distribution & Manufacturing",
     description:
       "Discover PunjabBulls ERP solutions built for retail, distribution, and manufacturing teams that need operational visibility, compliance, and scalable workflows.",
+    keywords: [
+      "industry ERP solutions",
+      "retail ERP software",
+      "distribution ERP software",
+      "manufacturing ERP software",
+      "ERP for Indian businesses",
+    ],
     canonical: "/industries",
     prerender: true,
     sitemap: true,
@@ -44,6 +74,12 @@ export const staticRouteMeta = {
     title: "Contact PunjabBulls | ERP Consultation & Business Enquiries",
     description:
       "Contact PunjabBulls for ERP implementation, Microsoft Dynamics 365 Business Central consulting, and digital transformation support across India.",
+    keywords: [
+      "ERP consultation India",
+      "Business Central consultant India",
+      "PunjabBulls contact",
+      "ERP implementation support",
+    ],
     canonical: "/contact",
     prerender: true,
     sitemap: true,
@@ -64,6 +100,13 @@ export const staticRouteMeta = {
     title: "PunjabBulls Blog | ERP, CRM & Business Central Insights",
     description:
       "Read PunjabBulls insights on ERP implementation, Microsoft Dynamics 365 Business Central, compliance, cloud systems, and digital operations.",
+    keywords: [
+      "ERP blog",
+      "Business Central blog",
+      "CRM insights",
+      "GST compliance articles",
+      "digital transformation blog India",
+    ],
     canonical: "/blogs",
     prerender: true,
     sitemap: true,
@@ -74,6 +117,12 @@ export const staticRouteMeta = {
     title: "What Is Microsoft Dynamics 365 Business Central? | PunjabBulls",
     description:
       "Understand what Microsoft Dynamics 365 Business Central is, how it works, and why growing businesses use it to manage finance, sales, service, and operations.",
+    keywords: [
+      "what is Microsoft Dynamics 365 Business Central",
+      "Business Central ERP",
+      "Dynamics 365 ERP India",
+      "ERP for growing businesses",
+    ],
     canonical: "/about/what-is-business-central",
     prerender: true,
     sitemap: true,
