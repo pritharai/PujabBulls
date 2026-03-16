@@ -28,6 +28,7 @@ export const createBlog = async (req, res) => {
 
   try {
     if (!title || !content) {
+      await destroyCloudinaryAssets(uploadedImageIds);
       return res.status(400).json({
         success: false,
         message: "Title and content are required",
@@ -141,10 +142,16 @@ export const updateBlog = async (req, res) => {
     const { id } = req.params;
     const { title, excerpt, content, status, coverImage, thumbnailImage } =
       req.body;
+    const uploadedImageIds = collectReferencedImagePublicIds({
+      coverImage,
+      thumbnailImage,
+      content,
+    });
 
     const blog = await Blog.findById(id);
 
     if (!blog) {
+      await destroyCloudinaryAssets(uploadedImageIds);
       return res.status(404).json({
         success: false,
         message: "Blog not found",
