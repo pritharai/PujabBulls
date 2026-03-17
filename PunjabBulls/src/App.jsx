@@ -9,6 +9,7 @@ import AdminLogin from "./Pages/Admin/Login";
 import AdminBlogs from "./Pages/Admin/AdminBlogs";
 import CreateBlog from "./Pages/Admin/CreateBlog";
 import EditBlog from "./Pages/Admin/EditBlog";
+import ImageAuditLogs from "./Pages/Admin/ImageAuditLogs";
 
 import Home from "./Pages/Home";
 import Industries from "./Pages/Industries";
@@ -105,6 +106,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <ManageVideos />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/image-audit-logs"
+            element={
+              <ProtectedRoute>
+                <ImageAuditLogs />
               </ProtectedRoute>
             }
           />

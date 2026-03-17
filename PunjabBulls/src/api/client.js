@@ -15,4 +15,20 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401 && typeof window !== "undefined") {
+      localStorage.removeItem("adminToken");
+      window.dispatchEvent(new Event("authChange"));
+
+      if (window.location.pathname !== "/admin/login") {
+        window.location.href = "/admin/login";
+      }
+    }
+
+    return Promise.reject(error);
+  },
+);
+
 export default api;

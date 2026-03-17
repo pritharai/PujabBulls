@@ -52,6 +52,10 @@ export default function CreateBlog() {
 
 
     const handleSubmit = async () => {
+    if (uploading) {
+        alert("Please wait for the image upload to finish");
+        return;
+    }
 
     if (!title || !content) {
         alert("Title and content required");
@@ -121,7 +125,7 @@ export default function CreateBlog() {
                     type="file"
                      accept="image/png, image/jpeg, image/jpg, image/webp"
                     onChange={handleCoverUpload}
-                    disabled={uploading} />
+                    disabled={uploading || submitting} />
 
                 {uploading && (
                 <p className="text-sm text-blue-500">Uploading image...</p>
@@ -132,10 +136,10 @@ export default function CreateBlog() {
 
             <button
                 onClick={handleSubmit}
-                disabled={submitting}
-                className="bg-black text-white px-6 py-2"
+                disabled={submitting || uploading}
+                className="bg-black text-white px-6 py-2 disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                {submitting ? "Publishing..." : "Publish"}
+                {uploading ? "Waiting for image..." : submitting ? "Publishing..." : "Publish"}
             </button>
         </div>
     );

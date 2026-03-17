@@ -75,6 +75,10 @@ export default function EditBlog() {
   };
 
     const handleUpdate = async () => {
+      if (uploading) {
+        alert("Please wait for the image upload to finish");
+        return;
+      }
 
       if (!title || !excerpt || !content || !coverImage) {
         alert("All fields including main image required");
@@ -138,6 +142,7 @@ export default function EditBlog() {
 
             <button
               onClick={() => setCoverImage(null)}
+              disabled={uploading || updating}
               className="text-red-500 text-sm"
             >
               Remove Image
@@ -150,7 +155,7 @@ export default function EditBlog() {
             type="file"
             accept="image/png, image/jpeg, image/webp"
             onChange={handleCoverUpload}
-            disabled={uploading}
+            disabled={uploading || updating}
           />
       </div>
 
@@ -165,10 +170,10 @@ export default function EditBlog() {
 
       <button
         onClick={handleUpdate}
-        disabled={updating}
-        className="bg-black text-white px-6 py-2"
+        disabled={updating || uploading}
+        className="bg-black text-white px-6 py-2 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {updating ? "Updating..." : "Update Blog"}
+        {uploading ? "Waiting for image..." : updating ? "Updating..." : "Update Blog"}
       </button>
     </div>
   );

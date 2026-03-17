@@ -30,6 +30,7 @@ function sortIds(ids) {
 
 test("createBlog removes uploaded assets when validation fails", async (t) => {
   const destroyed = [];
+  t.mock.method(Blog, "findOne", async () => null);
   t.mock.method(cloudinary.uploader, "destroy", async (publicId) => {
     destroyed.push(publicId);
   });
@@ -168,6 +169,7 @@ test("updateBlog rolls back new assets when save fails", async (t) => {
   };
 
   t.mock.method(Blog, "findById", async () => blog);
+  t.mock.method(Blog, "findOne", async () => null);
   t.mock.method(cloudinary.uploader, "destroy", async (publicId) => {
     destroyed.push(publicId);
   });
@@ -200,6 +202,7 @@ test("updateBlog rolls back new assets when save fails", async (t) => {
 test("updateBlog removes uploaded assets when the blog does not exist", async (t) => {
   const destroyed = [];
   t.mock.method(Blog, "findById", async () => null);
+  t.mock.method(Blog, "findOne", async () => null);
   t.mock.method(cloudinary.uploader, "destroy", async (publicId) => {
     destroyed.push(publicId);
   });
@@ -252,6 +255,7 @@ test("deleteBlog removes cover, thumbnail, and inline assets", async (t) => {
   };
 
   t.mock.method(Blog, "findById", async () => blog);
+  t.mock.method(Blog, "findOne", async () => null);
   t.mock.method(cloudinary.uploader, "destroy", async (publicId) => {
     destroyed.push(publicId);
   });
@@ -270,4 +274,47 @@ test("deleteBlog removes cover, thumbnail, and inline assets", async (t) => {
     "cover-old",
     "thumb-old",
   ]);
+});
+
+test("updateBlog skips deleting an old image if another blog still references it", async (t) => {
+  const destroyed = [];
+  const blog = {
+    _id: "blog-1",
+    title: "Old Title",
+    slug: "old-title",
+    coverImage: { public_id: "shared-cover", url: "https://img/shared-cover.jpg" },
+    content: { blocks: [] },
+    async save() {},
+  };
+
+  t.mock.method(Blog, "findById", async () => blog);
+  t.mock.method(Blog, "findOne", async (query) => {
+    if (query?.slug) {
+      return null;
+    }
+
+    if (query?.$or?.some((condition) => condition["coverImage.public_id"] === "shared-cover")) {
+      return { _id: "blog-2", slug: "other-blog", title: "Other Blog" };
+    }
+
+    return null;
+  });
+  t.mock.method(cloudinary.uploader, "destroy", async (publicId) => {
+    destroyed.push(publicId);
+  });
+
+  const req = {
+    params: { id: "blog-1" },
+    body: {
+      title: "Old Title",
+      coverImage: { public_id: "cover-new", url: "https://img/cover-new.jpg" },
+      content: { blocks: [] },
+    },
+  };
+  const res = createResponse();
+
+  await updateBlog(req, res);
+
+  assert.equal(res.statusCode, 200);
+  assert.deepEqual(destroyed, []);
 });

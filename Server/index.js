@@ -10,6 +10,9 @@ import videoRoutes from "./routes/videoRoutes.js";
 import helmet from "helmet";
 import morgan from 'morgan'
 import rateLimit from "express-rate-limit";
+import { randomUUID } from "node:crypto";
+import auditRoutes from "./routes/auditRoutes.js";
+import { writeAuditLog } from "./utils/auditLogger.js";
 
 
 dotenv.config();
@@ -24,6 +27,11 @@ mongoose.connect(process.env.MONGO_URI)
 
 // middleware
 app.use(morgan('dev'));
+app.use((req, res, next) => {
+  req.requestId = randomUUID();
+  res.setHeader("X-Request-Id", req.requestId);
+  next();
+});
 
 app.use(
   cors({
@@ -114,9 +122,21 @@ app.use("/api/blogs", blogRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/videos", videoRoutes);
+app.use("/api/audit", auditRoutes);
 
-app.use((err, req, res, next) => {
+app.use(async (err, req, res, next) => {
   console.error(err);
+  await writeAuditLog({
+    level: "error",
+    domain: "server",
+    eventType: "request_failed",
+    req,
+    details: {
+      error: err.message,
+      name: err.name,
+      code: err.code,
+    },
+  });
 
   if (err.name === "MulterError") {
     if (err.code === "LIMIT_FILE_SIZE") {

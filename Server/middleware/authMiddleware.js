@@ -22,6 +22,11 @@ export const protectAdmin = (req, res, next) => {
       });
     }
 
+    req.admin = {
+      role: decoded.role,
+      email: decoded.email || process.env.ADMIN_EMAIL || null,
+    };
+
     next();
 
   } catch (err) {
