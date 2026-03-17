@@ -27,6 +27,7 @@ import WhatIsBusinessCentral from "./Pages/WhatIsBusinessCentral";
 import UploadVideo from "./Pages/Admin/VideoUpload";
 import ManageVideos from "./Pages/Admin/ManageVideos";
 import NotFound from "./Pages/NotFound";
+import ERPForRice from "./Pages/ERPForRice";
 
 function App() {
   const [showSplash, setShowSplash] = useState(() => {
@@ -126,6 +127,7 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:slug" element={<BlogDetail />} />
+          <Route path="/best-erp-for-rice-milling-industry" element={<ERPForRice />} />
           <Route
             path="/about/what-is-business-central"
             element={<WhatIsBusinessCentral />}

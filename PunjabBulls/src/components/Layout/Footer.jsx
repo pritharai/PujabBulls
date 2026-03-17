@@ -43,8 +43,7 @@ const Footer = () => {
                   <a className="hover:text-primary transition-colors" href="/products">
                     Products
                   </a>
-                </li>
-                
+                </li>      
                 <li>
                   <a className="hover:text-primary transition-colors" href="/products#dynamics">
                     Microsoft Dynamics Business Central
@@ -53,6 +52,11 @@ const Footer = () => {
                 <li>
                   <a className="hover:text-primary transition-colors" href="#">
                     
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="/best-erp-for-rice-milling-industry">
+                    Best ERP for Rice Milling Industry
                   </a>
                 </li>
               </ul>

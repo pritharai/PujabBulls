@@ -70,6 +70,16 @@ export const staticRouteMeta = {
     changefreq: "monthly",
     priority: "0.9",
   },
+  "/best-erp-for-rice-milling-industry": {
+    title: "Best ERP for Rice Milling Industry | PunjabBulls",
+    description:
+      "Tailored ERP solutions for rice milling businesses, streamlining operations, inventory management, and compliance with Microsoft Dynamics 365 Business Central.",
+    canonical: "/best-erp-for-rice-milling-industry",
+    prerender: true,
+    sitemap: true,
+    changefreq: "monthly",
+    priority: "0.8",
+  },
   "/contact": {
     title: "Contact PunjabBulls | ERP Consultation & Business Enquiries",
     description:
