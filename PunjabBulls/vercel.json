@@ -10,23 +10,7 @@
     { "source": "/Stock&SaleVisibility.html", "destination": "/products", "permanent": true },
     { "source": "/RiceIndustry.html", "destination": "/industries", "permanent": true }
   ],
-   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/about", "destination": "/index.html" },
-    { "source": "/products", "destination": "/index.html" },
-    { "source": "/industries", "destination": "/index.html" },
-    { "source": "/privacy", "destination": "/index.html" },
-    { "source": "/privacy-policy", "destination": "/index.html" },
-    { "source": "/contact", "destination": "/index.html" },
-    { "source": "/blogs", "destination": "/index.html" },
-    { "source": "/blogs/:slug", "destination": "/index.html" },
-    { "source": "/about/what-is-business-central", "destination": "/index.html" },
-    { "source": "/404", "destination": "/index.html" },
-    { "source": "/admin/login", "destination": "/index.html" },
-    { "source": "/admin/blogs", "destination": "/index.html" },
-    { "source": "/admin/blogs/create", "destination": "/index.html" },
-    { "source": "/admin/blogs/edit/:id", "destination": "/index.html" },
-    { "source": "/admin/upload-video", "destination": "/index.html" },
-    { "source": "/admin/manage-videos", "destination": "/index.html" }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
