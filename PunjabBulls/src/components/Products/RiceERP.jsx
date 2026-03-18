@@ -1,5 +1,6 @@
 import React from "react";
 import RiceProcessFlow from "./RiceProcessFlow";
+import { Link } from "react-router-dom";
 
 const RiceERP = () => {
   return (
@@ -69,7 +70,11 @@ const RiceERP = () => {
             <li>TDS, multi-currency, and profitability tracking</li>
           </ul>
         </div>
+        <Link to="/best-erp-for-rice-milling-industry" className="bg-primary mx-auto md:col-span-3 place-self-center text-white px-8 py-4 rounded-lg font-bold text-base cursor-pointer transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0">
+                    Read More
+                  </Link>
       </div>
+      
     </section>
   );
 };
