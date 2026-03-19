@@ -134,3 +134,43 @@
 .dropdown-enter {
   animation: fadeUp 0.18s ease;
 }
+
+.seo-modal-scroll,
+.seo-code-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.65) transparent;
+}
+
+.seo-modal-scroll::-webkit-scrollbar,
+.seo-code-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.seo-modal-scroll::-webkit-scrollbar-track,
+.seo-code-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.seo-modal-scroll::-webkit-scrollbar-thumb,
+.seo-code-scroll::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+.seo-modal-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.55);
+}
+
+.seo-code-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(203, 213, 225, 0.35);
+}
+
+.seo-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.7);
+}
+
+.seo-code-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(203, 213, 225, 0.5);
+}
