@@ -55,13 +55,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.punjabbulls.com/this-is-going-to-be-smt</loc>
+    <loc>https://www.punjabbulls.com/channels-tv</loc>
     <lastmod>2026-03-21</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>yearly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.punjabbulls.com/blogs/fruit-basket</loc>
+    <loc>https://www.punjabbulls.com/blogs/punjabbulls-food-factory</loc>
     <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

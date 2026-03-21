@@ -15,6 +15,7 @@ const Home = () => {
     <SEO
       title={meta.title}
       description={meta.description}
+      keywords={meta.keywords}
       canonical={meta.canonical}
       prerenderHint={meta.prerender}
       schema={{
