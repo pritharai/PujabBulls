@@ -2,18 +2,38 @@
 
 This guide explains how to create a generated SEO page from an existing blog, push it through GitHub, deploy it, verify it in the sitemap, and request indexing in Google.
 
+## Quick Checklist for creating Page
+
+1. Open the target blog in admin
+2. Click `Create Page`
+3. Fill the page fields carefully
+4. Confirm the path is available
+5. Copy the generated entry
+6. Paste it into `src/seo/generatedPages.js`
+7. Run `npm run dev`
+8. Preview and verify locally
+9. Commit and push to GitHub => Commit command sequence 
+
+  - `git checkout main`
+  - `git pull origin main`
+  - `git add .\PunjabBulls\src\seo\generatedPages.js`
+  - `git commit -m "Added Page <page name>` 
+  - `git push origin main`
+   
+10. Open the live page
+11. Request indexing for the new URL in Google Search Console
+
 
 ## What This Feature Does
 
 The admin panel can generate one page entry from a blog post. After that entry is pasted into the frontend repository and deployed, the website will automatically:
 
 - create the new page URL
-- Edit the page title, meta description, canonical URL and meta keywords
+- Edit the page title, meta description and meta keywords
 - render the blog content as a standalone SEO page
 - add the page to the sitemap if `sitemap` is enabled
 - add the page to the `More` menu if selected
 - add the page to the footer resources list if selected
-- add the page to the custom page related-links section if selected
 
 You do not need to manually edit:
 
@@ -33,11 +53,11 @@ The full workflow is:
 2. Click `Create Page`
 3. Fill the SEO page form
 4. Copy the generated code
-5. Paste it into `src/seo/generatedPages.js`
-6. Commit and push to GitHub
-7. Deploy the frontend
-8. Check that the page appears live
-9. Check that the page appears in `sitemap.xml`
+5. Paste it into `PunjabBulls/src/seo/generatedPages.js`
+6. run `npm run dev` command and check page loads (It will load if everything is correct)
+7. Commit and push to GitHub
+8. Deploy the frontend (happens automatically if above steps are correct)
+9. run `npm run dev` command and check that the page appears live
 10. Request indexing for the new URL in Google Search Console
 
 ## Before You Start
@@ -51,7 +71,7 @@ Make sure you have:
 
 For generated SEO pages, the normal content workflow only needs one code file:
 
-- `src/seo/generatedPages.js`
+- `PunjabBulls/src/seo/generatedPages.js`
 
 That is the file where the copied page entry must be pasted.
 
@@ -91,10 +111,9 @@ Good slug examples:
 
 Do not:
 
-- use spaces intentionally
+- use spaces
 - use symbols
 - use a slug that already belongs to another page
-- change the slug of an already-performing page unless there is a real SEO reason
 
 If the modal shows a path conflict, do not copy the entry yet. Change the slug until the path is available.
 
@@ -146,8 +165,6 @@ Use them as supporting metadata only. The stronger SEO signals are still:
 - meta description
 - H1
 - page content
-- internal links
-- canonical URL
 - sitemap presence
 
 ### Navbar Label
@@ -281,32 +298,11 @@ Do not paste the entry:
 - into a different file
 - above the `export const generatedSeoPages = [` line
 
-## Step 3: Test Locally Before Pushing
 
-Run:
-
-```bash
-npm run build
-npm run preview
-```
-
-Then verify:
-
-- the new URL opens correctly
-- the page content looks correct
-- the H1 is correct
-- the SEO title looks correct
-- the meta description is correct
-- the page shows in the `More` menu if enabled
-- the page shows in the footer if enabled
-- the page shows in related custom-page links if enabled
-
-If something is wrong, edit the pasted entry in `src/seo/generatedPages.js`, then build again.
-
-## Step 4: Commit And Push To GitHub
+## Step 3: Check, Commit And Push To GitHub
 
 Always pull the latest code first before making or pushing changes.
-
+do `npm run dev` & check you URL before pushing code if it works fine then run below commands
 Recommended sequence:
 
 ```bash
@@ -329,20 +325,13 @@ Do not:
 - skip pulling latest code
 - edit old local code and push without syncing first
 
-## Step 5: Deploy The Frontend
+## Step 4: Deploy The Frontend
 
-Deploy the frontend in the same way your team normally deploys production.
-
-During the build, the site will automatically:
-
-- create the new generated page route
-- apply the SEO metadata
-- include the page in the correct navigation areas
-- regenerate `sitemap.xml`
+pushing the code from github will deploy this automatically
 
 After a successful deployment, the new page should be live at its final URL.
 
-## Step 6: Check The Live Page
+## Step 5: Check The Live Page
 
 After deployment, open the final page URL and confirm:
 
@@ -351,33 +340,9 @@ After deployment, open the final page URL and confirm:
 - the page layout looks correct
 - the page is accessible from the expected menus if enabled
 
-## Step 7: Check The Sitemap
 
-After deployment, open:
 
-- `https://www.punjabbulls.com/sitemap.xml`
-
-Confirm that the new page URL appears there.
-
-The sitemap should include entries like:
-
-```xml
-<url>
-  <loc>https://www.punjabbulls.com/rice-erp-software</loc>
-  <lastmod>2026-03-21</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
-</url>
-```
-
-If the URL is missing from the sitemap, check:
-
-- the page entry was pasted correctly
-- `sitemap: true` is present in the entry
-- the latest code was deployed
-- the build completed successfully
-
-## Step 8: Request Indexing In Google Search Console
+## Step 6: Request Indexing In Google Search Console
 
 After deployment:
 
@@ -387,64 +352,6 @@ After deployment:
 4. Run inspection.
 5. Click `Request Indexing`.
 
-This is the right step for a brand new page URL.
-
-## When To Submit The Sitemap Again
-
-If `https://www.punjabbulls.com/sitemap.xml` is already added in Search Console, you usually do not need to add it again for every new page.
-
-Google can discover the new page from the updated sitemap automatically after recrawl.
-
-You may still resubmit the sitemap manually if:
-
-- you want to prompt a fresh crawl
-- the sitemap was changed recently and you want to verify it was read
-- the sitemap was never submitted before
-
-The sitemap URL to submit is:
-
-- `https://www.punjabbulls.com/sitemap.xml`
-
-## Where To See The SEO Keywords After Deployment
-
-The SEO keywords do not show in the visual page body by default.
-
-They appear in the page source as a meta tag.
-
-To check them:
-
-1. Open the live page.
-2. Right click and choose `View Page Source`.
-3. Search for `meta name="keywords"`.
-
-You should see something like:
-
-```html
-<meta name="keywords" content="rice erp, rice mill software, business central" />
-```
-
-Important note:
-
-Google generally does not rely on `meta keywords` for rankings. Treat these as optional supporting metadata, not the main SEO lever.
-
-## How Navigation Display Works
-
-Generated pages do not become top-level main menu items automatically.
-
-If `Show In More Menu` is enabled:
-
-- the page is listed under `More`
-- the visible text is `Navbar Label` if present
-- if `Navbar Label` is blank, the visible text falls back to the page heading
-
-If `Show In Footer` is enabled:
-
-- the page is listed in the footer resources section
-- the visible text is also `Navbar Label` first, then heading as fallback
-
-If `Show In Related Links` is enabled:
-
-- the page appears in the related custom-page section on generated SEO pages
 
 ## Updating An Existing Generated SEO Page
 
@@ -527,10 +434,15 @@ Do not remove a page casually if it already ranks well.
 4. Confirm the path is available
 5. Copy the generated entry
 6. Paste it into `src/seo/generatedPages.js`
-7. Run `npm run build`
+7. Run `npm run dev`
 8. Preview and verify locally
-9. Commit and push to GitHub
-10. Deploy the frontend
-11. Open the live page
-12. Check `https://www.punjabbulls.com/sitemap.xml`
-13. Request indexing for the new URL in Google Search Console
+9. Commit and push to GitHub => Commit command sequence 
+
+  - `git checkout main`
+  - `git pull origin main`
+  - `git add .\PunjabBulls\src\seo\generatedPages.js`
+  - `git commit -m "Added Page <page name>` 
+  - `git push origin main`
+   
+10. Open the live page
+11. Request indexing for the new URL in Google Search Console

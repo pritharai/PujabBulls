@@ -60,6 +60,20 @@ export default function Navbar() {
     }
   }, [open]);
 
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = previousOverflow;
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
     setIsAdmin(false);
@@ -217,7 +231,7 @@ export default function Navbar() {
       </div>
 
       {open ? (
-        <div className="border-t border-[#e9f1eb] bg-[#f9fbf9] px-6 py-6 md:hidden">
+        <div className="max-h-[calc(100vh-73px)] overflow-y-auto border-t border-[#e9f1eb] bg-[#f9fbf9] px-6 py-6 md:hidden">
           <nav className="flex flex-col gap-5">
             {navItems.map(([label, path]) => (
               <NavLink
