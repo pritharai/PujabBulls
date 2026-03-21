@@ -47,11 +47,14 @@ function stringifyForCode(value) {
   return JSON.stringify(value, null, 2);
 }
 
-function normalizeKeywords(input = "") {
-  return input
-    .split(",")
+export function normalizeKeywords(input = "") {
+  const source = Array.isArray(input) ? input.join(",") : input;
+
+  return source
+    .split(/,|\r?\n/g)
     .map((item) => item.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .filter((item, index, array) => array.indexOf(item) === index);
 }
 
 export function buildSeoPageCode(blog, form) {

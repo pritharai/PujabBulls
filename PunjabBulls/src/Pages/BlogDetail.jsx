@@ -5,7 +5,6 @@ import {
   fetchPublishedBlogs,
 } from "../services/publicBlogService";
 import BlogRenderer from "../components/BlogRenderer";
-import RelatedSeoPages from "../components/RelatedSeoPages";
 import SEO from "../components/SEO";
 import NotFound from "./NotFound";
 
@@ -104,8 +103,6 @@ export default function BlogDetail() {
           </ul>
         </section>
       ) : null}
-
-      <RelatedSeoPages currentPath={`/blogs/${slug}`} title="Explore Solutions" />
     </div>
   );
 }

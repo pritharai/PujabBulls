@@ -2,21 +2,18 @@ import { useEffect, useMemo, useState } from "react";
 import {
   buildSeoPageCode,
   getSeoPagePathConflict,
+  normalizeKeywords,
   slugifySeoPagePath,
 } from "../../utils/seoPageGenerator";
 
-function buildDefaultKeywords(blog) {
-  const seed = [
+function buildKeywordSuggestions(blog) {
+  return normalizeKeywords([
     blog.title,
     blog.slug?.replace(/-/g, " "),
     "PunjabBulls",
     "ERP",
     "Microsoft Dynamics 365 Business Central",
-  ]
-    .filter(Boolean)
-    .join(", ");
-
-  return seed;
+  ]);
 }
 
 function buildInitialForm(blog) {
@@ -28,7 +25,7 @@ function buildInitialForm(blog) {
       blog.excerpt ||
       "Learn how PunjabBulls helps businesses improve operations with ERP, automation, and digital transformation.",
     excerpt: blog.excerpt || "",
-    keywords: buildDefaultKeywords(blog),
+    keywords: buildKeywordSuggestions(blog),
     navLabel: blog.title || "",
     order: "99",
     changefreq: "monthly",
@@ -42,10 +39,13 @@ function buildInitialForm(blog) {
 export default function SeoPageGeneratorModal({ blog, onClose }) {
   const [form, setForm] = useState(() => buildInitialForm(blog));
   const [copied, setCopied] = useState(false);
+  const [keywordInput, setKeywordInput] = useState("");
+  const keywordSuggestions = useMemo(() => buildKeywordSuggestions(blog), [blog]);
 
   useEffect(() => {
     setForm(buildInitialForm(blog));
     setCopied(false);
+    setKeywordInput("");
   }, [blog]);
 
   useEffect(() => {
@@ -66,6 +66,35 @@ export default function SeoPageGeneratorModal({ blog, onClose }) {
       ...current,
       [field]: value,
     }));
+  };
+
+  const addKeyword = (value) => {
+    const [nextKeyword] = normalizeKeywords(value);
+    if (!nextKeyword) {
+      return;
+    }
+
+    setForm((current) => ({
+      ...current,
+      keywords: normalizeKeywords([...current.keywords, nextKeyword]),
+    }));
+    setKeywordInput("");
+  };
+
+  const removeKeyword = (keywordToRemove) => {
+    setForm((current) => ({
+      ...current,
+      keywords: current.keywords.filter((keyword) => keyword !== keywordToRemove),
+    }));
+  };
+
+  const handleKeywordInputKeyDown = (event) => {
+    if (event.key !== "Enter" && event.key !== ",") {
+      return;
+    }
+
+    event.preventDefault();
+    addKeyword(keywordInput);
   };
 
   const handleCopy = async () => {
@@ -89,9 +118,7 @@ export default function SeoPageGeneratorModal({ blog, onClose }) {
               </p>
               <h2 className="mt-2 text-2xl font-bold text-gray-900">{blog.title}</h2>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-600">
-                This generates one paste-ready entry for <code>src/seo/generatedPages.js</code>.
-                Routes, sitemap, navbar, footer, and related links will pick it up
-                automatically after deploy.
+                One paste-ready entry for <code>src/seo/generatedPages.js</code>.
               </p>
             </div>
 
@@ -176,13 +203,72 @@ export default function SeoPageGeneratorModal({ blog, onClose }) {
 
                 <label className="block">
                   <span className="mb-2 block text-sm font-medium text-gray-700">SEO Keywords</span>
-                  <textarea
-                    rows="4"
-                    value={form.keywords}
-                    onChange={(event) => handleChange("keywords", event.target.value)}
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none transition focus:border-[#1f803c]"
-                    placeholder="rice erp, rice mill erp software, microsoft dynamics 365 business central"
-                  />
+                  <div className="rounded-2xl border border-gray-200 px-4 py-4">
+                    <div className="flex flex-wrap gap-2">
+                      {form.keywords.map((keyword) => (
+                        <span
+                          key={keyword}
+                          className="inline-flex items-center gap-2 rounded-full bg-[#eef8f1] px-3 py-1 text-sm text-[#1f803c]"
+                        >
+                          {keyword}
+                          <button
+                            type="button"
+                            onClick={() => removeKeyword(keyword)}
+                            className="text-[#1f803c] transition hover:text-[#15592a]"
+                            aria-label={`Remove ${keyword}`}
+                          >
+                            <span className="material-symbols-outlined text-base">close</span>
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="mt-3 flex flex-col gap-3 sm:flex-row">
+                      <input
+                        type="text"
+                        value={keywordInput}
+                        onChange={(event) => setKeywordInput(event.target.value)}
+                        onKeyDown={handleKeywordInputKeyDown}
+                        className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none transition focus:border-[#1f803c]"
+                        placeholder="Add a keyword and press Enter"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => addKeyword(keywordInput)}
+                        className="rounded-xl bg-[#1f803c] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#15592a]"
+                      >
+                        Add Keyword
+                      </button>
+                    </div>
+
+                    <div className="mt-3">
+                      <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
+                        Suggested keywords
+                      </p>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {keywordSuggestions.map((keyword) => {
+                          const alreadyAdded = form.keywords.includes(keyword);
+
+                          return (
+                            <button
+                              key={keyword}
+                              type="button"
+                              onClick={() => addKeyword(keyword)}
+                              disabled={alreadyAdded}
+                              className="rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700 transition hover:border-[#1f803c] hover:text-[#1f803c] disabled:cursor-not-allowed disabled:border-[#1f803c] disabled:bg-[#eef8f1] disabled:text-[#1f803c]"
+                            >
+                              {alreadyAdded ? `${keyword} added` : keyword}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <p className="mt-3 text-xs text-gray-500">
+                      These keywords are optional. The generated page code will include exactly
+                      the keywords selected here.
+                    </p>
+                  </div>
                 </label>
 
                 <div className="grid gap-5 md:grid-cols-3">
@@ -295,12 +381,7 @@ export default function SeoPageGeneratorModal({ blog, onClose }) {
                 <p>
                   Paste the entry inside the exported <code>generatedSeoPages</code> array.
                 </p>
-                <p>
-                  Then run the frontend build and deploy. Navbar, footer, related
-                  links, route registration, prerender, and sitemap will all use this
-                  one entry automatically.
-                </p>
-                <p>No extra route file or App router edits are needed for generated pages anymore.</p>
+               
               </div>
             </div>
           </div>
