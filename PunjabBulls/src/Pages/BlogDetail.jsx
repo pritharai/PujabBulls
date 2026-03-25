@@ -45,7 +45,7 @@ export default function BlogDetail() {
   if (status === "not_found") return <NotFound />;
 
   return (
-    <div className="container mx-auto py-12 max-w-4xl">
+    <div className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
       <SEO
         title={`${blog.title} | PunjabBulls Blog`}
         description={blog.excerpt || "Read this PunjabBulls blog article."}
@@ -70,11 +70,11 @@ export default function BlogDetail() {
           },
         }}
       />
-      <h1 className="text-4xl font-bold mb-4">
+      <h1 className="mb-4 text-3xl font-bold leading-tight sm:text-4xl">
         {blog.title}
       </h1>
 
-      <p className="text-gray-600 mb-6">
+      <p className="mb-6 text-base leading-7 text-gray-600 sm:text-lg">
         {blog.excerpt}
       </p>
 
@@ -83,14 +83,14 @@ export default function BlogDetail() {
           src={blog.coverImage.url}
           alt={blog.title}
           loading="lazy"
-          className="w-full rounded-lg mb-8"
+          className="mb-8 w-full rounded-lg"
         />
       )}
 
       <BlogRenderer content={blog.content} />
 
       {relatedBlogs.length > 0 ? (
-        <section className="mt-12">
+        <section className="mt-12 border-t border-gray-200 pt-8">
           <h2 className="text-2xl font-semibold mb-4">Related Posts</h2>
           <ul className="space-y-3">
             {relatedBlogs.map((item) => (

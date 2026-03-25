@@ -4,6 +4,7 @@ export default function BlogCard({
   blog,
   isAdmin = false,
   onDelete,
+  onGeneratePage,
 }) {
   const formattedDate = new Date(blog.createdAt).toLocaleDateString(
     "en-IN",
@@ -11,7 +12,7 @@ export default function BlogCard({
   );
 
   return (
-    <article className="group bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col h-full hover:-translate-y-1 transition duration-300">
+    <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
       <a href={`/blogs/${blog.slug}`} className="flex flex-col flex-grow">
 
         {/* Image */}
@@ -52,20 +53,27 @@ export default function BlogCard({
 
       {/* Admin Controls */}
       {isAdmin && (
-        <div className="flex gap-2 p-4 border-t">
+        <div className="flex flex-wrap gap-3 border-t bg-gray-50/80 p-4">
 
           <Link
             to={`/admin/blogs/edit/${blog._id}`}
-            className="text-sm bg-[#1f803c] text-white px-3 py-1 rounded"
+            className="inline-flex min-w-[110px] cursor-pointer items-center justify-center rounded-lg border border-[#1f803c] bg-[#1f803c] px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#16632e]"
           >
             Edit
           </Link>
 
           <button
             onClick={() => onDelete(blog._id)}
-            className="text-sm bg-red-600 text-white px-3 py-1 rounded"
+            className="inline-flex min-w-[110px] cursor-pointer items-center justify-center rounded-lg border border-red-200 bg-white px-4 py-2.5 text-sm font-semibold text-red-600 transition-colors duration-200 hover:bg-red-50"
           >
             Delete
+          </button>
+
+          <button
+            onClick={() => onGeneratePage?.(blog)}
+            className="inline-flex min-w-[130px] cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-slate-800"
+          >
+            Create Page
           </button>
 
         </div>

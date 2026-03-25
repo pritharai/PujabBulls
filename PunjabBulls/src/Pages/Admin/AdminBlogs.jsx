@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getBlogs, deleteBlog } from "../../services/blogService";
 import BlogCard from "../../components/BlogCard";
+import SeoPageGeneratorModal from "../../components/Admin/SeoPageGeneratorModal";
 import { Link } from "react-router-dom";
 
 export default function AdminBlogs() {
@@ -11,6 +12,7 @@ export default function AdminBlogs() {
 
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [generatorBlog, setGeneratorBlog] = useState(null);
 
   const limit = 9;
 
@@ -118,6 +120,7 @@ export default function AdminBlogs() {
                 blog={blog}
                 isAdmin={true}
                 onDelete={handleDelete}
+                onGeneratePage={setGeneratorBlog}
               />
             ))}
           </div>
@@ -172,6 +175,13 @@ export default function AdminBlogs() {
           )}
         </>
       )}
+
+      {generatorBlog ? (
+        <SeoPageGeneratorModal
+          blog={generatorBlog}
+          onClose={() => setGeneratorBlog(null)}
+        />
+      ) : null}
     </div>
   );
 }

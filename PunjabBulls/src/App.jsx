@@ -28,6 +28,8 @@ import UploadVideo from "./Pages/Admin/VideoUpload";
 import ManageVideos from "./Pages/Admin/ManageVideos";
 import NotFound from "./Pages/NotFound";
 import ERPForRice from "./Pages/ERPForRice";
+import GeneratedSeoPage from "./Pages/GeneratedSeoPage";
+import { generatedSeoPages } from "./seo/generatedPages";
 
 function App() {
   const [showSplash, setShowSplash] = useState(() => {
@@ -132,6 +134,13 @@ function App() {
             path="/about/what-is-business-central"
             element={<WhatIsBusinessCentral />}
           />
+          {generatedSeoPages.map((page) => (
+            <Route
+              key={page.path}
+              path={page.path}
+              element={<GeneratedSeoPage page={page} />}
+            />
+          ))}
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Route>

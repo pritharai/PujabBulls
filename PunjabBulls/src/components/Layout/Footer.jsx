@@ -1,11 +1,16 @@
-import React from "react";
+import { Link } from "react-router-dom";
+import { footerSeoPages } from "../../seo/generatedPages";
 
 const Footer = () => {
   return (
     <footer className="bg-background-dark text-white pt-16 pb-8 border-t border-white/10">
       <div className="px-4 md:px-10 lg:px-40 flex justify-center">
         <div className="max-w-300 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          <div
+            className={`mb-12 grid grid-cols-1 gap-12 ${
+              footerSeoPages.length > 0 ? "md:grid-cols-5" : "md:grid-cols-4"
+            }`}
+          >
             {/* Brand */}
             <div className="col-span-1 md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
@@ -23,14 +28,14 @@ const Footer = () => {
               <h4 className="font-bold mb-4 text-gray-200">Company</h4>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li>
-                  <a className="hover:text-primary transition-colors" href="/about">
+                  <Link className="hover:text-primary transition-colors" to="/about">
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="hover:text-primary transition-colors" href="/privacy-policy">
+                  <Link className="hover:text-primary transition-colors" to="/privacy-policy">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -40,9 +45,9 @@ const Footer = () => {
               <h4 className="font-bold mb-4 text-gray-200">Services</h4>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li>
-                  <a className="hover:text-primary transition-colors" href="/products">
+                  <Link className="hover:text-primary transition-colors" to="/products">
                     Products
-                  </a>
+                  </Link>
                 </li>      
                 <li>
                   <a className="hover:text-primary transition-colors" href="/products#dynamics">
@@ -55,12 +60,30 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a className="hover:text-primary transition-colors" href="/best-erp-for-rice-milling-industry">
+                  <Link className="hover:text-primary transition-colors" to="/best-erp-for-rice-milling-industry">
                     Best ERP for Rice Milling Industry
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
+
+            {footerSeoPages.length > 0 ? (
+              <div>
+                <h4 className="font-bold mb-4 text-gray-200">Resources</h4>
+                <ul className="space-y-2 text-sm text-gray-400">
+                  {footerSeoPages.map((page) => (
+                    <li key={page.path}>
+                      <Link
+                        className="hover:text-primary transition-colors"
+                        to={page.path}
+                      >
+                        {page.navLabel || page.heading}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
             {/* Contact */}
             <div>

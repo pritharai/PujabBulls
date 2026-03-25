@@ -6,6 +6,14 @@ function buildHead(route) {
   const ogImage = toAbsoluteUrl(route.ogImage || DEFAULT_OG_IMAGE);
   const elements = new Set([
     { type: "meta", props: { name: "description", content: route.description } },
+    ...(route.keywords?.length
+      ? [
+          {
+            type: "meta",
+            props: { name: "keywords", content: route.keywords.join(", ") },
+          },
+        ]
+      : []),
     {
       type: "meta",
       props: {

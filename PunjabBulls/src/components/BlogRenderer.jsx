@@ -4,17 +4,17 @@ export default function BlogRenderer({ content }) {
   if (!content || !content.blocks) return null;
 
   return (
-    <div className="max-w-none leading-7 text-gray-800 [&_a]:text-blue-600 [&_a]:underline">
+    <div className="max-w-none break-words text-base leading-7 text-gray-800 sm:text-[17px] [&_a]:break-words [&_a]:text-blue-600 [&_a]:underline">
       {content.blocks.map((block, index) => {
         switch (block.type) {
           case "header": {
             const level = block.data.level || 2;
 
             const headingStyles = {
-              1: "text-3xl font-bold mt-10 mb-4",
-              2: "text-2xl font-semibold mt-8 mb-3",
-              3: "text-xl font-semibold mt-6 mb-2",
-              4: "text-lg font-semibold mt-5 mb-2",
+              1: "mt-10 mb-4 text-3xl font-bold leading-tight",
+              2: "mt-8 mb-3 text-2xl font-semibold leading-tight",
+              3: "mt-6 mb-2 text-xl font-semibold leading-snug",
+              4: "mt-5 mb-2 text-lg font-semibold leading-snug",
               5: "text-base font-semibold mt-4 mb-2",
               6: "text-sm font-semibold mt-4 mb-2",
             };
@@ -62,7 +62,7 @@ export default function BlogRenderer({ content }) {
               return (
                 <p
                   key={index}
-                  className="mb-4"
+                  className="mb-4 leading-7 sm:leading-8"
                   dangerouslySetInnerHTML={{ __html: html }}
                 />
               );
@@ -78,11 +78,12 @@ export default function BlogRenderer({ content }) {
                 key={index}
                 className={`${
                   isOrdered ? "list-decimal" : "list-disc"
-                } pl-6 mb-6 space-y-2`}
+                } mb-6 pl-5 pr-1 space-y-2 sm:pl-6`}
               >
                 {block.data.items.map((item, i) => (
                   <li
                     key={i}
+                    className="leading-7 sm:leading-8"
                     dangerouslySetInnerHTML={{ __html: item.content }}
                   />
                 ))}
@@ -114,7 +115,7 @@ export default function BlogRenderer({ content }) {
             return (
               <blockquote
                 key={index}
-                className="border-l-4 border-gray-400 pl-4 italic my-6 text-gray-700"
+                className="my-6 border-l-4 border-gray-400 pl-4 italic leading-7 text-gray-700 sm:pl-5 sm:leading-8"
                 dangerouslySetInnerHTML={{ __html: block.data.text }}
               />
             );
@@ -123,7 +124,7 @@ export default function BlogRenderer({ content }) {
             return (
               <pre
                 key={index}
-                className="bg-gray-900 text-white p-4 rounded-lg my-6 overflow-x-auto"
+                className="my-6 overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-white sm:text-base"
               >
                 <code>{block.data.code}</code>
               </pre>
@@ -140,7 +141,7 @@ export default function BlogRenderer({ content }) {
             return (
               <div
                 key={index}
-                className="bg-yellow-100 border-l-4 border-yellow-500 p-4 my-6"
+                className="my-6 border-l-4 border-yellow-500 bg-yellow-100 p-4"
               >
                 <p className="font-semibold">{block.data.title}</p>
                 <p>{block.data.message}</p>
@@ -165,7 +166,7 @@ export default function BlogRenderer({ content }) {
           case "table":
             return (
               <div key={index} className="overflow-x-auto my-6">
-                <table className="table-auto border-collapse border border-gray-300 w-full">
+                <table className="w-full min-w-[640px] table-auto border-collapse border border-gray-300">
                   <tbody>
                     {block.data.content.map((row, rowIndex) => (
                       <tr key={rowIndex}>

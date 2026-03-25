@@ -1,4 +1,6 @@
-export const staticRouteMeta = {
+import { generatedRouteMeta } from "./generatedPages.js";
+
+const baseRouteMeta = {
   "/": {
     title:
       "PunjabBulls Technology Pvt. Ltd. | ERP & Digital Transformation Company in India",
@@ -158,6 +160,11 @@ export const staticRouteMeta = {
     sitemap: false,
     noindex: true,
   },
+};
+
+export const staticRouteMeta = {
+  ...baseRouteMeta,
+  ...generatedRouteMeta,
 };
 
 export const prerenderRoutes = Object.entries(staticRouteMeta)

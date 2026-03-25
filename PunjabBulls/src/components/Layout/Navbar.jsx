@@ -1,17 +1,27 @@
-import React, { useState, useEffect, useRef } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { moreMenuSeoPages } from "../../seo/generatedPages";
 
-const Navbar = () => {
+const navItems = [
+  ["Home", "/"],
+  ["Industries", "/industries"],
+  ["Products", "/products"],
+  ["About", "/about"],
+  ["Contact", "/contact"],
+  ["Privacy Policy", "/privacy-policy"],
+  ["Blogs", "/blogs"],
+];
+
+export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [adminMenu, setAdminMenu] = useState(false);
+  const [moreMenu, setMoreMenu] = useState(false);
+  const [mobileAdminOpen, setMobileAdminOpen] = useState(false);
+  const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
   const adminRef = useRef(null);
+  const moreRef = useRef(null);
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("adminToken");
-  //   setIsAdmin(!!token);
-  // }, []);
 
   useEffect(() => {
     const checkToken = () => {
@@ -19,49 +29,62 @@ const Navbar = () => {
       setIsAdmin(!!token);
     };
 
-    // Check on mount
     checkToken();
-
-    // Listen for custom "authChange" event
     window.addEventListener("authChange", checkToken);
 
     return () => window.removeEventListener("authChange", checkToken);
   }, []);
 
   useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (adminRef.current && !adminRef.current.contains(event.target)) {
-      setAdminMenu(false);
+    const handleClickOutside = (event) => {
+      if (adminRef.current && !adminRef.current.contains(event.target)) {
+        setAdminMenu(false);
+      }
+
+      if (moreRef.current && !moreRef.current.contains(event.target)) {
+        setMoreMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!open) {
+      setMobileAdminOpen(false);
+      setMobileMoreOpen(false);
     }
-  };
+  }, [open]);
 
-  document.addEventListener("mousedown", handleClickOutside);
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
 
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, []);
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = previousOverflow;
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
     setIsAdmin(false);
+    setAdminMenu(false);
+    setOpen(false);
     navigate("/");
   };
 
-  const navItems = [
-    ["Home", "/"],
-    ["Industries", "/industries"],
-    ["Products", "/products"],
-    ["About", "/about"],
-    ["Contact", "/contact"],
-    ["Privacy Policy", "/privacy-policy"],
-    ["Blogs", "/blogs"],
-  ];
-
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#f9fbf9]/90 backdrop-blur-md border-b border-[#e9f1eb]">
-      <div className="px-4 md:px-10 py-3 flex items-center justify-between max-w-7xl mx-auto">
-        {/* Logo */}
+    <header className="sticky top-0 z-50 w-full border-b border-[#e9f1eb] bg-[#f9fbf9]/90 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-10">
         <Link
           to="/"
           className="flex items-center gap-4 text-[#101912]"
@@ -74,8 +97,7 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-9">
+        <nav className="hidden items-center gap-9 md:flex">
           {navItems.map(([label, path]) => (
             <NavLink
               key={path}
@@ -90,75 +112,117 @@ const Navbar = () => {
             </NavLink>
           ))}
 
-          {/* ADMIN LINKS */}
-          {isAdmin && (
-  <div
-    ref={adminRef}
-    className="relative"
-    onMouseEnter={() => setAdminMenu(true)}
-    onMouseLeave={() => setAdminMenu(false)}
-  >
-    <button
-      onClick={() => setAdminMenu((prev) => !prev)}
-      className="flex items-center gap-1 text-sm font-medium text-primary"
-    >
-      Admin
+          {moreMenuSeoPages.length > 0 ? (
+            <div
+              ref={moreRef}
+              className="relative"
+              onMouseEnter={() => setMoreMenu(true)}
+              onMouseLeave={() => setMoreMenu(false)}
+            >
+              <button
+                onClick={() => setMoreMenu((prev) => !prev)}
+                className="flex items-center gap-1 text-sm font-medium text-[#101912] transition-colors hover:text-primary"
+              >
+                More
+                <span
+                  className={`material-symbols-outlined text-[18px] transition-transform duration-200 ${
+                    moreMenu ? "rotate-180" : ""
+                  }`}
+                >
+                  expand_more
+                </span>
+              </button>
 
-      <span
-        className={`material-symbols-outlined text-[18px] transition-transform duration-200 ${
-          adminMenu ? "rotate-180" : ""
-        }`}
-      >
-        expand_more
-      </span>
-    </button>
+              <div
+                className={`absolute right-0 top-full mt-2 w-72 origin-top rounded-lg border border-[#e9f1eb] bg-white py-2 shadow-lg transition-all duration-200 ${
+                  moreMenu
+                    ? "visible scale-100 opacity-100"
+                    : "invisible scale-95 opacity-0"
+                }`}
+              >
+                {moreMenuSeoPages.map((page) => (
+                  <Link
+                    key={page.path}
+                    to={page.path}
+                    className="block px-4 py-3 text-sm hover:bg-[#f6f8f6]"
+                  >
+                    <span className="block font-medium text-[#101912]">
+                      {page.navLabel || page.heading}
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-gray-500">
+                      {page.description}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
-    <div
-      className={`dropdown-enter absolute top-full mt-2 right-0 w-44 bg-white border border-[#e9f1eb] rounded-lg shadow-lg py-2 transition-all duration-200 origin-top ${
-        adminMenu
-          ? "opacity-100 scale-100 visible"
-          : "opacity-0 scale-95 invisible"
-      }`}
-    >
-      <Link
-        to="/admin/blogs"
-        className="block px-4 py-2 text-sm hover:bg-[#f6f8f6]"
-      >
-        Manage Blogs
-      </Link>
+          {isAdmin ? (
+            <div
+              ref={adminRef}
+              className="relative"
+              onMouseEnter={() => setAdminMenu(true)}
+              onMouseLeave={() => setAdminMenu(false)}
+            >
+              <button
+                onClick={() => setAdminMenu((prev) => !prev)}
+                className="flex items-center gap-1 text-sm font-medium text-primary"
+              >
+                Admin
+                <span
+                  className={`material-symbols-outlined text-[18px] transition-transform duration-200 ${
+                    adminMenu ? "rotate-180" : ""
+                  }`}
+                >
+                  expand_more
+                </span>
+              </button>
 
-      <Link
-        to="/admin/manage-videos"
-        className="block px-4 py-2 text-sm hover:bg-[#f6f8f6]"
-      >
-        Manage Videos
-      </Link>
+              <div
+                className={`absolute right-0 top-full mt-2 w-44 origin-top rounded-lg border border-[#e9f1eb] bg-white py-2 shadow-lg transition-all duration-200 ${
+                  adminMenu
+                    ? "visible scale-100 opacity-100"
+                    : "invisible scale-95 opacity-0"
+                }`}
+              >
+                <Link
+                  to="/admin/blogs"
+                  className="block px-4 py-2 text-sm hover:bg-[#f6f8f6]"
+                >
+                  Manage Blogs
+                </Link>
 
-      <div className="border-t my-1"></div>
+                <Link
+                  to="/admin/manage-videos"
+                  className="block px-4 py-2 text-sm hover:bg-[#f6f8f6]"
+                >
+                  Manage Videos
+                </Link>
 
-      <button
-        onClick={handleLogout}
-        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-[#f6f8f6]"
-      >
-        Logout
-      </button>
-    </div>
-  </div>
-)}
+                <div className="my-1 border-t" />
+
+                <button
+                  onClick={handleLogout}
+                  className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-[#f6f8f6]"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          ) : null}
         </nav>
 
-        {/* Desktop CTA */}
         <Link
           to="/contact"
-          className="hidden md:flex min-w-21 items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-md hover:bg-primary/90 transition-all"
+          className="hidden h-10 min-w-21 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-md transition-all hover:bg-primary/90 md:flex"
         >
           Contact Us
         </Link>
 
-        {/* Hamburger */}
         <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden inline-flex items-center justify-center size-10 rounded-lg border border-[#e9f1eb] text-[#101912]"
+          onClick={() => setOpen((prev) => !prev)}
+          className="inline-flex size-10 items-center justify-center rounded-lg border border-[#e9f1eb] text-[#101912] md:hidden"
         >
           <span className="material-symbols-outlined">
             {open ? "close" : "menu"}
@@ -166,9 +230,8 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {open && (
-        <div className="md:hidden bg-[#f9fbf9] border-t border-[#e9f1eb] px-6 py-6 space-y-6">
+      {open ? (
+        <div className="max-h-[calc(100vh-73px)] overflow-y-auto border-t border-[#e9f1eb] bg-[#f9fbf9] px-6 py-6 md:hidden">
           <nav className="flex flex-col gap-5">
             {navItems.map(([label, path]) => (
               <NavLink
@@ -185,73 +248,99 @@ const Navbar = () => {
               </NavLink>
             ))}
 
-            {isAdmin && (
-  <div
-    ref={adminRef}
-    className="relative"
-    onMouseEnter={() => setAdminMenu(true)}
-    onMouseLeave={() => setAdminMenu(false)}
-  >
-    <button
-      onClick={() => setAdminMenu((prev) => !prev)}
-      className="flex items-center gap-1 text-sm font-medium text-primary"
-    >
-      Admin
+            {moreMenuSeoPages.length > 0 ? (
+              <div className="rounded-2xl border border-[#e9f1eb] bg-white">
+                <button
+                  onClick={() => setMobileMoreOpen((prev) => !prev)}
+                  className="flex w-full items-center justify-between px-4 py-3 text-left text-base font-medium text-[#101912]"
+                >
+                  <span>More</span>
+                  <span
+                    className={`material-symbols-outlined text-[18px] transition-transform ${
+                      mobileMoreOpen ? "rotate-180" : ""
+                    }`}
+                  >
+                    expand_more
+                  </span>
+                </button>
 
-      <span
-        className={`material-symbols-outlined text-[18px] transition-transform duration-200 ${
-          adminMenu ? "rotate-180" : ""
-        }`}
-      >
-        expand_more
-      </span>
-    </button>
+                {mobileMoreOpen ? (
+                  <div className="space-y-1 border-t border-[#e9f1eb] px-2 py-2">
+                    {moreMenuSeoPages.map((page) => (
+                      <Link
+                        key={page.path}
+                        to={page.path}
+                        onClick={() => setOpen(false)}
+                        className="block rounded-xl px-3 py-3 hover:bg-[#f6f8f6]"
+                      >
+                        <span className="block font-medium text-[#101912]">
+                          {page.navLabel || page.heading}
+                        </span>
+                        <span className="mt-1 block text-sm leading-5 text-gray-500">
+                          {page.description}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
 
-    <div
-      className={`dropdown-enter absolute top-full mt-2 right-0 w-44 bg-white border border-[#e9f1eb] rounded-lg shadow-lg py-2 transition-all duration-200 origin-top ${
-        adminMenu
-          ? "opacity-100 scale-100 visible"
-          : "opacity-0 scale-95 invisible"
-      }`}
-    >
-      <Link
-        to="/admin/blogs"
-        className="block px-4 py-2 text-sm hover:bg-[#f6f8f6]"
-      >
-        Manage Blogs
-      </Link>
+            {isAdmin ? (
+              <div className="rounded-2xl border border-[#e9f1eb] bg-white">
+                <button
+                  onClick={() => setMobileAdminOpen((prev) => !prev)}
+                  className="flex w-full items-center justify-between px-4 py-3 text-left text-base font-medium text-primary"
+                >
+                  <span>Admin</span>
+                  <span
+                    className={`material-symbols-outlined text-[18px] transition-transform ${
+                      mobileAdminOpen ? "rotate-180" : ""
+                    }`}
+                  >
+                    expand_more
+                  </span>
+                </button>
 
-      <Link
-        to="/admin/videos"
-        className="block px-4 py-2 text-sm hover:bg-[#f6f8f6]"
-      >
-        Manage Videos
-      </Link>
+                {mobileAdminOpen ? (
+                  <div className="space-y-1 border-t border-[#e9f1eb] px-2 py-2">
+                    <Link
+                      to="/admin/blogs"
+                      onClick={() => setOpen(false)}
+                      className="block rounded-xl px-3 py-3 hover:bg-[#f6f8f6]"
+                    >
+                      Manage Blogs
+                    </Link>
 
-      <div className="border-t my-1"></div>
+                    <Link
+                      to="/admin/manage-videos"
+                      onClick={() => setOpen(false)}
+                      className="block rounded-xl px-3 py-3 hover:bg-[#f6f8f6]"
+                    >
+                      Manage Videos
+                    </Link>
 
-      <button
-        onClick={handleLogout}
-        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-[#f6f8f6]"
-      >
-        Logout
-      </button>
-    </div>
-  </div>
-)}
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full rounded-xl px-3 py-3 text-left text-red-600 hover:bg-[#f6f8f6]"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
           </nav>
 
           <Link
             to="/contact"
             onClick={() => setOpen(false)}
-            className="flex justify-center items-center rounded-lg h-11 px-6 bg-primary text-white font-bold shadow-md hover:bg-primary/90 transition-all"
+            className="mt-6 flex h-11 items-center justify-center rounded-lg bg-primary px-6 font-bold text-white shadow-md transition-all hover:bg-primary/90"
           >
             Contact Us
           </Link>
         </div>
-      )}
+      ) : null}
     </header>
   );
-};
-
-export default Navbar;
+}
