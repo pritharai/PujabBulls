@@ -101,7 +101,7 @@ const Hero = () => {
     {/* Micro Trust Line */}
     <div className="text-left">
       <p className="text-sm font-semibold text-primary">
-        Certified Microsoft Solutions Partnerss
+        Certified Microsoft Solutions partner
       </p>
       <p className="text-xs text-gray-500">
         ERP • CRM • Business Central Experts
