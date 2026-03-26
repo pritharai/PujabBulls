@@ -635,7 +635,9 @@ export const generatedSeoPages = [
     ],
     "version": "2.31.3"
   }
-}, //end
+}, 
+      }
+      //end
         //2nd
         //end
     
