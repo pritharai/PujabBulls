@@ -1250,7 +1250,7 @@ export const generatedSeoPages = [
   }
 },//end
     
-  },
+  
 
 ];
 
