@@ -51,9 +51,9 @@ export default function GeneratedSeoPage({ page }) {
         {page.heading}
       </h1>
 
-      <div className="mb-6">
+      {/* <div className="mb-6">
         <KeywordChips keywords={page.keywords} />
-      </div>
+      </div> */}
 
       {page.excerpt ? (
         <p className="mb-6 text-base leading-7 text-gray-600 sm:text-lg">
