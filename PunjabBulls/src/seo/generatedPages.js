@@ -636,6 +636,117 @@ export const generatedSeoPages = [
     "version": "2.31.3"
   }
 }, 
+
+  //Complete ERP Solution for Rice Mills | Paddy to Export Management System 2026
+  {
+  "path": "/erp-solution-for-rice-mills-paddy-to-export",
+  "heading": "Complete ERP Solution for Rice Mills: From Paddy to Export",
+  "title": "Complete ERP Solution for Rice Mills | Paddy to Export Management System 2026",
+  "description": "Optimize your rice mill operations with ERP software. Manage paddy procurement, milling, inventory, quality, and exports using Microsoft Dynamics 365 Business Central.",
+  "excerpt": "Discover how ERP software for rice mills helps manage the entire process from paddy procurement to export. Improve efficiency, reduce losses, and gain real-time visibility with Microsoft Dynamics 365 Business Central.",
+  "keywords": [
+    "🌾 Complete ERP Solution for Rice Mills – From Paddy to Export 🌾",
+    "complete erp solution for rice mills from paddy to export",
+    "PunjabBulls",
+    "ERP",
+    "Microsoft Dynamics 365 Business Central",
+    "rice mill ERP software",
+    "ERP for rice mills in India",
+    "paddy to rice ERP system",
+    "rice industry ERP solution",
+    "grain industry ERP"
+  ],
+  "canonical": "/erp-solution-for-rice-mills-paddy-to-export",
+  "prerender": true,
+  "sitemap": true,
+  "changefreq": "monthly",
+  "priority": "0.9",
+  "ogImage": "https://res.cloudinary.com/ducv9j3hj/image/upload/v1773730724/blog_images/vb2cw7w6fgvv9vsppzak.png",
+  "coverImage": {
+    "url": "https://res.cloudinary.com/ducv9j3hj/image/upload/v1773730724/blog_images/vb2cw7w6fgvv9vsppzak.png",
+    "alt": "🌾 Complete ERP Solution for Rice Mills – From Paddy to Export 🌾"
+  },
+  "showInMoreMenu": true,
+  "showInFooter": true,
+  "showInRelatedSection": true,
+  "navLabel": "Rice Mill ERP Solution",
+  "order": 99,
+  "content": {
+    "time": 1773728113142,
+    "blocks": [
+      {
+        "id": "6l2lCh0adm",
+        "type": "header",
+        "data": {
+          "text": "Our ERP Covers Complete Rice Mill Operations",
+          "level": 3
+        }
+      },
+      {
+        "id": "zxALtKwXMG",
+        "type": "paragraph",
+        "data": {
+          "text": "✔ Paddy / Souda Booking (Mobile entry for field staff)\n✔ Gate Entry &amp; Weighbridge Integration\n✔ Milling &amp; Production Process Management\n✔ Inventory &amp; Lot Tracking\n✔ Rice Quality Control (QC)\n✔ Costing &amp; Profit Analysis\n✔ Export Documentation &amp; E-Way Bills"
+        }
+      },
+      {
+        "id": "tKYRxeyaZO",
+        "type": "paragraph",
+        "data": {
+          "text": "हमारा solution Paddy to Rice और Rice to Rice दोनों प्रकार के mills के लिए बनाया गया है।"
+        }
+      },
+      {
+        "id": "74Rqk1G0Sf",
+        "type": "paragraph",
+        "data": {
+          "text": "✔ Domestic Sales\n✔ Export Sales\n✔ Multi-location mills\n✔ Complete ERP integration"
+        }
+      },
+      {
+        "id": "_HRf9rNHFI",
+        "type": "paragraph",
+        "data": {
+          "text": "हमने India में कई rice mills में successful implementations किए हैं और industry-specific solution provide करते हैं।"
+        }
+      },
+      {
+        "id": "S2BSx9aFwZ",
+        "type": "delimiter"
+      },
+      {
+        "id": "mhHKEesjc4",
+        "type": "header",
+        "data": {
+          "text": "If you want to digitize your rice mill operations&nbsp;",
+          "level": 3
+        }
+      },
+      {
+        "id": "JNba9HpFL5",
+        "type": "paragraph",
+        "data": {
+          "text": "📞 Contact us for Live Demo / Consultation"
+        }
+      },
+      {
+        "id": "zG6Ja45n6U",
+        "type": "paragraph",
+        "data": {
+          "text": "Dheeraj Khurana\n📧 <a>dheeraj@punjabbulls.com</a>\n📱 +91 97127 00115"
+        }
+      },
+      {
+        "id": "mb0MmnrYZU",
+        "type": "paragraph",
+        "data": {
+          "text": "https://www.punjabbulls.com/contact"
+        }
+      }
+    ],
+    "version": "2.31.3"
+  }
+},
       
       //end
   {
