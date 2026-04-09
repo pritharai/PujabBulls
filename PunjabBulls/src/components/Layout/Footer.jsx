@@ -1,16 +1,24 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { footerSeoPages } from "../../seo/generatedPages";
 
 const Footer = () => {
+  const [isAddOnsOpen, setIsAddOnsOpen] = useState(false);
+  const primaryResourceCount = 5;
+  const visibleResourcePages = footerSeoPages.slice(0, primaryResourceCount);
+  const addonResourcePages = footerSeoPages.slice(primaryResourceCount);
+  const hasAddonLinks = addonResourcePages.length > 0;
+  const footerGridClassName = footerSeoPages.length > 0
+    ? isAddOnsOpen && hasAddonLinks
+      ? "md:grid-cols-6"
+      : "md:grid-cols-5"
+    : "md:grid-cols-4";
+
   return (
     <footer className="bg-background-dark text-white pt-16 pb-8 border-t border-white/10">
       <div className="px-4 md:px-10 lg:px-40 flex justify-center">
         <div className="max-w-300 w-full">
-          <div
-            className={`mb-12 grid grid-cols-1 gap-12 ${
-              footerSeoPages.length > 0 ? "md:grid-cols-5" : "md:grid-cols-4"
-            }`}
-          >
+          <div className={`mb-12 grid grid-cols-1 gap-12 ${footerGridClassName}`}>
             {/* Brand */}
             <div className="col-span-1 md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
@@ -71,7 +79,36 @@ const Footer = () => {
               <div>
                 <h4 className="font-bold mb-4 text-gray-200">Resources</h4>
                 <ul className="space-y-2 text-sm text-gray-400">
-                  {footerSeoPages.map((page) => (
+                  {visibleResourcePages.map((page) => (
+                    <li key={page.path}>
+                      <Link
+                        className="hover:text-primary transition-colors"
+                        to={page.path}
+                      >
+                        {page.navLabel || page.heading}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                {hasAddonLinks ? (
+                  <button
+                    aria-controls="footer-add-ons"
+                    aria-expanded={isAddOnsOpen}
+                    className="mt-4 text-sm font-medium text-primary transition-colors hover:text-white"
+                    type="button"
+                    onClick={() => setIsAddOnsOpen((currentState) => !currentState)}
+                  >
+                    {isAddOnsOpen ? "Hide Add Ons" : "Add Ons"}
+                  </button>
+                ) : null}
+              </div>
+            ) : null}
+
+            {isAddOnsOpen && hasAddonLinks ? (
+              <div id="footer-add-ons">
+                <h4 className="font-bold mb-4 text-gray-200">Add Ons</h4>
+                <ul className="space-y-2 text-sm text-gray-400">
+                  {addonResourcePages.map((page) => (
                     <li key={page.path}>
                       <Link
                         className="hover:text-primary transition-colors"
