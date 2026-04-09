@@ -1464,7 +1464,630 @@ export const generatedSeoPages = [
     ],
     "version": "2.31.3"
   }
-}, //end
+},      //end
+
+  //9april 2026
+  {
+  "path": "/fruit-import-erp-software-or-microsoft-dynamics-business-central-or-punjabbulls",
+  "heading": "Fruit Import ERP Software | Microsoft Dynamics Business Central | PunjabBulls",
+  "title": "Fruit Import ERP Software | Microsoft Dynamics Business Central | PunjabBulls | PunjabBulls",
+  "description": "End-to-End ERP for Fruit Importers & Mandi Traders\n\nManage your entire business — from import containers to mandi sales — with a complete ERP solution built on Microsoft Dynamics Business Central.",
+  "excerpt": "End-to-End ERP for Fruit Importers & Mandi Traders\n\nManage your entire business — from import containers to mandi sales — with a complete ERP solution built on Microsoft Dynamics Business Central.",
+  "keywords": [
+    "Fruit Import ERP Software | Microsoft Dynamics Business Central | PunjabBulls",
+    "fruit import erp software or microsoft dynamics business central or punjabbulls",
+    "PunjabBulls",
+    "ERP",
+    "Microsoft Dynamics 365 Business Central"
+  ],
+  "canonical": "/fruit-import-erp-software-or-microsoft-dynamics-business-central-or-punjabbulls",
+  "prerender": true,
+  "sitemap": true,
+  "changefreq": "monthly",
+  "priority": "0.7",
+  "ogImage": "https://res.cloudinary.com/ducv9j3hj/image/upload/v1773736083/blog_images/dqjjyshpnxbamieyd0hf.png",
+  "coverImage": {
+    "url": "https://res.cloudinary.com/ducv9j3hj/image/upload/v1773736083/blog_images/dqjjyshpnxbamieyd0hf.png",
+    "alt": "Fruit Import ERP Software | Microsoft Dynamics Business Central | PunjabBulls"
+  },
+  "showInMoreMenu": false,
+  "showInFooter": true,
+  "showInRelatedSection": true,
+  "navLabel": "Fruit Import ERP Software | Microsoft Dynamics Business Central | PunjabBulls",
+  "order": 99,
+  "content": {
+    "time": 1773736219529,
+    "blocks": [
+      {
+        "id": "quAR6sRm2E",
+        "type": "paragraph",
+        "data": {
+          "text": "Manage your entire business — from import containers to mandi sales — with a complete ERP solution built on Microsoft Dynamics Business Central."
+        }
+      },
+      {
+        "id": "ezdVqXiIqV",
+        "type": "paragraph",
+        "data": {
+          "text": "✔ Import Management\n✔ Landed Costing\n✔ Cold Storage Inventory\n✔ Mandi Sales &amp; Commission\n✔ Profitability Tracking"
+        }
+      },
+      {
+        "id": "RCMHKDeQ6E",
+        "type": "paragraph",
+        "data": {
+          "text": "👉 Book a Free Demo"
+        }
+      },
+      {
+        "id": "ZFBThzdsOl",
+        "type": "delimiter"
+      },
+      {
+        "id": "h2ybsb4Se8",
+        "type": "header",
+        "data": {
+          "text": "🟢 Industry Problems",
+          "level": 2
+        }
+      },
+      {
+        "id": "nps46r9b7w",
+        "type": "paragraph",
+        "data": {
+          "text": "Fruit importers face daily challenges:"
+        }
+      },
+      {
+        "id": "zW9o-2gpw4",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            {
+              "content": "No visibility of container cost &amp; margins\n",
+              "items": []
+            },
+            {
+              "content": "Difficulty tracking lot-wise inventory\n",
+              "items": []
+            },
+            {
+              "content": "High losses due to stock ageing &amp; wastage\n",
+              "items": []
+            },
+            {
+              "content": "No system for mandi sales &amp; commission handling\n",
+              "items": []
+            },
+            {
+              "content": "Poor tracking of truck movement &amp; gate entry\n",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "EFmld77esG",
+        "type": "delimiter"
+      },
+      {
+        "id": "oQTH9dgUfI",
+        "type": "header",
+        "data": {
+          "text": "🟢 Our Solution",
+          "level": 2
+        }
+      },
+      {
+        "id": "8OUhpe_R0N",
+        "type": "paragraph",
+        "data": {
+          "text": "We provide a specialized ERP for fruit importers:"
+        }
+      },
+      {
+        "id": "0fzAW_Hbcr",
+        "type": "header",
+        "data": {
+          "text": "🍎 Import Management",
+          "level": 3
+        }
+      },
+      {
+        "id": "7BXexnNagn",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            {
+              "content": "Container-wise purchase tracking\n",
+              "items": []
+            },
+            {
+              "content": "Supplier &amp; shipment management\n",
+              "items": []
+            },
+            {
+              "content": "Import documentation\n",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "ZBUFvIeFzl",
+        "type": "delimiter"
+      },
+      {
+        "id": "LGbvsC6jFC",
+        "type": "header",
+        "data": {
+          "text": "💰 Landed Costing",
+          "level": 3
+        }
+      },
+      {
+        "id": "uvIIFTGTBA",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            {
+              "content": "Freight, duty, clearing charges\n",
+              "items": []
+            },
+            {
+              "content": "Accurate cost per box calculation\n",
+              "items": []
+            },
+            {
+              "content": "Real-time profitability\n",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "bXR02xCOos",
+        "type": "delimiter"
+      },
+      {
+        "id": "C5wH_2QcwJ",
+        "type": "header",
+        "data": {
+          "text": "📦 Inventory &amp; Cold Storage",
+          "level": 3
+        }
+      },
+      {
+        "id": "ZJTIB0Nquc",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            {
+              "content": "Lot-wise &amp; batch tracking\n",
+              "items": []
+            },
+            {
+              "content": "Location-wise inventory\n",
+              "items": []
+            },
+            {
+              "content": "Expiry &amp; ageing analysis\n",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "hHVCqrtH9i",
+        "type": "delimiter"
+      },
+      {
+        "id": "78bzhq0ENJ",
+        "type": "header",
+        "data": {
+          "text": "🏪 Mandi Sales Management",
+          "level": 3
+        }
+      },
+      {
+        "id": "4gVb89H6TA",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            {
+              "content": "Commission agent handling\n",
+              "items": []
+            },
+            {
+              "content": "Item-wise / brand-wise sales\n",
+              "items": []
+            },
+            {
+              "content": "Cash &amp; wholesale billing\n",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "WN8iG__ujH",
+        "type": "delimiter"
+      },
+      {
+        "id": "_eNy9_dxdq",
+        "type": "header",
+        "data": {
+          "text": "🚚 Gate Entry &amp; Logistics",
+          "level": 3
+        }
+      },
+      {
+        "id": "EP0ajPmu7u",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            {
+              "content": "Truck entry/exit tracking\n",
+              "items": []
+            },
+            {
+              "content": "Gate pass system\n",
+              "items": []
+            },
+            {
+              "content": "Material movement control\n",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "MUF1LsG9vL",
+        "type": "delimiter"
+      },
+      {
+        "id": "YLdrhq96v0",
+        "type": "header",
+        "data": {
+          "text": "📊 Advanced Reporting",
+          "level": 3
+        }
+      },
+      {
+        "id": "L5yCw-3Zg3",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            {
+              "content": "Stock ageing\n",
+              "items": []
+            },
+            {
+              "content": "Top selling items\n",
+              "items": []
+            },
+            {
+              "content": "Category-wise inventory\n",
+              "items": []
+            },
+            {
+              "content": "Profitability reports\n",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "MdbyTaMS9U",
+        "type": "delimiter"
+      },
+      {
+        "id": "0lMdlsJSNl",
+        "type": "header",
+        "data": {
+          "text": "🟢 Why Business Central",
+          "level": 2
+        }
+      },
+      {
+        "id": "F1iDgXJY9P",
+        "type": "paragraph",
+        "data": {
+          "text": "Built on Microsoft Dynamics 365 Business Central"
+        }
+      },
+      {
+        "id": "EM1Yheipi1",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            {
+              "content": "Scalable &amp; cloud-ready\n",
+              "items": []
+            },
+            {
+              "content": "Real-time reporting\n",
+              "items": []
+            },
+            {
+              "content": "Integrated finance &amp; inventory\n",
+              "items": []
+            },
+            {
+              "content": "Global standard ERP\n",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "7X9Mvo1SZ1",
+        "type": "paragraph",
+        "data": {
+          "text": "PunjabBulls Technology Pvt. Ltd."
+        }
+      },
+      {
+        "id": "vDT-t_zoKq",
+        "type": "paragraph",
+        "data": {
+          "text": "📍📞 Phone / WhatsApp: +91 9711270115 📧 Email: dheeraj<a>@punjabbulls.com</a>\n🌐 Website: <a href=\"http://www.punjabbulls.com\">www.punjabbulls.com</a>"
+        }
+      }
+    ],
+    "version": "2.31.3"
+  }
+}, //end 
+       // 9april 2026 (2)
+        {
+  "path": "/simplifying-subscription-management-in-microsoft-dynamics-365-business-central",
+  "heading": "Simplify Subscription Management with Microsoft Dynamics 365 Business Central ERP",
+  "title": "Subscription Management ERP in India | Microsoft Dynamics 365 Business Central by PunjabBulls",
+  "description": "Looking for subscription management ERP software in India? Automate billing, manage recurring invoices, and track revenue efficiently with Microsoft Dynamics 365 Business Central by PunjabBulls.",
+  "excerpt": "Discover how businesses can automate recurring billing, manage subscriptions, and improve revenue tracking using Microsoft Dynamics 365 Business Central ERP solutions by PunjabBulls.",
+  "keywords": [
+    "Simplifying Subscription Management in Microsoft Dynamics 365 Business Central",
+    "simplifying subscription management in microsoft dynamics 365 business central",
+    "PunjabBulls",
+    "ERP",
+    "Microsoft Dynamics 365 Business Central",
+    "subscription management ERP software India",
+    "recurring billing software India",
+    "Microsoft Dynamics 365 Business Central ERP",
+    "ERP for subscription business",
+    "automate billing ERP solution"
+  ],
+  "canonical": "/simplifying-subscription-management-in-microsoft-dynamics-365-business-central",
+  "prerender": true,
+  "sitemap": true,
+  "changefreq": "monthly",
+  "priority": "0.9",
+  "ogImage": "https://res.cloudinary.com/ducv9j3hj/image/upload/v1773996715/blog_images/v7rua1pmgog2vrscncbg.png",
+  "coverImage": {
+    "url": "https://res.cloudinary.com/ducv9j3hj/image/upload/v1773996715/blog_images/v7rua1pmgog2vrscncbg.png",
+    "alt": "Simplifying Subscription Management in Microsoft Dynamics 365 Business Central"
+  },
+  "showInMoreMenu": true,
+  "showInFooter": true,
+  "showInRelatedSection": true,
+  "navLabel": "Subscription Management ERP",
+  "order": 99,
+  "content": {
+    "time": 1773996513653,
+    "blocks": [
+      {
+        "id": "4F32zP8ipR",
+        "type": "embed",
+        "data": {
+          "service": "youtube",
+          "source": "https://youtu.be/jJxBswIy_Xw?si=46h84ck_iyTd0OSC",
+          "embed": "https://www.youtube.com/embed/jJxBswIy_Xw?",
+          "width": 580,
+          "height": 320,
+          "caption": ""
+        }
+      },
+      {
+        "id": "CKp-3gVZpV",
+        "type": "paragraph",
+        "data": {
+          "text": "https://youtu.be/IG2LBzs3Lak?si=RZ3YEql-f4NVGW-e"
+        }
+      },
+      {
+        "id": "8kpCUgLfkS",
+        "type": "paragraph",
+        "data": {
+          "text": "In today’s evolving business environment, many organizations are shifting from one-time sales to recurring revenue models. Whether it is service contracts, annual maintenance, SaaS offerings, or subscription-based products, managing these efficiently is critical for long-term success."
+        }
+      },
+      {
+        "id": "X7dvMEqjyz",
+        "type": "paragraph",
+        "data": {
+          "text": "Microsoft Dynamics 365 Business Central provides a structured and reliable way to handle subscription management with accuracy, control, and scalability."
+        }
+      },
+      {
+        "id": "5XfJ7iwqBC",
+        "type": "paragraph",
+        "data": {
+          "text": "Subscription management refers to the process of handling recurring billing, contract management, invoicing, and revenue tracking for customers who are billed periodically."
+        }
+      },
+      {
+        "id": "XNJSBWioQM",
+        "type": "paragraph",
+        "data": {
+          "text": "With Business Central, businesses can:"
+        }
+      },
+      {
+        "id": "SILUruNkKn",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            {
+              "content": "Automate recurring invoices\n",
+              "items": []
+            },
+            {
+              "content": "Maintain customer subscription contracts\n",
+              "items": []
+            },
+            {
+              "content": "Track renewals and billing cycles\n",
+              "items": []
+            },
+            {
+              "content": "Improve revenue visibility\n",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "gU_6qIilgM",
+        "type": "paragraph",
+        "data": {
+          "text": "he subscription lifecycle in Business Central follows a structured and disciplined approach:"
+        }
+      },
+      {
+        "id": "GM9mMzHa_H",
+        "type": "header",
+        "data": {
+          "text": "1. Create Subscription / Contract",
+          "level": 4
+        }
+      },
+      {
+        "id": "-2S6znogQW",
+        "type": "paragraph",
+        "data": {
+          "text": "Define customer agreements including duration, billing cycle (monthly, quarterly, yearly), and pricing."
+        }
+      },
+      {
+        "id": "aIVeK1iBq0",
+        "type": "header",
+        "data": {
+          "text": "2. Assign Items or Services",
+          "level": 4
+        }
+      },
+      {
+        "id": "oZUakAYaww",
+        "type": "paragraph",
+        "data": {
+          "text": "Attach subscription items such as AMC services, software licenses, or support packages."
+        }
+      },
+      {
+        "id": "WTM9G2bY1G",
+        "type": "header",
+        "data": {
+          "text": "3. Set Billing Schedule",
+          "level": 4
+        }
+      },
+      {
+        "id": "BeMOusmLsb",
+        "type": "paragraph",
+        "data": {
+          "text": "Configure recurring billing periods to ensure timely and automated invoicing."
+        }
+      },
+      {
+        "id": "Gt9DULOFmE",
+        "type": "header",
+        "data": {
+          "text": "4. Generate Recurring Invoices",
+          "level": 4
+        }
+      },
+      {
+        "id": "ym-Y_DC3Yf",
+        "type": "paragraph",
+        "data": {
+          "text": "Run batch jobs to generate invoices automatically based on predefined schedules."
+        }
+      },
+      {
+        "id": "n4Rzvmj06V",
+        "type": "header",
+        "data": {
+          "text": "5. Post and Track Revenue",
+          "level": 4
+        }
+      },
+      {
+        "id": "wZMvxRV2CS",
+        "type": "paragraph",
+        "data": {
+          "text": "Invoices are posted through the standard sales process, ensuring accurate financial records and reporting."
+        }
+      },
+      {
+        "id": "JS3XHa7C4n",
+        "type": "paragraph",
+        "data": {
+          "text": "mplementing subscription management in Business Central brings several advantages:"
+        }
+      },
+      {
+        "id": "t10KPum3LQ",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            {
+              "content": "Automation: Reduces manual effort and errors\n",
+              "items": []
+            },
+            {
+              "content": "Consistency: Ensures timely billing cycles\n",
+              "items": []
+            },
+            {
+              "content": "Scalability: Easily manage growing customer base\n",
+              "items": []
+            },
+            {
+              "content": "Financial Visibility: Clear tracking of recurring revenue\n",
+              "items": []
+            },
+            {
+              "content": "Customer Retention: Better control over renewals and service delivery",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "WKVXyS28NZ",
+        "type": "paragraph",
+        "data": {
+          "text": "<br>"
+        }
+      }
+    ],
+    "version": "2.31.3"
+  }
+},
+
+        //9april 2026 (3)
+        
+        
  
 
     
